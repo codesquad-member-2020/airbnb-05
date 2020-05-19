@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,14 +15,92 @@
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAm-9e-vFQ" userLabel="Map Button">
+                                <rect key="frame" x="349.5" y="756.5" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nNJ-ab-As6" userLabel="Upper Stack View">
+                                <rect key="frame" x="20.5" y="59" width="373" height="133"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="검색어를 50자 이내로 적어주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-pu-hcZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="373" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="viB-Ka-EAS" userLabel="Filter Button Stack View">
+                                        <rect key="frame" x="0.0" y="55" width="373" height="41"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="488-9x-Pc1">
+                                                <rect key="frame" x="0.0" y="0.0" width="124.5" height="41"/>
+                                                <state key="normal" title="Date">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYB-pl-Jgv">
+                                                <rect key="frame" x="124.5" y="0.0" width="124" height="41"/>
+                                                <state key="normal" title="Guests">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q83-gD-WLE">
+                                                <rect key="frame" x="248.5" y="0.0" width="124.5" height="41"/>
+                                                <state key="normal" title="Price">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜와 인원을 선택하시면 가격별 숙소를 추천해드립니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cA-g8-Bil">
+                                        <rect key="frame" x="0.0" y="106" width="373" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yAv-gj-k7B">
+                                <rect key="frame" x="20.5" y="197" width="373" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uLC-27-FpA">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Zo8-te-Ptw">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YsU-ub-8MT">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="nNJ-ab-As6" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="15" id="3CT-FT-mUy"/>
+                            <constraint firstItem="sAm-9e-vFQ" firstAttribute="centerY" secondItem="PQr-Ze-W5v" secondAttribute="centerY" multiplier="1.8" id="6Hx-zg-NQg"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="yAv-gj-k7B" secondAttribute="bottom" constant="5" id="Fqs-4G-7m4"/>
+                            <constraint firstItem="yAv-gj-k7B" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" multiplier="0.9" id="Jtc-la-QhD"/>
+                            <constraint firstItem="yAv-gj-k7B" firstAttribute="top" secondItem="nNJ-ab-As6" secondAttribute="bottom" constant="5" id="QC1-Xv-CCZ"/>
+                            <constraint firstItem="fUS-pu-hcZ" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" multiplier="0.05" id="ezs-xj-ZIe"/>
+                            <constraint firstItem="nNJ-ab-As6" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" multiplier="0.9" id="hSo-mA-7ao"/>
+                            <constraint firstItem="nNJ-ab-As6" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="kfN-HL-rOU"/>
+                            <constraint firstItem="sAm-9e-vFQ" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" multiplier="1.8" id="l7l-kQ-4eH"/>
+                            <constraint firstItem="7cA-g8-Bil" firstAttribute="height" secondItem="tsR-hK-woN" secondAttribute="height" multiplier="0.03" id="qjU-7E-O7H"/>
+                            <constraint firstItem="yAv-gj-k7B" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="tF5-Oo-NlW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="EXPLORE" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197" y="-360"/>
+            <point key="canvasLocation" x="-197.10144927536234" y="-360.26785714285711"/>
         </scene>
         <!--RESERVATION-->
         <scene sceneID="wPe-Xe-lQo">
