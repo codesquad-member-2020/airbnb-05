@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
         models.append(Model(imageName: "bye"))
         models.append(Model(imageName: "bye"))
         models.append(Model(imageName: "bye"))
+        infoTableView.delaysContentTouches = false
     }
     
     private func setupTableView() {
