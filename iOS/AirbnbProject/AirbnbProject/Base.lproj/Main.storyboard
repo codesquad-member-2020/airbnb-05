@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -58,35 +57,18 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yAv-gj-k7B">
-                                        <rect key="frame" x="20.5" y="136" width="373" height="628"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zfg-IP-gVe">
+                                        <rect key="frame" x="20.5" y="126" width="373" height="643"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uLC-27-FpA">
-                                            <size key="itemSize" width="128" height="128"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="accomodationInfoCollectionViewCell" id="Zo8-te-Ptw" customClass="AccomodationInfoCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YsU-ub-8MT">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </collectionViewCellContentView>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="yAv-gj-k7B" secondAttribute="bottom" constant="5" id="C6K-SP-k6L"/>
+                                    <constraint firstAttribute="bottom" secondItem="zfg-IP-gVe" secondAttribute="bottom" id="BMd-Ni-8Mn"/>
                                     <constraint firstItem="nNJ-ab-As6" firstAttribute="top" secondItem="o8T-cK-yr2" secondAttribute="top" constant="15" id="cN2-f1-y6j"/>
-                                    <constraint firstItem="yAv-gj-k7B" firstAttribute="top" secondItem="nNJ-ab-As6" secondAttribute="bottom" constant="20" id="eUp-ec-I4M"/>
+                                    <constraint firstItem="zfg-IP-gVe" firstAttribute="top" secondItem="nNJ-ab-As6" secondAttribute="bottom" constant="10" id="fIR-5P-7wR"/>
                                     <constraint firstItem="nNJ-ab-As6" firstAttribute="centerX" secondItem="o8T-cK-yr2" secondAttribute="centerX" id="sRe-s0-gOB"/>
                                     <constraint firstItem="nNJ-ab-As6" firstAttribute="width" secondItem="o8T-cK-yr2" secondAttribute="width" multiplier="0.9" id="tAg-5j-dmq"/>
-                                    <constraint firstItem="yAv-gj-k7B" firstAttribute="centerX" secondItem="o8T-cK-yr2" secondAttribute="centerX" id="uSu-59-fdm"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAm-9e-vFQ" userLabel="Map Button">
@@ -102,24 +84,25 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="o8T-cK-yr2" secondAttribute="bottom" id="1s7-yw-ov8"/>
-                            <constraint firstItem="yAv-gj-k7B" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" multiplier="0.9" id="5Kd-lp-jdy"/>
                             <constraint firstItem="sAm-9e-vFQ" firstAttribute="centerY" secondItem="PQr-Ze-W5v" secondAttribute="centerY" multiplier="1.8" id="6Hx-zg-NQg"/>
                             <constraint firstItem="o8T-cK-yr2" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="Bec-F1-Rxo"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="o8T-cK-yr2" secondAttribute="trailing" id="H3E-cg-a8M"/>
+                            <constraint firstItem="zfg-IP-gVe" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" multiplier="0.9" id="R7g-qS-an0"/>
                             <constraint firstItem="sAm-9e-vFQ" firstAttribute="width" secondItem="tsR-hK-woN" secondAttribute="width" multiplier="0.08" id="YdT-Gy-daG"/>
                             <constraint firstItem="o8T-cK-yr2" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="Z3I-cp-0ye"/>
+                            <constraint firstItem="zfg-IP-gVe" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" id="csb-Go-pJp"/>
                             <constraint firstItem="sAm-9e-vFQ" firstAttribute="centerX" secondItem="PQr-Ze-W5v" secondAttribute="centerX" multiplier="1.8" id="l7l-kQ-4eH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="EXPLORE" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="accomodationCollectionView" destination="yAv-gj-k7B" id="QqO-NR-QUc"/>
+                        <outlet property="infoTableView" destination="zfg-IP-gVe" id="gTY-wF-pGw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197.10144927536234" y="-360.26785714285711"/>
+            <point key="canvasLocation" x="-204" y="-360"/>
         </scene>
         <!--RESERVATION-->
         <scene sceneID="wPe-Xe-lQo">

@@ -9,23 +9,42 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
-    @IBOutlet weak var accomodationCollectionView: UICollectionView!
     
-    private let accomodationCollectionViewDataSource = AccomodationCollectionViewDataSource()
+    @IBOutlet weak var infoTableView: UITableView!
+    private let tableViewHeight = CGFloat(250)
+    var models = [Model]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        registerAccomodationCollectionViewCell()
+        setupTableView()
+        models.append(Model(imageName: "bye"))
+        models.append(Model(imageName: "bye"))
+        models.append(Model(imageName: "bye"))
+        models.append(Model(imageName: "bye"))
+        infoTableView.delaysContentTouches = false
     }
     
-    private func registerAccomodationCollectionViewCell() {
-        let cellNib = UINib(nibName: AccomodationInfoCollectionViewCell.nibClassName, bundle: nil)
-        accomodationCollectionView.register(cellNib, forCellWithReuseIdentifier: AccomodationInfoCollectionViewCell.identifier)
-        
-        accomodationCollectionView.dataSource = accomodationCollectionViewDataSource
+    private func setupTableView() {
+        infoTableView.register(AccomodationInfoTableViewCell.nib(), forCellReuseIdentifier: AccomodationInfoTableViewCell.identifier)
+        infoTableView.dataSource = self
+        infoTableView.delegate = self
     }
-
 }
+
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return models.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = infoTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
+        cell.configure(with: models)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.tableViewHeight
+    }
+}
+
 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailImageCollectionViewCell" id="gTV-IL-0wX" customClass="ThumbnailImageCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="342" height="240"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="342" height="240"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="NxW-UG-C05">
+                        <rect key="frame" x="0.0" y="0.0" width="342" height="240"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ety-EV-0PB">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ae3-Oh-Jr7">
+                        <rect key="frame" x="0.0" y="0.0" width="342" height="240"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="NxW-UG-C05" secondAttribute="trailing" id="20l-Hu-9sC"/>
+                <constraint firstItem="NxW-UG-C05" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ATM-20-Bpi"/>
+                <constraint firstAttribute="bottom" secondItem="NxW-UG-C05" secondAttribute="bottom" id="CJz-Ff-NOn"/>
+                <constraint firstAttribute="bottom" secondItem="Ae3-Oh-Jr7" secondAttribute="bottom" id="QtT-Gb-KMD"/>
+                <constraint firstItem="NxW-UG-C05" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Xm1-Dp-vfL"/>
+                <constraint firstItem="Ae3-Oh-Jr7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nBy-2p-7ma"/>
+                <constraint firstAttribute="trailing" secondItem="Ae3-Oh-Jr7" secondAttribute="trailing" id="rBf-FP-c2x"/>
+                <constraint firstItem="Ae3-Oh-Jr7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zE1-YI-gPo"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="342" height="240"/>
+            <connections>
+                <outlet property="myCollectionView" destination="NxW-UG-C05" id="L5a-VG-02I"/>
+                <outlet property="myImage" destination="Ae3-Oh-Jr7" id="3ZP-gP-ib3"/>
+            </connections>
+            <point key="canvasLocation" x="97" y="52"/>
+        </collectionViewCell>
+    </objects>
+</document>
