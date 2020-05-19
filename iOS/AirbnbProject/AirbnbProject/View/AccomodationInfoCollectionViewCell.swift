@@ -9,10 +9,14 @@
 import UIKit
 
 class AccomodationInfoCollectionViewCell: UICollectionViewCell {
-
+    @IBOutlet weak var ThumbNailCollectionView: UICollectionView!
+    
+    static let identifier = "accomodationInfoCollectionViewCell"
+    static let nibClassName = "AccomodationInfoCollectionViewCell"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
 }
