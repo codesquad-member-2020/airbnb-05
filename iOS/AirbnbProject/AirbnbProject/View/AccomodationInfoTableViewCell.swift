@@ -33,7 +33,6 @@ class AccomodationInfoTableViewCell: UITableViewCell {
         thumbnailImageCollectionView.register(ThumbnailImageCollectionViewCell.nib() , forCellWithReuseIdentifier: ThumbnailImageCollectionViewCell.identifier)
         thumbnailImageCollectionView.dataSource = self
         thumbnailImageCollectionView.delegate = self
-        
         pageControl.hidesForSinglePage = true
     }
     
@@ -53,7 +52,7 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailImageCollectionViewCell.identifier, for: indexPath) as! ThumbnailImageCollectionViewCell
         
-        cell.configure(with: models[indexPath.row])
+        cell.configure(with: models[indexPath.row], indexPath: indexPath)
         
         return cell
     }
@@ -61,7 +60,7 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.frame.size.width
         let height = thumbnailImageCollectionView.frame.size.height
-
+        
         return CGSize(width: width, height: height)
     }
     

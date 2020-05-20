@@ -32,6 +32,7 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return models.count
     }
