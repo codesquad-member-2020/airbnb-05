@@ -16,9 +16,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="335" height="294"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="k6n-Zw-OUN">
-                        <rect key="frame" x="148" y="231.5" width="39" height="37"/>
-                    </pageControl>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7k-h8-5EW">
                         <rect key="frame" x="294" y="14" width="31.5" height="30.5"/>
                         <constraints>
@@ -34,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="335" height="294"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="U6g-kv-vJ7">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="247.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="235"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vyj-xI-p0n">
                                             <size key="itemSize" width="128" height="128"/>
@@ -44,22 +41,22 @@
                                         </collectionViewFlowLayout>
                                     </collectionView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="TSA-bA-Hro" userLabel="Info labels stack view">
-                                        <rect key="frame" x="0.0" y="252.5" width="335" height="16"/>
+                                        <rect key="frame" x="0.0" y="240" width="335" height="19.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUPERHOST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCc-hR-D0m">
-                                                <rect key="frame" x="0.0" y="0.0" width="84" height="16"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="84" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Entire apartment . 1 bed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewz-qO-jbZ">
-                                                <rect key="frame" x="84" y="0.0" width="156.5" height="16"/>
+                                                <rect key="frame" x="84" y="0.0" width="156.5" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⭐️ 4.83 (200)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t40-4c-6eW">
-                                                <rect key="frame" x="240.5" y="0.0" width="94.5" height="16"/>
+                                                <rect key="frame" x="240.5" y="0.0" width="94.5" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -67,12 +64,16 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="해운대/펜트하우스/더탑플로어/현대" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Qg-GQ-5rQ" userLabel="title label">
-                                        <rect key="frame" x="0.0" y="273.5" width="335" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <rect key="frame" x="0.0" y="264.5" width="335" height="29.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="U6g-kv-vJ7" firstAttribute="height" secondItem="a8h-vA-IeS" secondAttribute="height" multiplier="0.8" id="JVQ-rW-0fy"/>
+                                    <constraint firstItem="3Qg-GQ-5rQ" firstAttribute="height" secondItem="a8h-vA-IeS" secondAttribute="height" multiplier="0.1" id="Ucs-PD-6uM"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -83,6 +84,9 @@
                             <constraint firstAttribute="bottom" secondItem="a8h-vA-IeS" secondAttribute="bottom" id="vcI-fa-f8J"/>
                         </constraints>
                     </view>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="k6n-Zw-OUN">
+                        <rect key="frame" x="148" y="202" width="39" height="37"/>
+                    </pageControl>
                 </subviews>
                 <constraints>
                     <constraint firstItem="NWJ-pH-mdV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="30C-eW-PFC"/>
@@ -91,7 +95,7 @@
                     <constraint firstItem="k6n-Zw-OUN" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="X6i-fi-swf"/>
                     <constraint firstItem="l7k-h8-5EW" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.094" id="bu5-bK-r6z"/>
                     <constraint firstItem="l7k-h8-5EW" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="1.85" id="h6i-4i-40J"/>
-                    <constraint firstItem="k6n-Zw-OUN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="1.7" id="jbg-Ud-kvX"/>
+                    <constraint firstItem="k6n-Zw-OUN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="1.5" id="jbg-Ud-kvX"/>
                     <constraint firstItem="NWJ-pH-mdV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="orM-Og-c5m"/>
                     <constraint firstItem="l7k-h8-5EW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="0.2" id="zKk-Nt-sCz"/>
                 </constraints>
