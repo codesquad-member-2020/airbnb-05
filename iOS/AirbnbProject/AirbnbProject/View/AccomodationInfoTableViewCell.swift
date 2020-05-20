@@ -17,7 +17,7 @@ class AccomodationInfoTableViewCell: UITableViewCell {
     var models = [Model]()
     
     static func nib() -> UINib {
-        return UINib(nibName: identifier, bundle: nil)
+         return UINib(nibName: identifier, bundle: nil)
     }
     
     override func awakeFromNib() {
@@ -33,11 +33,10 @@ class AccomodationInfoTableViewCell: UITableViewCell {
         thumbnailImageCollectionView.register(ThumbnailImageCollectionViewCell.nib() , forCellWithReuseIdentifier: ThumbnailImageCollectionViewCell.identifier)
         thumbnailImageCollectionView.dataSource = self
         thumbnailImageCollectionView.delegate = self
-        
         pageControl.hidesForSinglePage = true
     }
     
-    func configure(with models: [Model]) {
+    func configure(with models: [Model], indexPath: IndexPath) {
         self.models = models
         DispatchQueue.main.async {
             self.thumbnailImageCollectionView.reloadData()
@@ -53,7 +52,7 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailImageCollectionViewCell.identifier, for: indexPath) as! ThumbnailImageCollectionViewCell
         
-        cell.configure(with: models[indexPath.row])
+        cell.configure(with: models[indexPath.row], indexPath: indexPath)
         
         return cell
     }

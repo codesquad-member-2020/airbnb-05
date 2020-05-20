@@ -10,7 +10,6 @@ import UIKit
 
 class ThumbnailImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet var myImage: UIImageView!
-    @IBOutlet weak var myCollectionView: UICollectionView!
     static let identifier = "ThumbnailImageCollectionViewCell"
     
     static func nib() -> UINib {
@@ -21,7 +20,7 @@ class ThumbnailImageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    public func configure(with model: Model) {
+    public func configure(with model: Model, indexPath: IndexPath) {
         self.myImage.image = #imageLiteral(resourceName: "welcom_DD")
     }
 }
