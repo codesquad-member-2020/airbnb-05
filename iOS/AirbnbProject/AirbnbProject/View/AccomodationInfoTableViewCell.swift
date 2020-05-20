@@ -17,7 +17,7 @@ class AccomodationInfoTableViewCell: UITableViewCell {
     var models = [Model]()
     
     static func nib() -> UINib {
-         return UINib(nibName: identifier, bundle: nil)
+        return UINib(nibName: identifier, bundle: nil)
     }
     
     override func awakeFromNib() {
@@ -36,7 +36,7 @@ class AccomodationInfoTableViewCell: UITableViewCell {
         pageControl.hidesForSinglePage = true
     }
     
-    func configure(with models: [Model], indexPath: IndexPath) {
+    func configure(with models: [Model]) {
         self.models = models
         DispatchQueue.main.async {
             self.thumbnailImageCollectionView.reloadData()
@@ -60,7 +60,7 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.frame.size.width
         let height = thumbnailImageCollectionView.frame.size.height
-
+        
         return CGSize(width: width, height: height)
     }
     
