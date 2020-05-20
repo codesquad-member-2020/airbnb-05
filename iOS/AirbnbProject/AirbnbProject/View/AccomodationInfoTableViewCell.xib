@@ -16,14 +16,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="335" height="294"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7k-h8-5EW">
-                        <rect key="frame" x="294" y="14" width="31.5" height="30.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="l7k-h8-5EW" secondAttribute="height" multiplier="1:1" id="1RC-Iw-cVb"/>
-                        </constraints>
-                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" backgroundImage="heart.circle" catalog="system"/>
-                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWJ-pH-mdV">
                         <rect key="frame" x="0.0" y="0.0" width="335" height="294"/>
                         <subviews>
@@ -87,6 +79,14 @@
                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="k6n-Zw-OUN">
                         <rect key="frame" x="148" y="202" width="39" height="37"/>
                     </pageControl>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7k-h8-5EW">
+                        <rect key="frame" x="294" y="14" width="31.5" height="30.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="l7k-h8-5EW" secondAttribute="height" multiplier="1:1" id="1RC-Iw-cVb"/>
+                        </constraints>
+                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" backgroundImage="heart.circle" catalog="system"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="NWJ-pH-mdV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="30C-eW-PFC"/>
