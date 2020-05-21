@@ -42,6 +42,10 @@ class AccomodationInfoTableViewCell: UITableViewCell {
             self.thumbnailImageCollectionView.reloadData()
         }
     }
+    
+    @IBAction func favoriteButtonTapped(_ sender: FavoriteButton) {
+        sender.isFavorite = !sender.isFavorite
+    }
 }
 
 extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
