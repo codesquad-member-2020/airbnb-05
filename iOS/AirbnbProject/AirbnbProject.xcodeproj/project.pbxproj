@@ -20,6 +20,12 @@
 		6A789A6224740659005CF258 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A789A6124740659005CF258 /* Model.swift */; };
 		6A789A65247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A789A63247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift */; };
 		6A789A66247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */; };
+		AB8ED7E9247694CF00B07D9F /* FilterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8ED7E8247694CF00B07D9F /* FilterHeaderView.xib */; };
+		AB8ED7EB247694DB00B07D9F /* FilterFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8ED7EA247694DB00B07D9F /* FilterFooterView.xib */; };
+		AB9CAE2424769AC5000CFBFC /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2324769AC5000CFBFC /* FilterHeaderView.swift */; };
+		AB9CAE2624769B80000CFBFC /* FilterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2524769B80000CFBFC /* FilterFooterView.swift */; };
+		AB9CAE2824769C0C000CFBFC /* GuestFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */; };
+		AB9CAE2A2476A589000CFBFC /* extensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE292476A589000CFBFC /* extensionUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +56,12 @@
 		6A789A6124740659005CF258 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Model.swift; path = AirbnbProject/View/Model.swift; sourceTree = SOURCE_ROOT; };
 		6A789A63247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThumbnailImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		AB8ED7E8247694CF00B07D9F /* FilterHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHeaderView.xib; sourceTree = "<group>"; };
+		AB8ED7EA247694DB00B07D9F /* FilterFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterFooterView.xib; sourceTree = "<group>"; };
+		AB9CAE2324769AC5000CFBFC /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
+		AB9CAE2524769B80000CFBFC /* FilterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterFooterView.swift; sourceTree = "<group>"; };
+		AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestFilterViewController.swift; sourceTree = "<group>"; };
+		AB9CAE292476A589000CFBFC /* extensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +133,11 @@
 				6A789A5E247405AB005CF258 /* AccomodationInfoTableViewCell.xib */,
 				6A789A63247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift */,
 				6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */,
+				AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */,
+				AB8ED7E8247694CF00B07D9F /* FilterHeaderView.xib */,
+				AB9CAE2324769AC5000CFBFC /* FilterHeaderView.swift */,
+				AB8ED7EA247694DB00B07D9F /* FilterFooterView.xib */,
+				AB9CAE2524769B80000CFBFC /* FilterFooterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -145,6 +162,7 @@
 		AB8ED7C92473AD1100B07D9F /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				AB9CAE292476A589000CFBFC /* extensionUIView.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -235,6 +253,8 @@
 				6A789A60247405AB005CF258 /* AccomodationInfoTableViewCell.xib in Resources */,
 				6A789A66247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib in Resources */,
 				6A334BE82472B5C900464B32 /* Main.storyboard in Resources */,
+				AB8ED7EB247694DB00B07D9F /* FilterFooterView.xib in Resources */,
+				AB8ED7E9247694CF00B07D9F /* FilterHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,12 +273,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A789A6224740659005CF258 /* Model.swift in Sources */,
+				AB9CAE2624769B80000CFBFC /* FilterFooterView.swift in Sources */,
+				AB9CAE2A2476A589000CFBFC /* extensionUIView.swift in Sources */,
 				6A334BE52472B5C900464B32 /* SecondViewController.swift in Sources */,
 				6A334BE32472B5C900464B32 /* MainViewController.swift in Sources */,
+				AB9CAE2424769AC5000CFBFC /* FilterHeaderView.swift in Sources */,
 				6A789A5F247405AB005CF258 /* AccomodationInfoTableViewCell.swift in Sources */,
 				6A334BDF2472B5C900464B32 /* AppDelegate.swift in Sources */,
 				6A334BE12472B5C900464B32 /* SceneDelegate.swift in Sources */,
 				6A789A65247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift in Sources */,
+				AB9CAE2824769C0C000CFBFC /* GuestFilterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

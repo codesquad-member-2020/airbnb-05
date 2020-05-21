@@ -52,7 +52,7 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailImageCollectionViewCell.identifier, for: indexPath) as! ThumbnailImageCollectionViewCell
         
-        cell.configure(with: models[indexPath.row], indexPath: indexPath)
+        cell.configure(with: models[indexPath.row])
         
         return cell
     }
