@@ -54,6 +54,17 @@ extension MainViewController: UITableViewDataSource {
         cell.configure(with: models)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        startCellDisplayAnimation(cell)
+    }
+    
+    private func startCellDisplayAnimation(_ cell: UITableViewCell) {
+            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        UIView.animate(withDuration: 0.4) {
+            cell.transform = CGAffineTransform.identity
+        }
+    }
 }
 
 extension MainViewController: UITableViewDelegate {
