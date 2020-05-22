@@ -115,50 +115,95 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7I-G6-48K" userLabel="Dim View">
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7I-G6-48K" userLabel="Dim View">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="de4-89-tet">
-                                <rect key="frame" x="20.5" y="157.5" width="373" height="410"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSB-ql-JOe" userLabel="Background View">
+                                <rect key="frame" x="20.5" y="185.5" width="373" height="354"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ris-dx-8tL" customClass="FilterHeaderView" customModule="AirbnbProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="373" height="74.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="de4-89-tet">
+                                        <rect key="frame" x="19" y="17.5" width="335" height="318.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ris-dx-8tL" customClass="FilterHeaderView" customModule="AirbnbProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ris-dx-8tL" secondAttribute="height" multiplier="1:0.15" id="mJb-sm-gf0"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NsK-dx-UXM">
+                                                <rect key="frame" x="0.0" y="50.5" width="335" height="201"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TST-9V-Xj9" customClass="GuestFilterReusableView" customModule="AirbnbProject" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="67"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="성인"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="만13세 이상"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nts-Op-YYV" customClass="GuestFilterReusableView" customModule="AirbnbProject" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="67" width="335" height="67"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="청소년"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="만3세 ~ 만12세"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WU9-Gs-4Fg" customClass="GuestFilterReusableView" customModule="AirbnbProject" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="134" width="335" height="67"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="영유아"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="만2세 이하"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="NsK-dx-UXM" secondAttribute="height" multiplier="1:0.6" id="ubd-sh-GQa"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBe-JR-8kv" customClass="FilterFooterView" customModule="AirbnbProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="251.5" width="335" height="67"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="QBe-JR-8kv" secondAttribute="height" multiplier="1:0.2" id="fgs-G2-l2D"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="ris-dx-8tL" secondAttribute="height" multiplier="1:0.2" id="mJb-sm-gf0"/>
+                                            <constraint firstItem="NsK-dx-UXM" firstAttribute="width" secondItem="de4-89-tet" secondAttribute="width" id="m1x-sq-uUq"/>
                                         </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59l-Gd-ddh">
-                                        <rect key="frame" x="0.0" y="74.5" width="373" height="242"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="59l-Gd-ddh" secondAttribute="height" multiplier="1:0.65" id="w0C-2l-C3T"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBe-JR-8kv" customClass="FilterFooterView" customModule="AirbnbProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="316.5" width="373" height="93.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="QBe-JR-8kv" secondAttribute="height" multiplier="1:0.25" id="fgs-G2-l2D"/>
-                                        </constraints>
-                                    </view>
+                                    </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="de4-89-tet" firstAttribute="width" secondItem="cSB-ql-JOe" secondAttribute="width" multiplier="0.9" id="8cT-rZ-cVq"/>
+                                    <constraint firstItem="de4-89-tet" firstAttribute="height" secondItem="cSB-ql-JOe" secondAttribute="height" multiplier="0.9" id="FTs-Oj-RNG"/>
+                                    <constraint firstItem="de4-89-tet" firstAttribute="centerY" secondItem="cSB-ql-JOe" secondAttribute="centerY" id="eNH-bx-uBb"/>
+                                    <constraint firstItem="de4-89-tet" firstAttribute="centerX" secondItem="cSB-ql-JOe" secondAttribute="centerX" id="r5B-dB-sM2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="WKA-6V-mgl" firstAttribute="trailing" secondItem="x7I-G6-48K" secondAttribute="trailing" id="5lw-9U-5th"/>
+                            <constraint firstItem="cSB-ql-JOe" firstAttribute="centerX" secondItem="WKA-6V-mgl" secondAttribute="centerX" id="Hjz-7U-7FH"/>
                             <constraint firstItem="x7I-G6-48K" firstAttribute="leading" secondItem="WKA-6V-mgl" secondAttribute="leading" id="MYg-TX-QKz"/>
-                            <constraint firstItem="de4-89-tet" firstAttribute="centerY" secondItem="WKA-6V-mgl" secondAttribute="centerY" multiplier="0.8" id="MgI-lC-mki"/>
-                            <constraint firstItem="de4-89-tet" firstAttribute="width" secondItem="cIi-z1-zbh" secondAttribute="width" multiplier="0.9" id="OAc-aP-zqx"/>
-                            <constraint firstItem="de4-89-tet" firstAttribute="centerX" secondItem="WKA-6V-mgl" secondAttribute="centerX" id="WW3-zP-I4f"/>
+                            <constraint firstItem="cSB-ql-JOe" firstAttribute="width" secondItem="cIi-z1-zbh" secondAttribute="width" multiplier="0.9" id="X8c-nS-Mzl"/>
                             <constraint firstItem="x7I-G6-48K" firstAttribute="top" secondItem="WKA-6V-mgl" secondAttribute="top" id="aXn-vh-Z1e"/>
+                            <constraint firstItem="cSB-ql-JOe" firstAttribute="centerY" secondItem="WKA-6V-mgl" secondAttribute="centerY" multiplier="0.8" id="dM2-Ek-KYO"/>
                             <constraint firstItem="WKA-6V-mgl" firstAttribute="bottom" secondItem="x7I-G6-48K" secondAttribute="bottom" id="fob-gx-3Xd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WKA-6V-mgl"/>
                     </view>
                     <navigationItem key="navigationItem" id="drb-qv-sba"/>
+                    <connections>
+                        <outlet property="adultCountFilter" destination="TST-9V-Xj9" id="KN8-B2-dy3"/>
+                        <outlet property="infantCountFilter" destination="WU9-Gs-4Fg" id="gBb-VQ-ltK"/>
+                        <outlet property="youthCountFilter" destination="nts-Op-YYV" id="nTO-YA-Vas"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yuT-Vf-lic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

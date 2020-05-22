@@ -11,8 +11,10 @@ import UIKit
 
 extension UIView {
     func setupXIB(nibName: String) {
-        let view = Bundle.main.loadNibNamed(nibName, owner: self, options: nil)?.first as! UIView
-        self.addSubview(view)
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        addSubview(view)
         view.frame = self.bounds
     }
 }

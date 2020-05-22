@@ -9,10 +9,11 @@
 import UIKit
 
 class GuestFilterViewController: UIViewController {
-
+    @IBOutlet weak var adultCountFilter: GuestFilterReusableView!
+    @IBOutlet weak var youthCountFilter: GuestFilterReusableView!
+    @IBOutlet weak var infantCountFilter: GuestFilterReusableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 }
