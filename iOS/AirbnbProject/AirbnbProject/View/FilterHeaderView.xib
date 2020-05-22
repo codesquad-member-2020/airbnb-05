@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilterHeaderView" customModule="AirbnbProject" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="q9e-GI-g2V" id="OfE-yX-JtK"/>
                 <outlet property="headerViewTitle" destination="AcI-SJ-mpb" id="DM2-GJ-XVP"/>
             </connections>
         </placeholder>

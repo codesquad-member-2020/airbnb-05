@@ -9,7 +9,9 @@
 import UIKit
 
 class FilterHeaderView: UIView {
+    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var headerViewTitle: UILabel!
+    
     private let nibName = "FilterHeaderView"
     
     override init(frame: CGRect) {

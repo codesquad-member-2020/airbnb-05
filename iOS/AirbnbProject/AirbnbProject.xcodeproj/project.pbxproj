@@ -28,7 +28,7 @@
 		AB9CAE2A2476A589000CFBFC /* extensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE292476A589000CFBFC /* extensionUIView.swift */; };
 		AB9CAE2C2476B35B000CFBFC /* GuestFilterReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9CAE2B2476B35B000CFBFC /* GuestFilterReusableView.xib */; };
 		AB9CAE2E2476B7F1000CFBFC /* GuestFilterReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2D2476B7F1000CFBFC /* GuestFilterReusableView.swift */; };
-		AB9CAE302477DA4C000CFBFC /* countButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2F2477DA4C000CFBFC /* countButtonManager.swift */; };
+		AB9CAE302477DA4C000CFBFC /* CountButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +67,7 @@
 		AB9CAE292476A589000CFBFC /* extensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionUIView.swift; sourceTree = "<group>"; };
 		AB9CAE2B2476B35B000CFBFC /* GuestFilterReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestFilterReusableView.xib; sourceTree = "<group>"; };
 		AB9CAE2D2476B7F1000CFBFC /* GuestFilterReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestFilterReusableView.swift; sourceTree = "<group>"; };
-		AB9CAE2F2477DA4C000CFBFC /* countButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countButtonManager.swift; sourceTree = "<group>"; };
+		AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButtonManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				AB9CAE292476A589000CFBFC /* extensionUIView.swift */,
-				AB9CAE2F2477DA4C000CFBFC /* countButtonManager.swift */,
+				AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -288,7 +288,7 @@
 				6A334BE52472B5C900464B32 /* SecondViewController.swift in Sources */,
 				6A334BE32472B5C900464B32 /* MainViewController.swift in Sources */,
 				AB9CAE2424769AC5000CFBFC /* FilterHeaderView.swift in Sources */,
-				AB9CAE302477DA4C000CFBFC /* countButtonManager.swift in Sources */,
+				AB9CAE302477DA4C000CFBFC /* CountButtonManager.swift in Sources */,
 				6A789A5F247405AB005CF258 /* AccomodationInfoTableViewCell.swift in Sources */,
 				6A334BDF2472B5C900464B32 /* AppDelegate.swift in Sources */,
 				AB9CAE2E2476B7F1000CFBFC /* GuestFilterReusableView.swift in Sources */,

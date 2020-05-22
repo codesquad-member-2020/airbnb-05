@@ -199,6 +199,11 @@
                         <viewLayoutGuide key="safeArea" id="WKA-6V-mgl"/>
                     </view>
                     <navigationItem key="navigationItem" id="drb-qv-sba"/>
+                    <connections>
+                        <outlet property="filterFooterView" destination="QBe-JR-8kv" id="Xfv-Wf-m4r"/>
+                        <outlet property="filterHeaderView" destination="ris-dx-8tL" id="jNQ-n1-A8q"/>
+                        <outlet property="filterStackView" destination="NsK-dx-UXM" id="njl-er-edA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yuT-Vf-lic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

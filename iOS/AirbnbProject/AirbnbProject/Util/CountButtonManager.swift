@@ -13,6 +13,7 @@ class CountButtonManager {
     enum active {
         case plus
         case minus
+        case initialize
     }
     private let minCount = 0
     private let maxCount = 8
@@ -23,24 +24,31 @@ class CountButtonManager {
     var isPlusEnable: Bool = true
     var isMinusEnable: Bool = true
     
-    init(currentCount: String, acitve: active) {
-        self.count = Int(currentCount)!
+    init(currentCount: String?, acitve: active) {
+        if currentCount == nil {
+            self.count = 0
+        } else {
+            self.count = Int(currentCount!)!
+        }
         
         switch acitve {
         case .plus:
-            count += 1
-            if count == maxCount {
+            self.count += 1
+            if self.count == maxCount {
                 isPlusEnable = false
                 plusButtonTintColor = .lightGray
             }
             break
         case .minus:
-            count -= 1
-            if count == minCount {
+            self.count -= 1
+            if self.count == minCount {
                 isMinusEnable = false
                 minusButtonTintColor = .lightGray
             }
             break
+        case .initialize:
+            minusButtonTintColor = .lightGray
+            isMinusEnable = false
         }
     }
 }
