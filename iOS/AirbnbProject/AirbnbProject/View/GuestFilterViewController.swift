@@ -13,7 +13,11 @@ class GuestFilterViewController: UIViewController {
     @IBOutlet weak var filterFooterView: FilterFooterView!
     @IBOutlet weak var filterStackView: UIStackView!
     
-    private var totalCount = 1
+    private var totalCount = 0 {
+        didSet {
+            completeButtonManage()
+        }
+    }
     private var filterViewManager: CountButtonManager!
     
     override func viewDidLoad() {
@@ -24,6 +28,7 @@ class GuestFilterViewController: UIViewController {
         filterHeaderView.headerViewTitle.text = "Guests"
         filterHeaderView.closeButton.addTarget(self, action: #selector(closeWindow), for: .touchUpInside)
         filterFooterView.initializationButton.addTarget(self, action: #selector(initializeCount), for: .touchUpInside)
+        filterFooterView.completeButton.addTarget(self, action: #selector(fixUpGuestCount), for: .touchUpInside)
     }
     
     @objc private func plusButtonActive(notification: Notification) {
@@ -51,6 +56,11 @@ class GuestFilterViewController: UIViewController {
             let filterView = view as? GuestFilterReusableView
             setButtonUI(view: filterView!, manager: CountButtonManager(currentCount: nil, acitve: .initialize))
         }
+        totalCount = 0
+    }
+    
+    @objc private func fixUpGuestCount() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     private func setButtonUI(view: GuestFilterReusableView, manager: CountButtonManager) {
@@ -60,5 +70,15 @@ class GuestFilterViewController: UIViewController {
         view.plusButton.tintColor = manager.plusButtonTintColor
         view.minusButton.isEnabled = manager.isMinusEnable
         view.plusButton.isEnabled = manager.isPlusEnable
+    }
+    
+    private func completeButtonManage() {
+        if totalCount < 1 {
+            filterFooterView.completeButton.isEnabled = false
+            filterFooterView.completeButton.backgroundColor = .darkGray
+        } else {
+            filterFooterView.completeButton.isEnabled = true
+            filterFooterView.completeButton.backgroundColor = .systemPink
+        }
     }
 }
