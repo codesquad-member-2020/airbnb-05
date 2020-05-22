@@ -199,11 +199,6 @@
                         <viewLayoutGuide key="safeArea" id="WKA-6V-mgl"/>
                     </view>
                     <navigationItem key="navigationItem" id="drb-qv-sba"/>
-                    <connections>
-                        <outlet property="adultCountFilter" destination="TST-9V-Xj9" id="KN8-B2-dy3"/>
-                        <outlet property="infantCountFilter" destination="WU9-Gs-4Fg" id="gBb-VQ-ltK"/>
-                        <outlet property="youthCountFilter" destination="nts-Op-YYV" id="nTO-YA-Vas"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yuT-Vf-lic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

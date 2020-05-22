@@ -9,37 +9,37 @@
 import UIKit
 
 class GuestFilterViewController: UIViewController {
-    @IBOutlet weak var adultCountFilter: GuestFilterReusableView!
-    @IBOutlet weak var youthCountFilter: GuestFilterReusableView!
-    @IBOutlet weak var infantCountFilter: GuestFilterReusableView!
-    
-    private var totalCount = 0
+    private var totalCount = 1
+    private var filterViewManager: CountButtonManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        buttonAddTarget(view: adultCountFilter)
-        buttonAddTarget(view: youthCountFilter)
-        buttonAddTarget(view: infantCountFilter)
+        NotificationCenter.default.addObserver(self, selector: #selector(plusButtonActive), name: .plusActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(minusButtonActive), name: .minusActive, object: nil)
     }
     
-    private func buttonAddTarget(view: GuestFilterReusableView) {
-        view.minusButton.addTarget(self, action: #selector(self.minusButtonTouchAction), for: .touchUpInside)
-        view.plusButton.addTarget(self, action: #selector(self.plusButtonTouchAction), for: .touchUpInside)
-    }
-    
-    @objc private func plusButtonTouchAction(sender: UIButton) {
-        guard let view = sender.superview?.superview?.superview as? GuestFilterReusableView else { return }
-        let currentCount = Int(view.guestCount.text!)
-        view.guestCount.text = String(currentCount! + 1)
+    @objc private func plusButtonActive(notification: Notification) {
+        guard let postView = notification.userInfo?["view"] as? GuestFilterReusableView else { return }
+        filterViewManager = CountButtonManager(currentCount: postView.guestCount.text!, acitve: .plus)
         
+        setButtonUI(view: postView, manager: filterViewManager)
         totalCount += 1
     }
     
-    @objc private func minusButtonTouchAction(sender: UIButton) {
-        guard let view = sender.superview?.superview?.superview as? GuestFilterReusableView else { return }
-        let currentCount = Int(view.guestCount.text!)
-        view.guestCount.text = String(currentCount! - 1)
+    @objc private func minusButtonActive(notification: Notification) {
+        guard let postView = notification.userInfo?["view"] as? GuestFilterReusableView else { return }
+        filterViewManager = CountButtonManager(currentCount: postView.guestCount.text!, acitve: .minus)
         
-       totalCount -= 1
+        setButtonUI(view: postView, manager: filterViewManager)
+        totalCount -= 1
+    }
+    
+    private func setButtonUI(view: GuestFilterReusableView, manager: CountButtonManager) {
+        view.guestCount.text = String(manager.count)
+        
+        view.minusButton.tintColor = manager.minusButtonTintColor
+        view.plusButton.tintColor = manager.plusButtonTintColor
+        view.minusButton.isEnabled = manager.isMinusEnable
+        view.plusButton.isEnabled = manager.isPlusEnable
     }
 }
