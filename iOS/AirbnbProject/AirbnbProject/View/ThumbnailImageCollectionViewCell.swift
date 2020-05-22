@@ -20,7 +20,7 @@ class ThumbnailImageCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    public func configure(with model: Model, indexPath: IndexPath) {
+    public func configure(with model: Model) {
         self.myImage.image = #imageLiteral(resourceName: "welcom_DD")
     }
 }

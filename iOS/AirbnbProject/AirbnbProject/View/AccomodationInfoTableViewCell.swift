@@ -42,6 +42,10 @@ class AccomodationInfoTableViewCell: UITableViewCell {
             self.thumbnailImageCollectionView.reloadData()
         }
     }
+    
+    @IBAction func favoriteButtonTapped(_ sender: FavoriteButton) {
+        sender.isFavorite = !sender.isFavorite
+    }
 }
 
 extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -51,16 +55,13 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailImageCollectionViewCell.identifier, for: indexPath) as! ThumbnailImageCollectionViewCell
-        
-        cell.configure(with: models[indexPath.row], indexPath: indexPath)
-        
+        cell.configure(with: models[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.frame.size.width
         let height = thumbnailImageCollectionView.frame.size.height
-        
         return CGSize(width: width, height: height)
     }
     
@@ -69,7 +70,6 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
         self.pageControl.pageIndicatorTintColor = .darkGray
         self.pageControl.currentPage = indexPath.row
     }
-    
 }
 
 extension AccomodationInfoTableViewCell: UICollectionViewDelegate {
