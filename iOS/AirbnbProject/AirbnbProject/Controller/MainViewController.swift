@@ -11,7 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
     
     @IBOutlet weak var infoTableView: UITableView!
-    private let tableViewHeight = CGFloat(250)
+
     var models = [Model]()
     
     override func viewDidLoad() {
@@ -21,20 +21,32 @@ class MainViewController: UIViewController {
         models.append(Model(imageName: "bye"))
         models.append(Model(imageName: "bye"))
         models.append(Model(imageName: "bye"))
-        infoTableView.delaysContentTouches = false
     }
     
     private func setupTableView() {
         infoTableView.register(AccomodationInfoTableViewCell.nib(), forCellReuseIdentifier: AccomodationInfoTableViewCell.identifier)
         infoTableView.dataSource = self
         infoTableView.delegate = self
+        infoTableView.delaysContentTouches = false
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(accomodationCellTapped))
+        self.infoTableView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc func accomodationCellTapped(_ sender: UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: self.infoTableView)
+        guard let tappedCellIndexPath = self.infoTableView.indexPathForRow(at: tapLocation) else {return}
+        let tappedCell = self.infoTableView.cellForRow(at: tappedCellIndexPath) as! AccomodationInfoTableViewCell
     }
 }
 
-extension MainViewController: UITableViewDataSource, UITableViewDelegate {
+extension MainViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return models.count
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return models.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,9 +55,29 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.tableViewHeight
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        startCellDisplayAnimation(cell)
+    }
+    
+    private func startCellDisplayAnimation(_ cell: UITableViewCell) {
+            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        UIView.animate(withDuration: 0.4) {
+            cell.transform = CGAffineTransform.identity
+        }
     }
 }
 
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.height / 2.5
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return tableView.frame.width / 10
+    }
+}
 
