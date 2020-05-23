@@ -80,6 +80,9 @@
                                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="titleShadowColor" red="0.25097766519999998" green="0.25097855930000001" blue="0.25098046660000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
+                                                        <connections>
+                                                            <segue destination="TFC-Dp-IlC" kind="show" id="7gN-85-xEN"/>
+                                                        </connections>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="20"/>
@@ -204,6 +207,108 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-204" y="-360"/>
+        </scene>
+        <!--Guest Filter View Controller-->
+        <scene sceneID="oQP-5v-ywb">
+            <objects>
+                <viewController modalPresentationStyle="overFullScreen" id="TFC-Dp-IlC" customClass="GuestFilterViewController" customModule="AirbnbProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cIi-z1-zbh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7I-G6-48K" userLabel="Dim View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSB-ql-JOe" userLabel="Background View">
+                                <rect key="frame" x="20.5" y="185.5" width="373" height="354"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="de4-89-tet">
+                                        <rect key="frame" x="19" y="17.5" width="335" height="318.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ris-dx-8tL" customClass="FilterHeaderView" customModule="AirbnbProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50.5"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="ris-dx-8tL" secondAttribute="height" multiplier="1:0.15" id="mJb-sm-gf0"/>
+                                                </constraints>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NsK-dx-UXM">
+                                                <rect key="frame" x="0.0" y="50.5" width="335" height="201"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TST-9V-Xj9" customClass="GuestFilterReusableView" customModule="AirbnbProject" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="67"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="성인"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="만13세 이상"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nts-Op-YYV" customClass="GuestFilterReusableView" customModule="AirbnbProject" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="67" width="335" height="67"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="청소년"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="만3세 ~ 만12세"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WU9-Gs-4Fg" customClass="GuestFilterReusableView" customModule="AirbnbProject" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="134" width="335" height="67"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="영유아"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="만2세 이하"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="NsK-dx-UXM" secondAttribute="height" multiplier="1:0.6" id="ubd-sh-GQa"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBe-JR-8kv" customClass="FilterFooterView" customModule="AirbnbProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="251.5" width="335" height="67"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="QBe-JR-8kv" secondAttribute="height" multiplier="1:0.2" id="fgs-G2-l2D"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="NsK-dx-UXM" firstAttribute="width" secondItem="de4-89-tet" secondAttribute="width" id="m1x-sq-uUq"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="de4-89-tet" firstAttribute="width" secondItem="cSB-ql-JOe" secondAttribute="width" multiplier="0.9" id="8cT-rZ-cVq"/>
+                                    <constraint firstItem="de4-89-tet" firstAttribute="height" secondItem="cSB-ql-JOe" secondAttribute="height" multiplier="0.9" id="FTs-Oj-RNG"/>
+                                    <constraint firstItem="de4-89-tet" firstAttribute="centerY" secondItem="cSB-ql-JOe" secondAttribute="centerY" id="eNH-bx-uBb"/>
+                                    <constraint firstItem="de4-89-tet" firstAttribute="centerX" secondItem="cSB-ql-JOe" secondAttribute="centerX" id="r5B-dB-sM2"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="WKA-6V-mgl" firstAttribute="trailing" secondItem="x7I-G6-48K" secondAttribute="trailing" id="5lw-9U-5th"/>
+                            <constraint firstItem="cSB-ql-JOe" firstAttribute="centerX" secondItem="WKA-6V-mgl" secondAttribute="centerX" id="Hjz-7U-7FH"/>
+                            <constraint firstItem="x7I-G6-48K" firstAttribute="leading" secondItem="WKA-6V-mgl" secondAttribute="leading" id="MYg-TX-QKz"/>
+                            <constraint firstItem="cSB-ql-JOe" firstAttribute="width" secondItem="cIi-z1-zbh" secondAttribute="width" multiplier="0.9" id="X8c-nS-Mzl"/>
+                            <constraint firstItem="x7I-G6-48K" firstAttribute="top" secondItem="WKA-6V-mgl" secondAttribute="top" id="aXn-vh-Z1e"/>
+                            <constraint firstItem="cSB-ql-JOe" firstAttribute="centerY" secondItem="WKA-6V-mgl" secondAttribute="centerY" multiplier="0.8" id="dM2-Ek-KYO"/>
+                            <constraint firstItem="WKA-6V-mgl" firstAttribute="bottom" secondItem="x7I-G6-48K" secondAttribute="bottom" id="fob-gx-3Xd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="WKA-6V-mgl"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="drb-qv-sba"/>
+                    <connections>
+                        <outlet property="filterFooterView" destination="QBe-JR-8kv" id="Xfv-Wf-m4r"/>
+                        <outlet property="filterHeaderView" destination="ris-dx-8tL" id="jNQ-n1-A8q"/>
+                        <outlet property="filterStackView" destination="NsK-dx-UXM" id="njl-er-edA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yuT-Vf-lic" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="681" y="-360"/>
         </scene>
         <!--RESERVATION-->
         <scene sceneID="wPe-Xe-lQo">
