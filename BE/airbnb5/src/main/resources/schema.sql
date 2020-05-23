@@ -20,7 +20,7 @@ CREATE TABLE room (
     sale_price int,
     tax int,
     cleaning_fee int DEFAULT 0,
-    maximum_guests int NOT NULL,
+    maximum_guests int DEFAULT 1,
     reviews int DEFAULT 0,
     scores float DEFAULT 0
 );
