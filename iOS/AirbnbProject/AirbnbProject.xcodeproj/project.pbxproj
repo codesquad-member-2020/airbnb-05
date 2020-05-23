@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6A1CF5092476972F00A1A974 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1CF5082476972F00A1A974 /* ViewExtension.swift */; };
+		6A301D2424791B5000D23B84 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A301D2324791B5000D23B84 /* CalendarViewController.swift */; };
+		6A301D26247920BC00D23B84 /* DayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A301D25247920BC00D23B84 /* DayCollectionViewCell.swift */; };
+		6A301D28247936EF00D23B84 /* MonthCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A301D27247936EF00D23B84 /* MonthCollectionReusableView.swift */; };
 		6A334BDF2472B5C900464B32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A334BDE2472B5C900464B32 /* AppDelegate.swift */; };
 		6A334BE12472B5C900464B32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A334BE02472B5C900464B32 /* SceneDelegate.swift */; };
 		6A334BE32472B5C900464B32 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A334BE22472B5C900464B32 /* MainViewController.swift */; };
@@ -28,7 +31,6 @@
 		AB9CAE2424769AC5000CFBFC /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2324769AC5000CFBFC /* FilterHeaderView.swift */; };
 		AB9CAE2624769B80000CFBFC /* FilterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2524769B80000CFBFC /* FilterFooterView.swift */; };
 		AB9CAE2824769C0C000CFBFC /* GuestFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */; };
-		AB9CAE2A2476A589000CFBFC /* extensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE292476A589000CFBFC /* extensionUIView.swift */; };
 		AB9CAE2C2476B35B000CFBFC /* GuestFilterReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB9CAE2B2476B35B000CFBFC /* GuestFilterReusableView.xib */; };
 		AB9CAE2E2476B7F1000CFBFC /* GuestFilterReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2D2476B7F1000CFBFC /* GuestFilterReusableView.swift */; };
 		AB9CAE302477DA4C000CFBFC /* CountButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */; };
@@ -46,6 +48,9 @@
 
 /* Begin PBXFileReference section */
 		6A1CF5082476972F00A1A974 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		6A301D2324791B5000D23B84 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		6A301D25247920BC00D23B84 /* DayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCollectionViewCell.swift; sourceTree = "<group>"; };
+		6A301D27247936EF00D23B84 /* MonthCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCollectionReusableView.swift; sourceTree = "<group>"; };
 		6A334BDB2472B5C900464B32 /* AirbnbProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AirbnbProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A334BDE2472B5C900464B32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A334BE02472B5C900464B32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,7 +75,6 @@
 		AB9CAE2324769AC5000CFBFC /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		AB9CAE2524769B80000CFBFC /* FilterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterFooterView.swift; sourceTree = "<group>"; };
 		AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestFilterViewController.swift; sourceTree = "<group>"; };
-		AB9CAE292476A589000CFBFC /* extensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionUIView.swift; sourceTree = "<group>"; };
 		AB9CAE2B2476B35B000CFBFC /* GuestFilterReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuestFilterReusableView.xib; sourceTree = "<group>"; };
 		AB9CAE2D2476B7F1000CFBFC /* GuestFilterReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestFilterReusableView.swift; sourceTree = "<group>"; };
 		AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButtonManager.swift; sourceTree = "<group>"; };
@@ -94,6 +98,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A301D1E247908A400D23B84 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6A1CF5082476972F00A1A974 /* ViewExtension.swift */,
+				6A6EE0492476CB0200D18488 /* ButtonExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		6A301D1F247908CF00D23B84 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				6A789A5D247405AB005CF258 /* AccomodationInfoTableViewCell.swift */,
+				6A789A5E247405AB005CF258 /* AccomodationInfoTableViewCell.xib */,
+				6A789A63247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift */,
+				6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */,
+				6A6EE0472476C90600D18488 /* FavoriteButton.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		6A301D20247908F300D23B84 /* GuestFilterView */ = {
+			isa = PBXGroup;
+			children = (
+				AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */,
+				AB9CAE2B2476B35B000CFBFC /* GuestFilterReusableView.xib */,
+				AB9CAE2D2476B7F1000CFBFC /* GuestFilterReusableView.swift */,
+			);
+			path = GuestFilterView;
+			sourceTree = "<group>";
+		};
+		6A301D212479092000D23B84 /* FilterReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				AB8ED7E8247694CF00B07D9F /* FilterHeaderView.xib */,
+				AB9CAE2324769AC5000CFBFC /* FilterHeaderView.swift */,
+				AB8ED7EA247694DB00B07D9F /* FilterFooterView.xib */,
+				AB9CAE2524769B80000CFBFC /* FilterFooterView.swift */,
+			);
+			path = FilterReusableView;
+			sourceTree = "<group>";
+		};
+		6A301D222479094800D23B84 /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				6A301D2324791B5000D23B84 /* CalendarViewController.swift */,
+				6A301D25247920BC00D23B84 /* DayCollectionViewCell.swift */,
+				6A301D27247936EF00D23B84 /* MonthCollectionReusableView.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
 		6A334BD22472B5C900464B32 = {
 			isa = PBXGroup;
 			children = (
@@ -141,20 +197,11 @@
 		AB8ED7C62473ACFC00B07D9F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6A789A5D247405AB005CF258 /* AccomodationInfoTableViewCell.swift */,
-				6A789A5E247405AB005CF258 /* AccomodationInfoTableViewCell.xib */,
-				6A789A63247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift */,
-				6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */,
-        6A6EE0472476C90600D18488 /* FavoriteButton.swift */,
-				6A1CF5082476972F00A1A974 /* ViewExtension.swift */,
-				6A6EE0492476CB0200D18488 /* ButtonExtension.swift */,
-				AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */,
-				AB8ED7E8247694CF00B07D9F /* FilterHeaderView.xib */,
-				AB9CAE2324769AC5000CFBFC /* FilterHeaderView.swift */,
-				AB8ED7EA247694DB00B07D9F /* FilterFooterView.xib */,
-				AB9CAE2524769B80000CFBFC /* FilterFooterView.swift */,
-				AB9CAE2B2476B35B000CFBFC /* GuestFilterReusableView.xib */,
-				AB9CAE2D2476B7F1000CFBFC /* GuestFilterReusableView.swift */,
+				6A301D222479094800D23B84 /* CalendarView */,
+				6A301D212479092000D23B84 /* FilterReusableView */,
+				6A301D20247908F300D23B84 /* GuestFilterView */,
+				6A301D1F247908CF00D23B84 /* MainView */,
+				6A301D1E247908A400D23B84 /* Extension */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,7 +226,6 @@
 		AB8ED7C92473AD1100B07D9F /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				AB9CAE292476A589000CFBFC /* extensionUIView.swift */,
 				AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */,
 			);
 			path = Util;
@@ -291,21 +337,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A301D2424791B5000D23B84 /* CalendarViewController.swift in Sources */,
 				6A789A6224740659005CF258 /* Model.swift in Sources */,
 				AB9CAE2624769B80000CFBFC /* FilterFooterView.swift in Sources */,
-				AB9CAE2A2476A589000CFBFC /* extensionUIView.swift in Sources */,
 				6A334BE52472B5C900464B32 /* SecondViewController.swift in Sources */,
 				6A334BE32472B5C900464B32 /* MainViewController.swift in Sources */,
 				AB9CAE2424769AC5000CFBFC /* FilterHeaderView.swift in Sources */,
 				AB9CAE302477DA4C000CFBFC /* CountButtonManager.swift in Sources */,
 				6A789A5F247405AB005CF258 /* AccomodationInfoTableViewCell.swift in Sources */,
+				6A301D28247936EF00D23B84 /* MonthCollectionReusableView.swift in Sources */,
 				6A334BDF2472B5C900464B32 /* AppDelegate.swift in Sources */,
 				AB9CAE2E2476B7F1000CFBFC /* GuestFilterReusableView.swift in Sources */,
 				6A334BE12472B5C900464B32 /* SceneDelegate.swift in Sources */,
 				6A1CF5092476972F00A1A974 /* ViewExtension.swift in Sources */,
+				6A301D26247920BC00D23B84 /* DayCollectionViewCell.swift in Sources */,
 				6A789A65247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift in Sources */,
 				6A6EE0482476C90600D18488 /* FavoriteButton.swift in Sources */,
-				6A6EE04A2476CB0200D18488 /* ButtonExtension.swift in Sources */, 
+				6A6EE04A2476CB0200D18488 /* ButtonExtension.swift in Sources */,
 				AB9CAE2824769C0C000CFBFC /* GuestFilterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

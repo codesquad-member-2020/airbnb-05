@@ -9,17 +9,19 @@
 import UIKit
 
 class ThumbnailImageCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet var myImage: UIImageView!
+    
     static let identifier = "ThumbnailImageCollectionViewCell"
-    
-    static func nib() -> UINib {
-        return UINib(nibName: identifier, bundle: nil)
-    }
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
+    static func nib() -> UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
+
     public func configure(with model: Model) {
         self.myImage.image = #imageLiteral(resourceName: "welcom_DD")
     }

@@ -9,6 +9,7 @@
 import UIKit
 
 class GuestFilterViewController: UIViewController {
+    
     @IBOutlet weak var filterHeaderView: FilterHeaderView!
     @IBOutlet weak var filterFooterView: FilterFooterView!
     @IBOutlet weak var filterStackView: UIStackView!

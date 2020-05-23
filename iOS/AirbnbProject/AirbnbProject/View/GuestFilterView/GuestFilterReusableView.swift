@@ -10,19 +10,15 @@ import UIKit
 
 @IBDesignable
 class GuestFilterReusableView: UIView {
+    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subtitle: UILabel!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var guestCount: UILabel!
     
-    @IBAction func touchMInusButton(_ sender: Any) {
-        NotificationCenter.default.post(name: .minusActive, object: self, userInfo: ["view" : self])
-    }
+    private let nibName = "GuestFilterReusableView"
     
-    @IBAction func touchPlusButton(_ sender: Any) {
-        NotificationCenter.default.post(name: .plusActive, object: self, userInfo: ["view" : self])
-    }
     @IBInspectable var titleText: String {
         get {
             return title.text!
@@ -38,8 +34,7 @@ class GuestFilterReusableView: UIView {
             subtitle.text = newValue
         }
     }
-    private let nibName = "GuestFilterReusableView"
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupXIB(nibName: nibName)
@@ -49,6 +44,14 @@ class GuestFilterReusableView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.setupXIB(nibName: nibName)
+    }
+        
+    @IBAction func touchMInusButton(_ sender: Any) {
+        NotificationCenter.default.post(name: .minusActive, object: self, userInfo: ["view" : self])
+    }
+    
+    @IBAction func touchPlusButton(_ sender: Any) {
+        NotificationCenter.default.post(name: .plusActive, object: self, userInfo: ["view" : self])
     }
 }
 

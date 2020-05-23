@@ -10,16 +10,13 @@ import UIKit
 
 class AccomodationInfoTableViewCell: UITableViewCell {
     
-    static let identifier = "AccomodationInfoTableViewCell"
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var thumbnailImageCollectionView: UICollectionView!
-    
+
+    static let identifier = "AccomodationInfoTableViewCell"
+
     var models = [Model]()
-    
-    static func nib() -> UINib {
-        return UINib(nibName: identifier, bundle: nil)
-    }
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollectionView()
@@ -27,6 +24,10 @@ class AccomodationInfoTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+    
+    static func nib() -> UINib {
+        return UINib(nibName: identifier, bundle: nil)
     }
     
     private func setupCollectionView() {

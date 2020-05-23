@@ -10,11 +10,13 @@ import Foundation
 import UIKit
 
 class CountButtonManager {
+    
     enum active {
         case plus
         case minus
         case initialize
     }
+    
     private let minCount = 0
     private let maxCount = 8
     
