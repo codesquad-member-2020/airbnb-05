@@ -1,5 +1,5 @@
 //
-//  ExtensionButton.swift
+//  ButtonExtension.swift
 //  AirbnbProject
 //
 //  Created by Keunna Lee on 2020/05/21.
@@ -31,6 +31,6 @@ extension UIButton {
                        options: [.curveEaseInOut],
                        animations: {
                         button.transform = transform
-            }, completion: nil)
+        }, completion: nil)
     }
 }
