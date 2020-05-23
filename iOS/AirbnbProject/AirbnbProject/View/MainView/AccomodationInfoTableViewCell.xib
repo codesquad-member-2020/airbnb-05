@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="U6g-kv-vJ7">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="235"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="220.5"/>
                         <color key="backgroundColor" red="0.019607843140000001" green="0.65098039220000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="vyj-xI-p0n">
                             <size key="itemSize" width="128" height="128"/>
@@ -31,8 +31,8 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </collectionView>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="a8h-vA-IeS" userLabel="Info Vertical Stack view">
-                        <rect key="frame" x="0.0" y="245" width="335" height="49"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="a8h-vA-IeS" userLabel="Info Vertical Stack view">
+                        <rect key="frame" x="0.0" y="230.5" width="335" height="58.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="left" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="8NA-XR-5a3" userLabel="Info First Line Stack View">
                                 <rect key="frame" x="0.0" y="0.0" width="335" height="18.5"/>
@@ -71,7 +71,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="H7Y-YN-lFR" userLabel="Info Second Stack View">
-                                <rect key="frame" x="0.0" y="18.5" width="335" height="14.5"/>
+                                <rect key="frame" x="0.0" y="23.5" width="335" height="14.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Entire apartment / 1 bed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zP-SY-qbM">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="14.5"/>
@@ -82,7 +82,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="코드스쿼드/JK💜yagom 하우스" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEe-5L-Oew">
-                                <rect key="frame" x="0.0" y="33" width="335" height="16"/>
+                                <rect key="frame" x="0.0" y="43" width="335" height="15.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -91,7 +91,7 @@
                         </subviews>
                     </stackView>
                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" defersCurrentPageDisplay="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="k6n-Zw-OUN">
-                        <rect key="frame" x="148" y="198" width="39" height="37"/>
+                        <rect key="frame" x="148" y="183.5" width="39" height="37"/>
                     </pageControl>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7k-h8-5EW" userLabel="Favorite Button" customClass="FavoriteButton" customModule="AirbnbProject" customModuleProvider="target">
                         <rect key="frame" x="294" y="13.5" width="31.5" height="31.5"/>
@@ -116,12 +116,12 @@
                     <constraint firstAttribute="trailing" secondItem="a8h-vA-IeS" secondAttribute="trailing" id="COK-hF-6bc"/>
                     <constraint firstItem="a8h-vA-IeS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="DnT-sJ-LKj"/>
                     <constraint firstAttribute="trailing" secondItem="U6g-kv-vJ7" secondAttribute="trailing" id="SbP-zv-MXZ"/>
-                    <constraint firstAttribute="bottom" secondItem="a8h-vA-IeS" secondAttribute="bottom" id="XYl-zo-MVt"/>
+                    <constraint firstAttribute="bottom" secondItem="a8h-vA-IeS" secondAttribute="bottom" constant="5" id="XYl-zo-MVt"/>
                     <constraint firstItem="l7k-h8-5EW" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.094" id="bu5-bK-r6z"/>
                     <constraint firstItem="k6n-Zw-OUN" firstAttribute="centerX" secondItem="U6g-kv-vJ7" secondAttribute="centerX" id="gKV-EU-tQG"/>
                     <constraint firstItem="l7k-h8-5EW" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="1.85" id="h6i-4i-40J"/>
                     <constraint firstItem="U6g-kv-vJ7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jDS-5y-5V3"/>
-                    <constraint firstItem="U6g-kv-vJ7" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.8" id="kh9-9M-DP6"/>
+                    <constraint firstItem="U6g-kv-vJ7" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.75" id="kh9-9M-DP6"/>
                     <constraint firstItem="a8h-vA-IeS" firstAttribute="top" secondItem="U6g-kv-vJ7" secondAttribute="bottom" constant="10" id="lIl-yL-Up4"/>
                     <constraint firstItem="k6n-Zw-OUN" firstAttribute="bottom" secondItem="U6g-kv-vJ7" secondAttribute="bottom" id="wyE-FS-6k4"/>
                     <constraint firstItem="l7k-h8-5EW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" multiplier="0.2" id="zKk-Nt-sCz"/>

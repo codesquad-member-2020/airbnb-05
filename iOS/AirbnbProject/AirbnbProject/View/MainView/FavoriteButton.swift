@@ -20,6 +20,7 @@ class FavoriteButton: UIButton {
         super.init(frame: frame)
         setupFavoriteButton()
     }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupFavoriteButton()

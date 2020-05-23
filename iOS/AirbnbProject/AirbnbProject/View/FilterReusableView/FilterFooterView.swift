@@ -1,5 +1,5 @@
 //
-//  FilterHeaderView.swift
+//  FilterFooterView.swift
 //  AirbnbProject
 //
 //  Created by 임승혁 on 2020/05/21.
@@ -8,11 +8,12 @@
 
 import UIKit
 
-class FilterHeaderView: UIView {
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var headerViewTitle: UILabel!
+class FilterFooterView: UIView {
     
-    private let nibName = "FilterHeaderView"
+    @IBOutlet weak var initializationButton: UIButton!
+    @IBOutlet weak var completeButton: UIButton!
+    
+    private let nibName = "FilterFooterView"
     
     override init(frame: CGRect) {
         super.init(frame: frame)

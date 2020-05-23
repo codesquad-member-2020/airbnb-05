@@ -77,4 +77,12 @@ extension UIView {
             layer.masksToBounds = newValue < 0
         }
     }
+    
+    func setupXIB(nibName: String) {
+        let bundle = Bundle(for: type(of: self))
+        let nib = UINib(nibName: nibName, bundle: bundle)
+        let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        addSubview(view)
+        view.frame = self.bounds
+    }
 }

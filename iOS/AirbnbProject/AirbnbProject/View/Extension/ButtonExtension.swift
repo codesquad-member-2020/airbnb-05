@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIButton {
-    
     func startAnimatingPressActions() {
         addTarget(self, action: #selector(animateDown), for: [.touchDown, .touchDragEnter])
         addTarget(self, action: #selector(animateUp), for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
