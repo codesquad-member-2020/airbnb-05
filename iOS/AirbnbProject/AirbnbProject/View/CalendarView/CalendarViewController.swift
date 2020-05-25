@@ -13,10 +13,6 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     
     private let numberOfSection = 12
-    private var currMonth = Date()
-    private let formatter = DateFormatter()
-    private let calendar = Calendar.init(identifier: .gregorian)
-    private var firstWeekDay: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,18 +37,11 @@ extension CalendarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayCollectionViewCell.identifier, for: indexPath) as? DayCollectionViewCell else { return UICollectionViewCell() }
         
-        self.currMonth = Calendar.current.date(byAdding: .month, value: indexPath.section, to: Date())!
-        let startDate = Date().getStartDayInMonth(year: formatter.getYear(from: currMonth), month: formatter.getMonth(from: currMonth))
+        let manager = CalenderCollectionViewManager(indexPath: indexPath)
+        let status = manager.setCellHiddenStatus(indexPath: indexPath)
         
-        firstWeekDay = calendar.dateComponents([.weekday], from: startDate).weekday!
-        
-        if firstWeekDay - 2 > indexPath.item {
-            cell.isHidden = true
-        } else {
-            cell.isHidden = false
-            let calcDate = indexPath.row - firstWeekDay + 3
-            cell.dayLabel.text = "\(calcDate)"
-        }
+        cell.isHidden = status
+        cell.dayLabel.text = "\(manager.today)"
         
         return cell
     }

@@ -36,6 +36,7 @@
 		AB9CAE302477DA4C000CFBFC /* CountButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */; };
 		AB9CAE32247A9E7F000CFBFC /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE31247A9E7F000CFBFC /* DateExtension.swift */; };
 		AB9CAE34247A9FB2000CFBFC /* DateFomatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE33247A9FB2000CFBFC /* DateFomatterExtension.swift */; };
+		ABF4CB1E247BD22F00444F72 /* CalendarCollectionViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF4CB1D247BD22F00444F72 /* CalendarCollectionViewManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButtonManager.swift; sourceTree = "<group>"; };
 		AB9CAE31247A9E7F000CFBFC /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		AB9CAE33247A9FB2000CFBFC /* DateFomatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFomatterExtension.swift; sourceTree = "<group>"; };
+		ABF4CB1D247BD22F00444F72 /* CalendarCollectionViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				6A301D2324791B5000D23B84 /* CalendarViewController.swift */,
 				6A301D25247920BC00D23B84 /* DayCollectionViewCell.swift */,
 				6A301D27247936EF00D23B84 /* MonthCollectionReusableView.swift */,
+				ABF4CB1D247BD22F00444F72 /* CalendarCollectionViewManager.swift */,
 			);
 			path = CalendarView;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				6A301D26247920BC00D23B84 /* DayCollectionViewCell.swift in Sources */,
 				6A789A65247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift in Sources */,
 				6A6EE0482476C90600D18488 /* FavoriteButton.swift in Sources */,
+				ABF4CB1E247BD22F00444F72 /* CalendarCollectionViewManager.swift in Sources */,
 				6A6EE04A2476CB0200D18488 /* ButtonExtension.swift in Sources */,
 				AB9CAE2824769C0C000CFBFC /* GuestFilterViewController.swift in Sources */,
 			);
