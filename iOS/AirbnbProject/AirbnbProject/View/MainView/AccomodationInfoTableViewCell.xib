@@ -129,6 +129,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="favoriteButton" destination="l7k-h8-5EW" id="RVv-eo-bKF"/>
                 <outlet property="pageControl" destination="k6n-Zw-OUN" id="MUc-6Q-KkU"/>
                 <outlet property="thumbnailImageCollectionView" destination="U6g-kv-vJ7" id="pLW-sa-rWL"/>
             </connections>

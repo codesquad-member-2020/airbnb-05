@@ -17,10 +17,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        models.append(Model(imageName: "bye"))
-        models.append(Model(imageName: "bye"))
-        models.append(Model(imageName: "bye"))
-        models.append(Model(imageName: "bye"))
+        models.append(Model(imageName: "bye", isFavorite: true))
+        models.append(Model(imageName: "bye", isFavorite: false))
+        models.append(Model(imageName: "bye", isFavorite: true))
+        models.append(Model(imageName: "bye", isFavorite: false))
     }
     
     private func setupTableView() {
@@ -52,6 +52,13 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = infoTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
         cell.configure(with: models)
+        
+        
+        cell.favoriteButton.isFavorite = models[indexPath.row].isFavorite
+        let favoriteButtonManager = FavoriteButtonManager(isFavorite: cell.favoriteButton.isFavorite!)
+        cell.setFavoriteButtonUI(view: cell.favoriteButton, manager: favoriteButtonManager)
+        
+        
         return cell
     }
     

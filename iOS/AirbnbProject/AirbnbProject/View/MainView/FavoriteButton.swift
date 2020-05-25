@@ -10,12 +10,8 @@ import UIKit
 
 class FavoriteButton: UIButton {
     
-    var isFavorite: Bool = false {
-        didSet {
-            updateFavoriteButton()
-        }
-    }
-    
+    var isFavorite: Bool? 
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupFavoriteButton()
@@ -29,19 +25,5 @@ class FavoriteButton: UIButton {
     private func setupFavoriteButton() {
         startAnimatingPressActions()
     }
-    
-    private func updateFavoriteButton() {
-        if isFavorite {
-            self.tintColor = .systemPink
-            self.setImage(UIImage(systemName: SystemImageName.heartFill), for: .normal)
-        } else {
-            self.tintColor = .lightGray
-            self.setImage(UIImage(systemName: SystemImageName.heartEmpty), for: .normal)
-        }
-    }
 }
 
-enum SystemImageName {
-    static let heartFill = "heart.fill"
-    static let heartEmpty = "heart"
-}

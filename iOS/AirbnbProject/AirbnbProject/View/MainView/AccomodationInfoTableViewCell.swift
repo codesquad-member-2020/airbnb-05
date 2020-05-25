@@ -12,6 +12,7 @@ class AccomodationInfoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var thumbnailImageCollectionView: UICollectionView!
+    @IBOutlet weak var favoriteButton: FavoriteButton!
 
     static let identifier = "AccomodationInfoTableViewCell"
 
@@ -45,7 +46,15 @@ class AccomodationInfoTableViewCell: UITableViewCell {
     }
     
     @IBAction func favoriteButtonTapped(_ sender: FavoriteButton) {
-        sender.isFavorite = !sender.isFavorite
+        guard let isFavorite = sender.isFavorite else { return }
+        let favoriteButtonManager = FavoriteButtonManager(isFavorite: !isFavorite)
+        setFavoriteButtonUI(view: sender, manager: favoriteButtonManager)
+    }
+    
+    func setFavoriteButtonUI(view: FavoriteButton, manager: FavoriteButtonManager) {
+        view.isFavorite = manager.isFavorite
+        view.setImage(manager.favoriteButtonImage, for: .normal)
+        view.tintColor = manager.favoriteButtonTintColor
     }
 }
 

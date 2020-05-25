@@ -1,8 +1,10 @@
 struct Model {
     let imageName: String
+    let isFavorite: Bool
     
-    init(imageName: String) {
+    init(imageName: String, isFavorite: Bool) {
         self.imageName = imageName
+        self.isFavorite = isFavorite
     }
 }
 
