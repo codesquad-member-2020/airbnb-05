@@ -18,6 +18,15 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
+    @GetMapping("/cities/{cityId}/rooms")
+    public ResponseEntity<ResponseDto> showRooms(
+            @PathVariable("cityId") int cityId,
+            @RequestParam(value = "limit", required = false, defaultValue = "0") int limit,
+            @RequestParam(value = "offset", required = false, defaultValue = "0") int offset) {
+        ResponseDto responseDto = roomService.getRoomScroll(cityId, limit, offset);
+        return ResponseEntity.ok().body(responseDto);
+    }
+
     @GetMapping("/cities/{cityId}")
     public ResponseEntity<ResponseDto> showRoom(
             @PathVariable("cityId") int cityId,
