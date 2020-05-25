@@ -336,20 +336,20 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3t-jO-7SV" userLabel="Background View">
-                                <rect key="frame" x="20.5" y="181" width="373" height="499"/>
+                                <rect key="frame" x="20.5" y="162" width="373" height="536.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mcp-T6-0gu">
-                                        <rect key="frame" x="19" y="25" width="335" height="449"/>
+                                        <rect key="frame" x="19" y="27" width="335" height="482.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zNz-ma-7JH" customClass="FilterHeaderView" customModule="AirbnbProject" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="zNz-ma-7JH" secondAttribute="height" multiplier="1:0.15" id="bi3-B2-alb"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Hat-o3-fRL" userLabel="Weekely Stack View">
-                                                <rect key="frame" x="0.0" y="60" width="335" height="33.5"/>
+                                                <rect key="frame" x="0.0" y="60.5" width="335" height="33.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bat-fK-6tU">
                                                         <rect key="frame" x="0.0" y="0.0" width="47.5" height="33.5"/>
@@ -398,11 +398,11 @@
                                                     <constraint firstAttribute="width" secondItem="Hat-o3-fRL" secondAttribute="height" multiplier="1:0.1" id="cXr-Og-GeI"/>
                                                 </constraints>
                                             </stackView>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Z8q-MA-Cng">
-                                                <rect key="frame" x="0.0" y="103.5" width="335" height="268.5"/>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Z8q-MA-Cng">
+                                                <rect key="frame" x="0.0" y="104" width="335" height="301.5"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Z8q-MA-Cng" secondAttribute="height" multiplier="1:0.8" id="psU-cy-eav"/>
+                                                    <constraint firstAttribute="width" secondItem="Z8q-MA-Cng" secondAttribute="height" multiplier="1:0.9" id="psU-cy-eav"/>
                                                 </constraints>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Lv-lC-S38">
                                                     <size key="itemSize" width="53" height="54"/>
@@ -459,7 +459,7 @@
                                                 </collectionReusableView>
                                             </collectionView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXk-f7-NbH" customClass="FilterFooterView" customModule="AirbnbProject" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="382" width="335" height="67"/>
+                                                <rect key="frame" x="0.0" y="415.5" width="335" height="67"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="DXk-f7-NbH" secondAttribute="height" multiplier="1:0.2" id="SrJ-Xz-x2F"/>
