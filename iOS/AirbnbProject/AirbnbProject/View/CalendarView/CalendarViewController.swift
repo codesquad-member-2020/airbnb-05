@@ -13,6 +13,10 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     
     private let numberOfSection = 12
+    private var firstSelectedCellIndexPath: IndexPath?
+    private var selectedCells = [ IndexPath : DayCollectionViewCell ]()
+    private var selectedCellIndexPath = [IndexPath]()
+    private var selectedDates = [BookingDate]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +47,9 @@ extension CalendarViewController: UICollectionViewDataSource {
         cell.isHidden = status
         cell.dayLabel.text = "\(manager.today)"
         
+        if indexPath.row < manager.today, cell.isHidden == false {
+            cell.isUserInteractionEnabled = false
+        }
         return cell
     }
     
@@ -52,6 +59,38 @@ extension CalendarViewController: UICollectionViewDataSource {
         header.monthYearLabel.text = "April 2020"
         
         return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if selectedCells[indexPath] == collectionView.cellForItem(at: indexPath){ // 선택된 셀을 다시 눌렀을 경우
+            selectedCells[indexPath]!.initializeBackgroundView()
+            selectedCellIndexPath.removeAll()
+            selectedCells[indexPath] = nil
+        } else {
+            if selectedCells.count < 2 {
+                let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell
+                selectedCellIndexPath.append(indexPath)
+                selectedCells[indexPath] = cell
+                firstSelectedCellIndexPath = selectedCellIndexPath[0]
+                guard let firstSelectedCellIndexPath = firstSelectedCellIndexPath else {return}
+                
+                if firstSelectedCellIndexPath > indexPath {
+                    selectedCellIndexPath.remove(at: 0)
+                    selectedCells[firstSelectedCellIndexPath] = nil
+                }
+                
+            } else {
+                firstSelectedCellIndexPath = nil
+                selectedCells.forEach{$0.value.initializeBackgroundView()}
+                selectedCells = [:]
+                selectedCellIndexPath.removeAll()
+                selectedCellIndexPath.append(indexPath)
+            }
+        }
+        selectedCells.forEach{ selectedCell in
+            selectedCell.value.setupCellBackgroundView()
+            
+        }
     }
 }
 
@@ -66,4 +105,14 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
         let headerSize = CGSize(width:  calendarCollectionView.frame.size.width, height: calendarCollectionView.frame.size.width / 10)
         return headerSize
     }
+}
+
+struct BookingDate {
+    let checkInyear : String
+    let checkInmonth : String
+    let checkIndate : String
+    let checkOutyear : String
+    let checkOutmonth : String
+    let checkOutdate : String
+    
 }
