@@ -16,25 +16,38 @@ class CalenderCollectionViewManager {
     private let numberToAdjustFirstDay = 2
     private let numberToAdjustNextDay = 3
     private let firstDayPosition: Int
+    private var firstWeekDay: Int
+    private let dayCount: Int
     
-    let today: Int
-    
-    init(indexPath: IndexPath) {
-        self.currMonth = Calendar.current.date(byAdding: .month, value: indexPath.section, to: Date())!
-        
+    init(section: Int) {
+        self.currMonth = Calendar.current.date(byAdding: .month, value: section, to: Date())!
         let startDate = Date().getStartDayInMonth(year: formatter.getYear(from: currMonth), month: formatter.getMonth(from: currMonth))
         
-        let firstWeekDay = calendar.dateComponents([.weekday], from: startDate).weekday!
-        
+        self.firstWeekDay = calendar.dateComponents([.year, .month, .weekday], from: startDate).weekday!
+        if firstWeekDay == 1 {
+            self.firstWeekDay = 8
+        }
         self.firstDayPosition = firstWeekDay - numberToAdjustFirstDay
-        self.today = indexPath.row - firstWeekDay + numberToAdjustNextDay
+        
+        self.dayCount = (Calendar.current.range(of: .day, in: .month, for: currMonth)?.count)!
     }
     
-    func setCellHiddenStatus(indexPath: IndexPath) -> Bool {
-        if firstDayPosition > indexPath.item {
+    func setCellHiddenStatus(row : Int) -> Bool {
+        if firstDayPosition > row || dayCount + firstDayPosition <= row {
             return true
         } else {
             return false
         }
+    }
+    
+    func setCellday(row: Int) -> String {
+        return String(row - self.firstWeekDay + numberToAdjustNextDay)
+    }
+    
+    func setSectionHeaderLabel() -> String {
+        let year = formatter.getYear(from: currMonth)
+        let month = formatter.getMonthAsString(from: currMonth)
+        
+        return "\(month) \(year)"
     }
 }
