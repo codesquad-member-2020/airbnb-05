@@ -47,7 +47,8 @@ extension CalendarViewController: UICollectionViewDataSource {
         cell.isHidden = status
         cell.dayLabel.text = "\(manager.today)"
         
-        if indexPath.row < manager.today, cell.isHidden == false {
+        if indexPath < manager.getYesterdayDatePosition() {
+            cell.dayLabel.textColor = .lightGray
             cell.isUserInteractionEnabled = false
         }
         return cell
