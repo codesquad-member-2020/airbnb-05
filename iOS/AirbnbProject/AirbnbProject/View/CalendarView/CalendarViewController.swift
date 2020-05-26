@@ -88,9 +88,6 @@ extension CalendarViewController: UICollectionViewDataSource {
                 selectedCells.forEach{$0.value.initializeBackgroundView()}
                 selectedCells = [:]
                 selectedCellIndexPath.removeAll()
-                if cell?.backgroundColor != .clear {
-                    cell?.initializeBackgroundView()
-                }
                 selectedCellIndexPath.append(indexPath)
             }
         }
