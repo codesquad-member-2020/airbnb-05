@@ -16,6 +16,7 @@ class CalenderCollectionViewManager {
     private let numberToAdjustFirstDay = 2
     private let numberToAdjustNextDay = 3
     private let firstDayPosition: Int
+    private let currentDate: Int
     
     let today: Int
     
@@ -28,6 +29,7 @@ class CalenderCollectionViewManager {
         
         self.firstDayPosition = firstWeekDay - numberToAdjustFirstDay
         self.today = indexPath.row - firstWeekDay + numberToAdjustNextDay
+        self.currentDate = currMonth.getTodayDate(date: currMonth)
     }
     
     func setCellHiddenStatus(indexPath: IndexPath) -> Bool {
@@ -36,5 +38,10 @@ class CalenderCollectionViewManager {
         } else {
             return false
         }
+    }
+    
+    func getYesterdayDatePosition() -> IndexPath {
+        let yesterdayDatePosition = IndexPath(row: currentDate + firstDayPosition - 1, section: 0)
+        return yesterdayDatePosition
     }
 }
