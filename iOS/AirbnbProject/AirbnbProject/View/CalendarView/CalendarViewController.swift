@@ -63,13 +63,16 @@ extension CalendarViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if selectedCells[indexPath] == collectionView.cellForItem(at: indexPath){ // 선택된 셀을 다시 눌렀을 경우
+        let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell
+        
+        if selectedCells[indexPath] == collectionView.cellForItem(at: indexPath){
             selectedCells[indexPath]!.initializeBackgroundView()
             selectedCellIndexPath.removeAll()
             selectedCells[indexPath] = nil
         } else {
+            
             if selectedCells.count < 2 {
-                let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell
+                
                 selectedCellIndexPath.append(indexPath)
                 selectedCells[indexPath] = cell
                 firstSelectedCellIndexPath = selectedCellIndexPath[0]
@@ -85,19 +88,22 @@ extension CalendarViewController: UICollectionViewDataSource {
                 selectedCells.forEach{$0.value.initializeBackgroundView()}
                 selectedCells = [:]
                 selectedCellIndexPath.removeAll()
+                if cell?.backgroundColor != .clear {
+                    cell?.initializeBackgroundView()
+                }
                 selectedCellIndexPath.append(indexPath)
             }
         }
         selectedCells.forEach{ selectedCell in
-            selectedCell.value.setupCellBackgroundView()
-            
+            selectedCell.value.updateSelectedCellBackgroundView()
         }
     }
 }
 
+
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = calendarCollectionView.frame.size.width / 9
+        let size = calendarCollectionView.bounds.width / 7.25
         let sizeForItem = CGSize(width: size, height: size)
         return sizeForItem
     }
@@ -115,5 +121,4 @@ struct BookingDate {
     let checkOutyear : String
     let checkOutmonth : String
     let checkOutdate : String
-    
 }
