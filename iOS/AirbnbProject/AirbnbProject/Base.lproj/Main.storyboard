@@ -404,27 +404,40 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Z8q-MA-Cng" secondAttribute="height" multiplier="1:0.9" id="psU-cy-eav"/>
                                                 </constraints>
-                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Lv-lC-S38">
+                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7Lv-lC-S38">
                                                     <size key="itemSize" width="53" height="54"/>
                                                     <size key="headerReferenceSize" width="50" height="50"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DayCollectionViewCell" id="DNG-Q0-piG" customClass="DayCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="DayCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-Q0-piG" customClass="DayCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="50" width="53" height="54"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JL3-ZT-tNU">
                                                             <rect key="frame" x="0.0" y="0.0" width="53" height="54"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="QOF-og-lSW">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="53" height="54"/>
+                                                                    <subviews>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJr-IJ-mDV" userLabel="leftView">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="26.5" height="54"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        </view>
+                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7y5-PP-lOc" userLabel="rightView">
+                                                                            <rect key="frame" x="26.5" y="0.0" width="26.5" height="54"/>
+                                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                        </view>
+                                                                    </subviews>
+                                                                </stackView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdU-Cf-bpd" userLabel="Backbround View">
                                                                     <rect key="frame" x="0.0" y="0.0" width="53" height="54"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                             <real key="value" value="0.0"/>
                                                                         </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
+                                                                        
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ysr-34-rEo">
@@ -436,17 +449,23 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="mdU-Cf-bpd" secondAttribute="bottom" id="3Ej-ud-6Lg"/>
+                                                                <constraint firstAttribute="bottom" secondItem="QOF-og-lSW" secondAttribute="bottom" id="GIz-MJ-mI2"/>
                                                                 <constraint firstAttribute="trailing" secondItem="mdU-Cf-bpd" secondAttribute="trailing" id="Ihu-lv-T5G"/>
                                                                 <constraint firstItem="ysr-34-rEo" firstAttribute="centerX" secondItem="JL3-ZT-tNU" secondAttribute="centerX" id="Jam-Da-ovN"/>
                                                                 <constraint firstItem="mdU-Cf-bpd" firstAttribute="leading" secondItem="JL3-ZT-tNU" secondAttribute="leading" id="RbX-VE-35L"/>
+                                                                <constraint firstItem="QOF-og-lSW" firstAttribute="top" secondItem="JL3-ZT-tNU" secondAttribute="top" id="T07-md-UGd"/>
+                                                                <constraint firstAttribute="trailing" secondItem="QOF-og-lSW" secondAttribute="trailing" id="ZX5-B1-tHm"/>
                                                                 <constraint firstItem="ysr-34-rEo" firstAttribute="centerY" secondItem="JL3-ZT-tNU" secondAttribute="centerY" id="dRd-Yu-wci"/>
                                                                 <constraint firstItem="mdU-Cf-bpd" firstAttribute="top" secondItem="JL3-ZT-tNU" secondAttribute="top" id="slo-in-9Wd"/>
+                                                                <constraint firstItem="QOF-og-lSW" firstAttribute="leading" secondItem="JL3-ZT-tNU" secondAttribute="leading" id="xLd-Qi-kVY"/>
                                                             </constraints>
                                                         </collectionViewCellContentView>
                                                         <size key="customSize" width="53" height="54"/>
                                                         <connections>
                                                             <outlet property="cellBackgroundView" destination="mdU-Cf-bpd" id="jVe-hD-net"/>
                                                             <outlet property="dayLabel" destination="ysr-34-rEo" id="Xu7-Xr-mBb"/>
+                                                            <outlet property="leftBackgroundView" destination="KJr-IJ-mDV" id="lCU-3v-CpV"/>
+                                                            <outlet property="rightBackgroundView" destination="7y5-PP-lOc" id="gO5-iI-JHV"/>
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
