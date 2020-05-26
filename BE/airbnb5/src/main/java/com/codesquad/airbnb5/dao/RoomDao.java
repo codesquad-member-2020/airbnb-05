@@ -14,6 +14,19 @@ public class RoomDao {
 
     private JdbcTemplate jdbcTemplate;
 
+    private RowMapper<Object> roomRowMapper = (rs, rowNum) -> {
+        RoomDto roomDto = new RoomDto.Builder(rs.getInt("room_id"))
+                .roomName(rs.getString("room_name"))
+                .roomThumbnail(rs.getString("room_thumbnail"))
+                .isSuperHost(rs.getBoolean("is_super_host"))
+                .roomType(rs.getString("room_type"))
+                .beds(rs.getInt("beds"))
+                .scores(rs.getFloat("scores"))
+                .reviews(rs.getFloat("reviews"))
+                .build();
+        return roomDto;
+    };
+
     @Autowired
     public RoomDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
@@ -33,19 +46,7 @@ public class RoomDao {
                 "LIMIT ? " +
                 "OFFSET ? ";
 
-        RowMapper<Object> roomScrollRowMapper = (rs, rowNum) -> {
-            RoomDto roomDto = new RoomDto.Builder(rs.getInt("room_id"))
-                    .roomName(rs.getString("room_name"))
-                    .roomThumbnail(rs.getString("room_thumbnail"))
-                    .isSuperHost(rs.getBoolean("is_super_host"))
-                    .roomType(rs.getString("room_type"))
-                    .beds(rs.getInt("beds"))
-                    .scores(rs.getFloat("scores"))
-                    .reviews(rs.getFloat("reviews"))
-                    .build();
-            return roomDto;
-        };
-        return jdbcTemplate.query(sql, new Object[]{cityId, limit, offset}, roomScrollRowMapper);
+        return jdbcTemplate.query(sql, new Object[]{cityId, limit, offset}, this.roomRowMapper);
     }
 
     public Object findRoomSummary(
@@ -71,18 +72,7 @@ public class RoomDao {
                 "OR (check_in <= ? AND check_out >= ?) " +
                 "OR (check_in <= ? AND check_out > ?) " +
                 "OR (check_out > ? AND check_in < ?))";
-        RowMapper<Object> roomSummaryRowMapper = (rs, rowNum) -> {
-            RoomDto roomDto = new RoomDto.Builder(rs.getInt("room_id"))
-                    .roomName(rs.getString("room_name"))
-                    .roomThumbnail(rs.getString("room_thumbnail"))
-                    .isSuperHost(rs.getBoolean("is_super_host"))
-                    .roomType(rs.getString("room_type"))
-                    .beds(rs.getInt("beds"))
-                    .scores(rs.getFloat("scores"))
-                    .reviews(rs.getFloat("reviews"))
-                    .build();
-            return roomDto;
-        };
-        return jdbcTemplate.query(sql, new Object[]{cityId, guests, minPrice, maxPrice, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, roomSummaryRowMapper);
+
+        return jdbcTemplate.query(sql, new Object[]{cityId, guests, minPrice, maxPrice, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, this.roomRowMapper);
     }
 }
