@@ -14,6 +14,7 @@ class CalendarViewController: UIViewController {
     
     private let numberOfSection = 12
     private var firstSelectedCellIndexPath: IndexPath?
+    private var secondSelectedCellIndexPath: IndexPath?
     private var selectedCells = [ IndexPath : DayCollectionViewCell ]()
     private var selectedCellIndexPath = [IndexPath]()
     private var selectedDates = [BookingDate]()
@@ -63,25 +64,47 @@ extension CalendarViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        secondSelectedCellIndexPath = indexPath
         let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell
         
         if selectedCells[indexPath] == collectionView.cellForItem(at: indexPath){
             selectedCells[indexPath]!.initializeBackgroundView()
-            selectedCellIndexPath.removeAll()
             selectedCells[indexPath] = nil
         } else {
             
             if selectedCells.count < 2 {
                 
-                selectedCellIndexPath.append(indexPath)
                 selectedCells[indexPath] = cell
+                selectedCellIndexPath.append(indexPath)
                 firstSelectedCellIndexPath = selectedCellIndexPath[0]
+                selectedCellIndexPath.removeAll()
+                
                 guard let firstSelectedCellIndexPath = firstSelectedCellIndexPath else {return}
                 
                 if firstSelectedCellIndexPath > indexPath {
                     selectedCellIndexPath.remove(at: 0)
                     selectedCells[firstSelectedCellIndexPath] = nil
                 }
+                
+                
+                if secondSelectedCellIndexPath != nil {
+                    guard let secondSelectedCellIndexPath = secondSelectedCellIndexPath else {return}
+                    if firstSelectedCellIndexPath.section == secondSelectedCellIndexPath.section {
+                        for bookingDateCellIndexPath in firstSelectedCellIndexPath.row ... secondSelectedCellIndexPath.row {
+                            selectedCellIndexPath.append(IndexPath(row: bookingDateCellIndexPath, section: firstSelectedCellIndexPath.section))
+                        }
+                    }
+                    else if firstSelectedCellIndexPath.section < secondSelectedCellIndexPath.section {
+                        for bookingDateCellIndexPath in firstSelectedCellIndexPath.row ... collectionView.numberOfItems(inSection: firstSelectedCellIndexPath.section) {
+                            selectedCellIndexPath.append(IndexPath(row: bookingDateCellIndexPath, section: firstSelectedCellIndexPath.section))
+                        }
+                        for bookingDateCellIndexPath in 0 ... secondSelectedCellIndexPath.row {
+                            selectedCellIndexPath.append(IndexPath(row: bookingDateCellIndexPath, section: secondSelectedCellIndexPath.section))
+                        }
+                    }
+                }
+                
                 
             } else {
                 firstSelectedCellIndexPath = nil
@@ -94,13 +117,31 @@ extension CalendarViewController: UICollectionViewDataSource {
         selectedCells.forEach{ selectedCell in
             selectedCell.value.updateSelectedCellBackgroundView()
         }
+        self.selectedCellIndexPath = self.selectedCellIndexPath.sorted()
+        for selectedCellIndexPath in selectedCellIndexPath {
+            let cell = collectionView.cellForItem(at: selectedCellIndexPath) as? DayCollectionViewCell
+            
+            if selectedCellIndexPath == firstSelectedCellIndexPath {
+                if secondSelectedCellIndexPath != nil {
+                    cell?.updateSideEndCellBackgroundView(sideDirection: .left)
+                }
+            }
+            
+            if selectedCellIndexPath == secondSelectedCellIndexPath {
+                cell?.updateSideEndCellBackgroundView(sideDirection: .right)
+            }
+            
+            if selectedCellIndexPath != firstSelectedCellIndexPath, selectedCellIndexPath != secondSelectedCellIndexPath{
+                cell?.updatePeriodCellBackgroundView()
+            }
+        }
     }
 }
 
 
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = calendarCollectionView.bounds.width / 7.25
+        let size = calendarCollectionView.bounds.width / 7.05
         let sizeForItem = CGSize(width: size, height: size)
         return sizeForItem
     }
