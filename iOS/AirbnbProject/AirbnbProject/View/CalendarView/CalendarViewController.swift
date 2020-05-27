@@ -60,13 +60,13 @@ extension CalendarViewController: UICollectionViewDataSource {
 
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //self.cellSize = calendarCollectionView.frame.size.width / 7.05
+        self.cellSize = calendarCollectionView.frame.size.width / 7.05
         let sizeForItem = CGSize(width: cellSize!, height: cellSize!)
         return sizeForItem
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        //self.sectionHeaderHeight = calendarCollectionView.frame.size.width / 10
+        self.sectionHeaderHeight = calendarCollectionView.frame.size.width / 10
         let headerSize = CGSize(width:  calendarCollectionView.frame.size.width, height: sectionHeaderHeight!)
         return headerSize
     }
