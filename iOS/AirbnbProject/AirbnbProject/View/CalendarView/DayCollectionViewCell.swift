@@ -13,4 +13,11 @@ class DayCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var dayLabel: UILabel!
     
     static let identifier = "DayCollectionViewCell"
+    var dateInfo: CellDateInfo?
+}
+
+struct CellDateInfo {
+    let year: Int
+    let month: Int
+    let day: Int
 }

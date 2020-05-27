@@ -18,4 +18,9 @@ extension DateFormatter {
         self.dateFormat = "MM"
         return Int(self.string(from: from))!
     }
+    
+    func getMonthAsString(from: Date) -> String {
+        self.dateFormat = "MMMM"
+        return self.string(from: from)
+    }
 }
