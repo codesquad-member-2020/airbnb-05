@@ -97,16 +97,14 @@ extension CalendarViewController: UICollectionViewDataSource {
         
         let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell
         
-        if selectedCells[indexPath] == cell {
-            secondSelectedCellIndexPath = nil
-            firstSelectedCellIndexPath = nil
-            cell?.initializeBackgroundView()
-            selectedCells[indexPath] = nil
+        if selectedCellIndexPath.count < 3 {
             
-        } else {
-            
-            if selectedCellIndexPath.count < 3 {
-                
+            if selectedCells[indexPath] == cell {
+                secondSelectedCellIndexPath = nil
+                firstSelectedCellIndexPath = nil
+                cell?.initializeBackgroundView()
+                selectedCells[indexPath] = nil
+            } else {
                 selectedCells[indexPath] = cell
                 selectedCellIndexPath.append(indexPath)
                 firstSelectedCellIndexPath = selectedCellIndexPath[0]
@@ -139,21 +137,20 @@ extension CalendarViewController: UICollectionViewDataSource {
                         }
                     }
                 }
-                
-            } else {
-                firstSelectedCellIndexPath = nil
-                secondSelectedCellIndexPath = nil
-                selectedCells.forEach{$0.value.initializeBackgroundView()}
-                for index in selectedCellIndexPath {
-                    let cell = collectionView.cellForItem(at: index) as? DayCollectionViewCell
-                    cell?.initializeBackgroundView()
-                }
-                selectedCells = [:]
-                selectedCellIndexPath.removeAll()
-                selectedCells[indexPath] = cell
-                selectedCellIndexPath.append(indexPath)
-                firstSelectedCellIndexPath = indexPath
             }
+        } else {
+            firstSelectedCellIndexPath = nil
+            secondSelectedCellIndexPath = nil
+            selectedCells.forEach{$0.value.initializeBackgroundView()}
+            for index in selectedCellIndexPath {
+                let cell = collectionView.cellForItem(at: index) as? DayCollectionViewCell
+                cell?.initializeBackgroundView()
+            }
+            selectedCells = [:]
+            selectedCellIndexPath.removeAll()
+            selectedCells[indexPath] = cell
+            selectedCellIndexPath.append(indexPath)
+            firstSelectedCellIndexPath = indexPath
         }
         
         selectedCells.forEach{ selectedCell in
