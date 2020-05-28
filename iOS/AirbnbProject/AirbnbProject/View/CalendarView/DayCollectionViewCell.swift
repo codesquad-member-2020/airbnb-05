@@ -74,7 +74,3 @@ struct CellDateInfo {
     let month: Int
     let day: Int
 }
-
-enum CustomColor {
-    static let faintLightGray = "faintLightGray"
-}

@@ -17,8 +17,9 @@ class CalendarViewController: UIViewController {
     private var secondSelectedCellIndexPath: IndexPath?
     private var selectedCells = [ IndexPath : DayCollectionViewCell ]()
     private var selectedCellIndexPath = [IndexPath]()
-    private var selectedDates = [BookingDate]()
-    
+    private var cellSize: CGFloat?
+    private var sectionHeaderHeight: CGFloat?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -36,29 +37,25 @@ extension CalendarViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 36
+        return 42
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayCollectionViewCell.identifier, for: indexPath) as? DayCollectionViewCell else { return UICollectionViewCell() }
         
-        let manager = CalenderCollectionViewManager(indexPath: indexPath)
-        let status = manager.setCellHiddenStatus(indexPath: indexPath)
+        let manager = CalenderCollectionViewManager(section: indexPath.section)
+        let status = manager.setCellHiddenStatus(row: indexPath.row)
         
         cell.isHidden = status
-        cell.dayLabel.text = "\(manager.today)"
+        cell.dayLabel.text = "\(manager.setCellday(row: indexPath.row))"
         
         if indexPath < manager.getYesterdayDatePosition() {
             cell.updateDisabledCell()
         }
         
         if firstSelectedCellIndexPath != nil, secondSelectedCellIndexPath != nil{
-            //                    selectedCells.forEach{ selectedCell in
-            //                        selectedCell.value.updateSelectedCellBackgroundView()
-            //                    }
             
             self.selectedCellIndexPath = self.selectedCellIndexPath.sorted()
-            //        if secondSelectedCellIndexPath != nil {
             for selectedCellIndexPath in selectedCellIndexPath {
                 
                 let cell = collectionView.cellForItem(at: selectedCellIndexPath) as? DayCollectionViewCell
@@ -78,19 +75,16 @@ extension CalendarViewController: UICollectionViewDataSource {
                 if selectedCellIndexPath != firstSelectedCellIndexPath, selectedCellIndexPath != secondSelectedCellIndexPath{
                     cell?.updatePeriodCellBackgroundView()
                 }
-            }
-            //        }
-            
+            }            
         }
-        
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind , withReuseIdentifier: MonthCollectionReusableView.identifier, for: indexPath) as? MonthCollectionReusableView else { return UICollectionReusableView() }
         
-        header.monthYearLabel.text = "April 2020"
+        let manager = CalenderCollectionViewManager(section: indexPath.section)
+        header.monthYearLabel.text = manager.setSectionHeaderLabel()
         
         return header
     }
@@ -194,22 +188,32 @@ extension CalendarViewController: UICollectionViewDataSource {
 
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = calendarCollectionView.bounds.width / 7.05
-        let sizeForItem = CGSize(width: size, height: size)
-        return sizeForItem
+        self.cellSize = calendarCollectionView.frame.size.width / 7.05
+        let sizeForItem = CGSize(width: cellSize!, height: cellSize!)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let headerSize = CGSize(width:  calendarCollectionView.frame.size.width, height: calendarCollectionView.frame.size.width / 10)
+        self.sectionHeaderHeight = calendarCollectionView.frame.size.width / 10
+        let headerSize = CGSize(width:  calendarCollectionView.frame.size.width, height: sectionHeaderHeight!)
         return headerSize
     }
 }
 
-struct BookingDate {
-    let checkInyear : String
-    let checkInmonth : String
-    let checkIndate : String
-    let checkOutyear : String
-    let checkOutmonth : String
-    let checkOutdate : String
+extension CalendarViewController: UIScrollViewDelegate, UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+
+        let sectionHeight = cellSize! * 6 + sectionHeaderHeight!
+        
+        var offset = targetContentOffset.pointee
+        let index = (offset.y + scrollView.contentInset.bottom) / sectionHeight
+        let roundedIndex = round(index)
+        
+        offset = CGPoint(x: scrollView.contentInset.top, y: roundedIndex * sectionHeight)
+        
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                scrollView.setContentOffset(offset, animated: false)
+            }, completion: nil)
+        }
+    }
 }

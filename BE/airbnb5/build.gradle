@@ -27,6 +27,7 @@ dependencies {
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.2'
 }
 
 test {
