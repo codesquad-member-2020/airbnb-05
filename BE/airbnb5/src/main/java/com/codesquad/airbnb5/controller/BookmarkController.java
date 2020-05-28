@@ -28,4 +28,11 @@ public class BookmarkController {
         ResponseDto responseDto = bookmarkService.deleteFavoriteStatus(roomId, guestId);
         return ResponseEntity.ok().body(responseDto);
     }
+
+    @GetMapping("")
+    public ResponseEntity<ResponseDto> getBookmarks(
+            @RequestParam("guestId") int guestId) {
+        ResponseDto responseDto = bookmarkService.getBookmarkList(guestId);
+        return ResponseEntity.ok().body(responseDto);
+    }
 }
