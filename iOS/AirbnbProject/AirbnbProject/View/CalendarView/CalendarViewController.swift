@@ -13,6 +13,9 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     
     private let numberOfSection = 12
+    
+    private let bookingManager = BookingManager()
+    
     private var firstSelectedCellIndexPath: IndexPath?
     private var secondSelectedCellIndexPath: IndexPath?
     private var selectedCells = [ IndexPath : DayCollectionViewCell ]()
@@ -95,31 +98,17 @@ extension CalendarViewController: UICollectionViewDataSource {
             secondSelectedCellIndexPath = indexPath
         }
         
-        let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell
+        guard let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell else { return }
         
-        if selectedCellIndexPath.count < 3 {
-            
-            if selectedCells[indexPath] == cell {
-                secondSelectedCellIndexPath = nil
-                firstSelectedCellIndexPath = nil
-                cell?.initializeBackgroundView()
-                selectedCells[indexPath] = nil
+        if bookingManager.selectedIndexPath.count < 3 {
+            // 선택이 되어있는 셀 터치
+            if bookingManager.isSelectedCell(indexPath: indexPath, cell: cell) {
+                cell.initializeBackgroundView()
             } else {
-                selectedCells[indexPath] = cell
-                selectedCellIndexPath.append(indexPath)
-                firstSelectedCellIndexPath = selectedCellIndexPath[0]
+                // 선택이 안된 셀 터치
+                bookingManager.setFisrtSelectedIndexPath(indexPath: indexPath, cell: cell)
                 
-                guard let firstSelectedCell = firstSelectedCellIndexPath else {return}
-                
-                if firstSelectedCell > indexPath {
-                    selectedCells[firstSelectedCell]?.initializeBackgroundView()
-                    self.firstSelectedCellIndexPath = nil
-                    secondSelectedCellIndexPath = nil
-                    selectedCellIndexPath.remove(at: 0)
-                    selectedCells[firstSelectedCell] = nil
-                    self.firstSelectedCellIndexPath = indexPath
-                    selectedCells[indexPath]?.updateSelectedCellBackgroundView()
-                }
+                bookingManager.isSelectable(indexPath: indexPath)
                 
                 if secondSelectedCellIndexPath != nil {
                     guard let secondSelectedCellIndexPath = secondSelectedCellIndexPath else {return}
