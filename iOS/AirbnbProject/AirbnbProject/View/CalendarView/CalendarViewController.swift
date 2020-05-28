@@ -25,6 +25,12 @@ class CalendarViewController: UIViewController {
         setupCollectionView()
         
         footerView.initializationButton.addTarget(self, action: #selector(initializeDate), for: .touchUpInside)
+        footerView.completeButton.addTarget(self, action: #selector(fixUpDate), for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(completeButtonManage),
+                                               name: .selectedCheckoutDate,
+                                               object: nil)
     }
     
     private func setupCollectionView() {
@@ -43,6 +49,20 @@ class CalendarViewController: UIViewController {
         }
         bookingManager.initializeAll()
         setDateFilterTitle()
+    }
+    
+    @objc private func fixUpDate() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func completeButtonManage() {
+        if bookingManager.isSelectedAllDate() {
+            footerView.completeButton.isEnabled = true
+            footerView.completeButton.backgroundColor = .systemPink
+        } else {
+            footerView.completeButton.isEnabled = false
+            footerView.completeButton.backgroundColor = .darkGray
+        }
     }
 }
 

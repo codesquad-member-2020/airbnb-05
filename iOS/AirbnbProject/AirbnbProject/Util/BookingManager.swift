@@ -10,7 +10,11 @@ import Foundation
 
 class BookingManager {
     var firstSelectedCellIndexPath: IndexPath?
-    var secondSelectedCellIndexPath: IndexPath?
+    var secondSelectedCellIndexPath: IndexPath? {
+        didSet {
+            NotificationCenter.default.post(name: .selectedCheckoutDate, object: self)
+        }
+    }
     
     var selectedIndexPath = [IndexPath]()
     var selectedCells = [IndexPath : DayCollectionViewCell]()
@@ -97,9 +101,22 @@ class BookingManager {
         guard let checkOutDay = secondSelectedCellIndexPath else { return "Check Out" }
         return selectedCells[checkOutDay]!.dayLabel.text!
     }
+    
+    func isSelectedAllDate() -> Bool {
+        if self.firstSelectedCellIndexPath != nil && self.secondSelectedCellIndexPath != nil {
+            return true
+        } else {
+            return false
+        }
+    }
 }
+
 enum CellBackgroundType {
     case checkIn
     case checkOut
     case included
+}
+
+extension Notification.Name {
+    static let selectedCheckoutDate = Notification.Name("seledctedCheckoutDate")
 }
