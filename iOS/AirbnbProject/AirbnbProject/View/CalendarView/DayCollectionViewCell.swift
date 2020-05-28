@@ -44,7 +44,7 @@ class DayCollectionViewCell: UICollectionViewCell {
     func updatePeriodCellBackgroundView() {
         self.cellBackgroundView.cornerRadius = 0
         dayLabel.textColor = .black
-        self.cellBackgroundView.backgroundColor = UIColor(named: CustomColor.faintLightGray)
+        self.cellBackgroundView.backgroundColor = .faintLightGray
     }
     
     func updateSideEndCellBackgroundView(sideDirection: Direction) {
@@ -52,9 +52,9 @@ class DayCollectionViewCell: UICollectionViewCell {
         switch sideDirection {
         case .left:
             leftBackgroundView.backgroundColor = .clear
-            rightBackgroundView.backgroundColor = UIColor(named: CustomColor.faintLightGray)
+            rightBackgroundView.backgroundColor = .faintLightGray
         case .right:
-            leftBackgroundView.backgroundColor = UIColor(named: CustomColor.faintLightGray)
+            leftBackgroundView.backgroundColor = .faintLightGray
             rightBackgroundView.backgroundColor = .clear
         }
     }
@@ -63,6 +63,10 @@ class DayCollectionViewCell: UICollectionViewCell {
         self.dayLabel.textColor = .lightGray
         self.isUserInteractionEnabled = false
     }
+}
+
+extension UIColor {
+    static let faintLightGray = UIColor(named: "faintLightGray")
 }
 
 enum Direction {

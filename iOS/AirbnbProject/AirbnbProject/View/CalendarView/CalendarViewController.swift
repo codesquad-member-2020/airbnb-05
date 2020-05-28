@@ -19,7 +19,7 @@ class CalendarViewController: UIViewController {
     private var selectedCellIndexPath = [IndexPath]()
     private var cellSize: CGFloat?
     private var sectionHeaderHeight: CGFloat?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -181,7 +181,6 @@ extension CalendarViewController: UICollectionViewDataSource {
                 }
             }
         }
-        
     }
 }
 
@@ -190,6 +189,7 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         self.cellSize = calendarCollectionView.frame.size.width / 7.05
         let sizeForItem = CGSize(width: cellSize!, height: cellSize!)
+        return sizeForItem
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -201,7 +201,7 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
 
 extension CalendarViewController: UIScrollViewDelegate, UICollectionViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-
+        
         let sectionHeight = cellSize! * 6 + sectionHeaderHeight!
         
         var offset = targetContentOffset.pointee
