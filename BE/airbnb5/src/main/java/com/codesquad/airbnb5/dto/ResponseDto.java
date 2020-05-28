@@ -14,6 +14,10 @@ public class ResponseDto {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object data;
 
+    public ResponseDto(int statusCode) {
+        this.statusCode = statusCode;
+    }
+
     public ResponseDto(int statusCode, Object data) {
         this.statusCode = statusCode;
         this.data = data;
