@@ -411,7 +411,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="DayCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-Q0-piG" customClass="DayCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="DayCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-Q0-piG" customClass="DayCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="50" width="53" height="54"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JL3-ZT-tNU">
@@ -537,6 +537,8 @@
                     <navigationItem key="navigationItem" id="pCB-AI-dsv"/>
                     <connections>
                         <outlet property="calendarCollectionView" destination="Z8q-MA-Cng" id="Pcr-b2-8Jv"/>
+                        <outlet property="footerView" destination="DXk-f7-NbH" id="6FJ-dj-Xb4"/>
+                        <outlet property="headerView" destination="zNz-ma-7JH" id="Dag-ZD-94z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1b-7Z-O5r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

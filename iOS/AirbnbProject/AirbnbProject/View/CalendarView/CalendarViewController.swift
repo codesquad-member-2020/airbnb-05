@@ -9,6 +9,8 @@
 import UIKit
 
 class CalendarViewController: UIViewController {
+    @IBOutlet weak var headerView: FilterHeaderView!
+    @IBOutlet weak var footerView: FilterFooterView!
     
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     
@@ -19,12 +21,28 @@ class CalendarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setDateFilterTitle()
         setupCollectionView()
+        
+        footerView.initializationButton.addTarget(self, action: #selector(initializeDate), for: .touchUpInside)
     }
     
     private func setupCollectionView() {
         calendarCollectionView.dataSource = self
         calendarCollectionView.delegate = self
+    }
+    
+    private func setDateFilterTitle() {
+        headerView.headerViewTitle.text = "\(bookingManager.getCheckInDay()) - \(bookingManager.getCheckOutDay())"
+    }
+    
+    @objc private func initializeDate() {
+        bookingManager.selectedIndexPath.forEach{
+            guard let cell = self.calendarCollectionView.cellForItem(at: $0) as? DayCollectionViewCell else {return}
+            cell.initializeBackgroundView()
+        }
+        bookingManager.initializeAll()
+        setDateFilterTitle()
     }
 }
 
@@ -85,6 +103,8 @@ extension CalendarViewController: UICollectionViewDataSource {
                 bookingManager.isSelectable(indexPath: indexPath)
                 
                 bookingManager.checkSelectedDatesSameMonth(numberOfItemsInSection: collectionView.numberOfItems(inSection: indexPath.section))
+                
+                setDateFilterTitle()
             }
         } else { // 3개 이상 터치 되었을 때
             
@@ -94,8 +114,10 @@ extension CalendarViewController: UICollectionViewDataSource {
             }
             bookingManager.initializeAll()
             bookingManager.setFisrtSelectedIndexPath(indexPath: indexPath, cell: cell)
+            setDateFilterTitle()
         }
-                bookingManager.selectedCells[indexPath]?.updateSelectedCellBackgroundView()
+        
+        bookingManager.selectedCells[indexPath]?.updateSelectedCellBackgroundView()
 
         if bookingManager.secondSelectedCellIndexPath != nil {
             designateCellBackground(collectionView: collectionView)

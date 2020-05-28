@@ -87,6 +87,16 @@ class BookingManager {
             }
         }
     }
+    
+    func getCheckInDay() -> String {
+        guard let checkInDay = firstSelectedCellIndexPath else { return "Check In" }
+        return selectedCells[checkInDay]!.dayLabel.text!
+    }
+    
+    func getCheckOutDay() -> String {
+        guard let checkOutDay = secondSelectedCellIndexPath else { return "Check Out" }
+        return selectedCells[checkOutDay]!.dayLabel.text!
+    }
 }
 enum CellBackgroundType {
     case checkIn
