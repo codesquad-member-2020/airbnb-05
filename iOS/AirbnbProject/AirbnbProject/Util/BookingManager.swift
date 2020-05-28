@@ -48,4 +48,48 @@ class BookingManager {
             selectedCells[indexPath]?.updateSelectedCellBackgroundView()
         }
     }
+    
+    private func collectSelectedCell(row from: Int , to: Int, in section: Int) {
+        for bookingDateCellRow in from ... to {
+            let cellIndexPath = IndexPath(row: bookingDateCellRow, section: section)
+            self.selectedIndexPath.append(cellIndexPath)
+        }
+    }
+    
+    func checkSelectedDatesSameMonth(numberOfItemsInSection: Int) {
+        if self.secondSelectedCellIndexPath != nil {
+            if self.firstSelectedCellIndexPath!.section == self.secondSelectedCellIndexPath!.section {
+                
+                self.collectSelectedCell(row: firstSelectedCellIndexPath!.row, to: secondSelectedCellIndexPath!.row, in: self.firstSelectedCellIndexPath!.section)
+            } else {
+                self.collectSelectedCell(row: firstSelectedCellIndexPath!.row, to: numberOfItemsInSection, in: self.firstSelectedCellIndexPath!.section)
+                
+                self.collectSelectedCell(row: 0, to: secondSelectedCellIndexPath!.row, in: secondSelectedCellIndexPath!.section)
+            }
+        }
+    }
+    
+    func initializeAll() {
+        firstSelectedCellIndexPath = nil
+        secondSelectedCellIndexPath = nil
+        selectedCells = [:]
+        selectedIndexPath.removeAll()
+    }
+    
+    func defineCellType(completion: (IndexPath, CellBackgroundType) ->()) {
+        for indexPath in self.selectedIndexPath {
+            if indexPath == self.firstSelectedCellIndexPath {
+                completion(indexPath , .checkIn)
+            } else if indexPath == self.secondSelectedCellIndexPath {
+                completion(indexPath, .checkOut)
+            } else {
+                completion(indexPath, .included)
+            }
+        }
+    }
+}
+enum CellBackgroundType {
+    case checkIn
+    case checkOut
+    case included
 }

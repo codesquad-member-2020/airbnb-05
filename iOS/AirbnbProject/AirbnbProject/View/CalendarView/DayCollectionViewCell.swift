@@ -34,7 +34,6 @@ class DayCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
-        
         dayLabel.text = nil
         dayLabel.textColor = .black
         initializeBackgroundView()
