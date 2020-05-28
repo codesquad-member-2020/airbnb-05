@@ -18,17 +18,7 @@ class DayCollectionViewCell: UICollectionViewCell {
     static let identifier = "DayCollectionViewCell"
     
     var dateInfo: CellDateInfo?
-    
-    override var isSelected: Bool {
-        didSet {
-            if isSelected{
-                self.updateSelectedCellBackgroundView()
-            } else {
-                initializeBackgroundView()
-            }
-        }
-    }
-    
+        
     func updateSelectedCellBackgroundView() {
         cellBackgroundView.cornerRadius = cellBackgroundView.frame.size.width / 2
         dayLabel.textColor = .white
@@ -44,12 +34,16 @@ class DayCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        
         dayLabel.text = nil
+        dayLabel.textColor = .black
         initializeBackgroundView()
         self.isUserInteractionEnabled = true
     }
     
     func updatePeriodCellBackgroundView() {
+        self.cellBackgroundView.cornerRadius = 0
+        dayLabel.textColor = .black
         self.cellBackgroundView.backgroundColor = UIColor(named: CustomColor.faintLightGray)
     }
     
@@ -63,6 +57,11 @@ class DayCollectionViewCell: UICollectionViewCell {
             leftBackgroundView.backgroundColor = UIColor(named: CustomColor.faintLightGray)
             rightBackgroundView.backgroundColor = .clear
         }
+    }
+    
+    func updateDisabledCell() {
+        self.dayLabel.textColor = .lightGray
+        self.isUserInteractionEnabled = false
     }
 }
 
