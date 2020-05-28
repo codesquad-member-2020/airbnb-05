@@ -45,6 +45,7 @@ class CalenderCollectionViewManager {
         let yesterdayDatePosition = IndexPath(row: currentDate + firstDayPosition - 1, section: 0)
         return yesterdayDatePosition
     }
+    
     func setCellday(row: Int) -> String {
         return String(row - self.firstWeekDay + numberToAdjustNextDay)
     }
@@ -54,6 +55,10 @@ class CalenderCollectionViewManager {
         let month = formatter.getMonthAsString(from: currMonth)
         
         return "\(month) \(year)"
+    }
+    
+    func getMonthAsString() -> String {
+        return formatter.getMonthAsString(from: currMonth)
     }
 }
 

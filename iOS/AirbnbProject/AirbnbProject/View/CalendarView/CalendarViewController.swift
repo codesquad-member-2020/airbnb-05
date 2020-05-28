@@ -24,6 +24,7 @@ class CalendarViewController: UIViewController {
         setDateFilterTitle()
         setupCollectionView()
         
+        headerView.closeButton.addTarget(self, action: #selector(closeWindow), for: .touchUpInside)
         footerView.initializationButton.addTarget(self, action: #selector(initializeDate), for: .touchUpInside)
         footerView.completeButton.addTarget(self, action: #selector(fixUpDate), for: .touchUpInside)
         
@@ -39,7 +40,21 @@ class CalendarViewController: UIViewController {
     }
     
     private func setDateFilterTitle() {
-        headerView.headerViewTitle.text = "\(bookingManager.getCheckInDay()) - \(bookingManager.getCheckOutDay())"
+        let checkInMonth = getMonthStringThroughManager(indexPath: bookingManager.firstSelectedCellIndexPath)
+        let checkoutMonth = getMonthStringThroughManager(indexPath: bookingManager.secondSelectedCellIndexPath)
+        let checkoutDay = bookingManager.getCheckOutDay()
+        headerView.headerViewTitle.text = "\(bookingManager.getCheckInDay()) \(checkInMonth) - \(checkoutDay) \(checkoutMonth)"
+    }
+    
+    private func getMonthStringThroughManager(indexPath: IndexPath?) -> String {
+        guard let unwrapIndexPath = indexPath else { return "" }
+        
+        let manager = CalenderCollectionViewManager(section: unwrapIndexPath.section)
+        return manager.getMonthAsString()
+    }
+    
+    @objc private func closeWindow() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc private func initializeDate() {
