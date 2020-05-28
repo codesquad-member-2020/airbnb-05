@@ -28,4 +28,14 @@ public class BookmarkDao {
                 "AND guest_id = ? ";
         jdbcTemplate.update(sql, roomId, guestId);
     }
+
+
+    private Boolean findFavoriteByGuestIdAndRoomId(int guestId, int roomId) {
+
+        String sql = "SELECT exists ( SELECT room_id " +
+                "FROM bookmark b " +
+                "WHERE b.guest_id = ? " +
+                "AND b.room_id = ? )";
+        return jdbcTemplate.queryForObject(sql, new Object[]{guestId, roomId}, Boolean.class);
+    }
 }
