@@ -68,9 +68,8 @@ CREATE TABLE user
 
 CREATE TABLE bookmark
 (
-    room_id         int REFERENCES room (room_id) ON UPDATE CASCADE,
-    guest_id        int REFERENCES guest (guest_id) ON UPDATE CASCADE,
-    favorite_status boolean DEFAULT FALSE,
+    room_id  int REFERENCES room (room_id) ON UPDATE CASCADE,
+    guest_id int REFERENCES guest (guest_id) ON UPDATE CASCADE,
     PRIMARY KEY (room_id, guest_id)
 );
 
