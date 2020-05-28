@@ -37,12 +37,13 @@ public class RoomDao {
             int limit,
             int offset
     ) {
+
         String sql = "SELECT r.room_id, r.room_name, r.room_thumbnail, h.is_super_host, " +
                 "r.room_type, r.beds, r.scores, r.reviews " +
                 "FROM room r " +
                 "JOIN host h " +
                 "ON r.host_id = h.host_id " +
-                "WHERE r.city_id = ? " +
+                "AND r.city_id = ? " +
                 "LIMIT ? " +
                 "OFFSET ? ";
 
@@ -62,7 +63,7 @@ public class RoomDao {
                 "FROM room r " +
                 "JOIN host h " +
                 "ON r.host_id = h.host_id " +
-                "WHERE r.city_id = ? " +
+                "AND r.city_id = ? " +
                 "AND r.maximum_guests >= ? " +
                 "AND r.sale_price BETWEEN ? AND ? " +
                 "AND r.room_id NOT IN (" +
