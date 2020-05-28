@@ -17,4 +17,10 @@ extension Date {
         components.day = 2
         return calendar.date(from: components)!
     }
+    
+    func getTodayDate(date: Date) -> Int {
+        let calendar = Calendar.current
+        let day = calendar.component(.day, from: date)
+        return day
+    }
 }

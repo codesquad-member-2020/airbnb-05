@@ -16,6 +16,7 @@ class CalenderCollectionViewManager {
     private let numberToAdjustFirstDay = 2
     private let numberToAdjustNextDay = 3
     private let firstDayPosition: Int
+    private let currentDate: Int
     private var firstWeekDay: Int
     private let dayCount: Int
     
@@ -28,7 +29,8 @@ class CalenderCollectionViewManager {
             self.firstWeekDay = 8
         }
         self.firstDayPosition = firstWeekDay - numberToAdjustFirstDay
-        
+        self.today = indexPath.row - firstWeekDay + numberToAdjustNextDay
+        self.currentDate = currMonth.getTodayDate(date: currMonth)
         self.dayCount = (Calendar.current.range(of: .day, in: .month, for: currMonth)?.count)!
     }
     
@@ -40,6 +42,10 @@ class CalenderCollectionViewManager {
         }
     }
     
+    func getYesterdayDatePosition() -> IndexPath {
+        let yesterdayDatePosition = IndexPath(row: currentDate + firstDayPosition - 1, section: 0)
+        return yesterdayDatePosition
+
     func setCellday(row: Int) -> String {
         return String(row - self.firstWeekDay + numberToAdjustNextDay)
     }
