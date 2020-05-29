@@ -9,25 +9,75 @@
 import UIKit
 
 class CalendarViewController: UIViewController {
+    @IBOutlet weak var headerView: FilterHeaderView!
+    @IBOutlet weak var footerView: FilterFooterView!
     
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     
     private let numberOfSection = 12
-    private var firstSelectedCellIndexPath: IndexPath?
-    private var secondSelectedCellIndexPath: IndexPath?
-    private var selectedCells = [ IndexPath : DayCollectionViewCell ]()
-    private var selectedCellIndexPath = [IndexPath]()
+    private let bookingManager = BookingManager()
     private var cellSize: CGFloat?
     private var sectionHeaderHeight: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setDateFilterTitle()
         setupCollectionView()
+        
+        headerView.closeButton.addTarget(self, action: #selector(closeWindow), for: .touchUpInside)
+        footerView.initializationButton.addTarget(self, action: #selector(initializeDate), for: .touchUpInside)
+        footerView.completeButton.addTarget(self, action: #selector(fixUpDate), for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(completeButtonManage),
+                                               name: .selectedCheckoutDate,
+                                               object: nil)
     }
     
     private func setupCollectionView() {
         calendarCollectionView.dataSource = self
         calendarCollectionView.delegate = self
+    }
+    
+    private func setDateFilterTitle() {
+        let checkInMonth = getMonthStringThroughManager(indexPath: bookingManager.firstSelectedCellIndexPath)
+        let checkoutMonth = getMonthStringThroughManager(indexPath: bookingManager.secondSelectedCellIndexPath)
+        let checkoutDay = bookingManager.getCheckOutDay()
+        headerView.headerViewTitle.text = "\(bookingManager.getCheckInDay()) \(checkInMonth) - \(checkoutDay) \(checkoutMonth)"
+    }
+    
+    private func getMonthStringThroughManager(indexPath: IndexPath?) -> String {
+        guard let unwrapIndexPath = indexPath else { return "" }
+        
+        let manager = CalenderCollectionViewManager(section: unwrapIndexPath.section)
+        return manager.getMonthAsString()
+    }
+    
+    @objc private func closeWindow() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func initializeDate() {
+        bookingManager.selectedIndexPath.forEach{
+            guard let cell = self.calendarCollectionView.cellForItem(at: $0) as? DayCollectionViewCell else {return}
+            cell.initializeBackgroundView()
+        }
+        bookingManager.initializeAll()
+        setDateFilterTitle()
+    }
+    
+    @objc private func fixUpDate() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func completeButtonManage() {
+        if bookingManager.isSelectedAllDate() {
+            footerView.completeButton.isEnabled = true
+            footerView.completeButton.backgroundColor = .systemPink
+        } else {
+            footerView.completeButton.isEnabled = false
+            footerView.completeButton.backgroundColor = .darkGray
+        }
     }
 }
 
@@ -53,29 +103,9 @@ extension CalendarViewController: UICollectionViewDataSource {
             cell.updateDisabledCell()
         }
         
-        if firstSelectedCellIndexPath != nil, secondSelectedCellIndexPath != nil{
+        if bookingManager.firstSelectedCellIndexPath != nil{
+                designateCellBackground(collectionView: collectionView)
             
-            self.selectedCellIndexPath = self.selectedCellIndexPath.sorted()
-            for selectedCellIndexPath in selectedCellIndexPath {
-                
-                let cell = collectionView.cellForItem(at: selectedCellIndexPath) as? DayCollectionViewCell
-                
-                if selectedCellIndexPath == firstSelectedCellIndexPath {
-                    if secondSelectedCellIndexPath != nil {
-                        cell?.updateSelectedCellBackgroundView()
-                        cell?.updateSideEndCellBackgroundView(sideDirection: .left)
-                    }
-                }
-                
-                if selectedCellIndexPath == secondSelectedCellIndexPath {
-                    cell?.updateSelectedCellBackgroundView()
-                    cell?.updateSideEndCellBackgroundView(sideDirection: .right)
-                }
-                
-                if selectedCellIndexPath != firstSelectedCellIndexPath, selectedCellIndexPath != secondSelectedCellIndexPath{
-                    cell?.updatePeriodCellBackgroundView()
-                }
-            }            
         }
         return cell
     }
@@ -91,94 +121,57 @@ extension CalendarViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if firstSelectedCellIndexPath != nil && secondSelectedCellIndexPath == nil {
-            secondSelectedCellIndexPath = indexPath
+        if bookingManager.firstSelectedCellIndexPath != nil && bookingManager.secondSelectedCellIndexPath == nil {
+            bookingManager.secondSelectedCellIndexPath = indexPath
         }
         
-        let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell
+        guard let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell else { return }
         
-        if selectedCells[indexPath] == cell {
-            secondSelectedCellIndexPath = nil
-            firstSelectedCellIndexPath = nil
-            cell?.initializeBackgroundView()
-            selectedCells[indexPath] = nil
-            
-        } else {
-            
-            if selectedCellIndexPath.count < 3 {
-                
-                selectedCells[indexPath] = cell
-                selectedCellIndexPath.append(indexPath)
-                firstSelectedCellIndexPath = selectedCellIndexPath[0]
-                
-                guard let firstSelectedCell = firstSelectedCellIndexPath else {return}
-                
-                if firstSelectedCell > indexPath {
-                    selectedCells[firstSelectedCell]?.initializeBackgroundView()
-                    self.firstSelectedCellIndexPath = nil
-                    secondSelectedCellIndexPath = nil
-                    selectedCellIndexPath.remove(at: 0)
-                    selectedCells[firstSelectedCell] = nil
-                    self.firstSelectedCellIndexPath = indexPath
-                    selectedCells[indexPath]?.updateSelectedCellBackgroundView()
-                }
-                
-                if secondSelectedCellIndexPath != nil {
-                    guard let secondSelectedCellIndexPath = secondSelectedCellIndexPath else {return}
-                    if self.firstSelectedCellIndexPath!.section == secondSelectedCellIndexPath.section {
-                        for bookingDateCellIndexPath in self.firstSelectedCellIndexPath!.row ... secondSelectedCellIndexPath.row {
-                            selectedCellIndexPath.append(IndexPath(row: bookingDateCellIndexPath, section: self.firstSelectedCellIndexPath!.section))
-                        }
-                    }
-                    else if self.firstSelectedCellIndexPath!.section < secondSelectedCellIndexPath.section {
-                        for bookingDateCellIndexPath in self.firstSelectedCellIndexPath!.row ... collectionView.numberOfItems(inSection: self.firstSelectedCellIndexPath!.section) {
-                            selectedCellIndexPath.append(IndexPath(row: bookingDateCellIndexPath, section: self.firstSelectedCellIndexPath!.section))
-                        }
-                        for bookingDateCellIndexPath in 0 ... secondSelectedCellIndexPath.row {
-                            selectedCellIndexPath.append(IndexPath(row: bookingDateCellIndexPath, section: secondSelectedCellIndexPath.section))
-                        }
-                    }
-                }
-                
+        if bookingManager.selectedIndexPath.count < 3 {
+            // 선택이 되어있는 셀 터치
+            if bookingManager.isSelectedCell(indexPath: indexPath, cell: cell) {
+                cell.initializeBackgroundView()
             } else {
-                firstSelectedCellIndexPath = nil
-                secondSelectedCellIndexPath = nil
-                selectedCells.forEach{$0.value.initializeBackgroundView()}
-                for index in selectedCellIndexPath {
-                    let cell = collectionView.cellForItem(at: index) as? DayCollectionViewCell
-                    cell?.initializeBackgroundView()
-                }
-                selectedCells = [:]
-                selectedCellIndexPath.removeAll()
-                selectedCells[indexPath] = cell
-                selectedCellIndexPath.append(indexPath)
-                firstSelectedCellIndexPath = indexPath
+                // 선택이 안된 셀 터치
+                bookingManager.setFisrtSelectedIndexPath(indexPath: indexPath, cell: cell)
+                
+                bookingManager.isSelectable(indexPath: indexPath)
+                
+                bookingManager.checkSelectedDatesSameMonth(numberOfItemsInSection: collectionView.numberOfItems(inSection: indexPath.section))
+                
+                setDateFilterTitle()
             }
+        } else { // 3개 이상 터치 되었을 때
+            
+            for index in bookingManager.selectedIndexPath {
+                let cell = collectionView.cellForItem(at: index) as? DayCollectionViewCell
+                cell?.initializeBackgroundView()
+            }
+            bookingManager.initializeAll()
+            bookingManager.setFisrtSelectedIndexPath(indexPath: indexPath, cell: cell)
+            setDateFilterTitle()
         }
         
-        selectedCells.forEach{ selectedCell in
-            selectedCell.value.updateSelectedCellBackgroundView()
+        bookingManager.selectedCells[indexPath]?.updateSelectedCellBackgroundView()
+
+        if bookingManager.secondSelectedCellIndexPath != nil {
+            designateCellBackground(collectionView: collectionView)
         }
-        
-        self.selectedCellIndexPath = self.selectedCellIndexPath.sorted()
-        if secondSelectedCellIndexPath != nil {
-            for selectedCellIndexPath in selectedCellIndexPath {
-                
-                let cell = collectionView.cellForItem(at: selectedCellIndexPath) as? DayCollectionViewCell
-                
-                if selectedCellIndexPath == firstSelectedCellIndexPath {
-                    if secondSelectedCellIndexPath != nil {
-                        cell?.updateSideEndCellBackgroundView(sideDirection: .left)
-                    }
-                }
-                
-                if selectedCellIndexPath == secondSelectedCellIndexPath {
-                    cell?.updateSideEndCellBackgroundView(sideDirection: .right)
-                }
-                
-                if selectedCellIndexPath != firstSelectedCellIndexPath, selectedCellIndexPath != secondSelectedCellIndexPath{
-                    cell?.updatePeriodCellBackgroundView()
-                }
+    }
+    
+    private func designateCellBackground(collectionView: UICollectionView) {
+        bookingManager.defineCellType{ indexpath, cellType in
+            guard let cell = collectionView.cellForItem(at: indexpath) as? DayCollectionViewCell else { return }
+            
+            switch cellType {
+            case .checkIn:
+                cell.updateSelectedCellBackgroundView()
+                cell.updateSideEndCellBackgroundView(sideDirection: .left)
+            case .checkOut:
+                cell.updateSelectedCellBackgroundView()
+                cell.updateSideEndCellBackgroundView(sideDirection: .right)
+            case .included:
+                cell.updatePeriodCellBackgroundView()
             }
         }
     }

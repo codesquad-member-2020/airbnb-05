@@ -29,6 +29,7 @@
 		6A789A66247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */; };
 		AB8ED7E9247694CF00B07D9F /* FilterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8ED7E8247694CF00B07D9F /* FilterHeaderView.xib */; };
 		AB8ED7EB247694DB00B07D9F /* FilterFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8ED7EA247694DB00B07D9F /* FilterFooterView.xib */; };
+		AB93DBD1247FC7DF006E9C99 /* BookingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93DBD0247FC7DF006E9C99 /* BookingManager.swift */; };
 		AB9CAE2424769AC5000CFBFC /* FilterHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2324769AC5000CFBFC /* FilterHeaderView.swift */; };
 		AB9CAE2624769B80000CFBFC /* FilterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2524769B80000CFBFC /* FilterFooterView.swift */; };
 		AB9CAE2824769C0C000CFBFC /* GuestFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */; };
@@ -77,6 +78,7 @@
 		6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThumbnailImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		AB8ED7E8247694CF00B07D9F /* FilterHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHeaderView.xib; sourceTree = "<group>"; };
 		AB8ED7EA247694DB00B07D9F /* FilterFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterFooterView.xib; sourceTree = "<group>"; };
+		AB93DBD0247FC7DF006E9C99 /* BookingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingManager.swift; sourceTree = "<group>"; };
 		AB9CAE2324769AC5000CFBFC /* FilterHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterHeaderView.swift; sourceTree = "<group>"; };
 		AB9CAE2524769B80000CFBFC /* FilterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterFooterView.swift; sourceTree = "<group>"; };
 		AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestFilterViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			children = (
 				AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */,
 				6A635A23247BB70A000C70AA /* FavoriteButtonManager.swift */,
+				AB93DBD0247FC7DF006E9C99 /* BookingManager.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				6A334BDF2472B5C900464B32 /* AppDelegate.swift in Sources */,
 				AB9CAE34247A9FB2000CFBFC /* DateFomatterExtension.swift in Sources */,
 				AB9CAE2E2476B7F1000CFBFC /* GuestFilterReusableView.swift in Sources */,
+				AB93DBD1247FC7DF006E9C99 /* BookingManager.swift in Sources */,
 				6A334BE12472B5C900464B32 /* SceneDelegate.swift in Sources */,
 				6A1CF5092476972F00A1A974 /* ViewExtension.swift in Sources */,
 				6A301D26247920BC00D23B84 /* DayCollectionViewCell.swift in Sources */,
