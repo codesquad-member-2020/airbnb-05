@@ -83,7 +83,7 @@ public class RoomDao {
         return jdbcTemplate.query(sql, new Object[]{cityId, guests, minPrice, maxPrice, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, this.roomRowMapper);
     }
 
-    public PriceDto getPriceList(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
+    public PriceDto findPriceFilterData(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
 
         String sql = "SELECT r.sale_price " +
                 "FROM room r " +
@@ -116,13 +116,13 @@ public class RoomDao {
             counts[price / interval]++;
         }
         try {
-            return new PriceDto(findPriceAverage(cityId, guests, checkIn, checkOut), prices, counts);
+            return new PriceDto(getAveragePrice(cityId, guests, checkIn, checkOut), prices, counts);
         } catch (EmptyResultDataAccessException e) {
             throw new NotFoundException("해당 필터 조건을 만족하는 숙소가 없습니다.");
         }
     }
 
-    private float findPriceAverage(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
+    private float getAveragePrice(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
         String sql = "SELECT COALESCE(AVG(sale_price), 0) AS average " +
                 "FROM room r " +
                 "WHERE r.city_id = ? " +
