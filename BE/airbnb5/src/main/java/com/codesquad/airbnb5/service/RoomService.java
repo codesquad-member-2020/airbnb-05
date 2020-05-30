@@ -23,4 +23,8 @@ public class RoomService {
         return new ResponseDto(200, roomDto);
     }
 
+    public ResponseDto getPriceFilter(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
+        Object priceDto = roomDao.findPriceFilterData(cityId, guests, checkIn, checkOut);
+        return new ResponseDto(200, priceDto);
+    }
 }

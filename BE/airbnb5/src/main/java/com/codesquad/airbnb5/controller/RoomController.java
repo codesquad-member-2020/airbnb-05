@@ -41,4 +41,16 @@ public class RoomController {
         ResponseDto responseDto = roomService.getRoomSummary(cityId, guests, minPrice, maxPrice, checkIn, checkOut);
         return ResponseEntity.ok().body(responseDto);
     }
+
+    @GetMapping("/cities/{cityId}/prices")
+    public ResponseEntity<ResponseDto> showPriceFilter(
+            @PathVariable("cityId") int cityId,
+            @RequestParam(value = "guests", required = false, defaultValue = "0") int guests,
+            @RequestParam(value = "checkIn", required = false, defaultValue = "1900-05-20")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
+            @RequestParam(value = "checkOut", required = false, defaultValue = "2022-05-20")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut) {
+        ResponseDto responseDto = roomService.getPriceFilter(cityId, guests, checkIn, checkOut);
+        return ResponseEntity.ok().body(responseDto);
+    }
 }
