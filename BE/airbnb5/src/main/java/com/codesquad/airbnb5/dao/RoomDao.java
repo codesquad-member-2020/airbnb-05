@@ -2,7 +2,9 @@ package com.codesquad.airbnb5.dao;
 
 import com.codesquad.airbnb5.dto.PriceDto;
 import com.codesquad.airbnb5.dto.RoomDto;
+import com.codesquad.airbnb5.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -113,11 +115,15 @@ public class RoomDao {
             }
             counts[price / interval]++;
         }
-        return new PriceDto(findPriceAverage(cityId, guests, checkIn, checkOut), prices, counts);
+        try {
+            return new PriceDto(findPriceAverage(cityId, guests, checkIn, checkOut), prices, counts);
+        } catch (EmptyResultDataAccessException e) {
+            throw new NotFoundException("해당 필터 조건을 만족하는 숙소가 없습니다.");
+        }
     }
 
     private float findPriceAverage(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
-        String sql = "SELECT AVG(sale_price) AS average " +
+        String sql = "SELECT COALESCE(AVG(sale_price), 0) AS average " +
                 "FROM room r " +
                 "WHERE r.city_id = ? " +
                 "AND r.maximum_guests >= ? " +
@@ -129,6 +135,10 @@ public class RoomDao {
                 "OR (check_in <= ? AND check_out > ?) " +
                 "OR (check_out > ? AND check_in < ?))";
 
-        return jdbcTemplate.queryForObject(sql, new Object[]{cityId, guests, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, float.class);
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{cityId, guests, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, float.class);
+        } catch (EmptyResultDataAccessException e) {
+            throw new NotFoundException("해당 필터 조건을 만족하는 숙소가 없습니다.");
+        }
     }
 }
