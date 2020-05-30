@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class CalendarCollectionViewCellManager {
-//    private var cellDateType: CellDateType?
+
     var checkInCellIndexPath: IndexPath?
     var checkOutCellIndexPath: IndexPath?
     

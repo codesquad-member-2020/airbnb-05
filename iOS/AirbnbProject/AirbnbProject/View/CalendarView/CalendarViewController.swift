@@ -9,6 +9,7 @@
 import UIKit
 
 class CalendarViewController: UIViewController {
+    
     @IBOutlet weak var headerView: FilterHeaderView!
     @IBOutlet weak var footerView: FilterFooterView!
     @IBOutlet weak var calendarCollectionView: UICollectionView!
