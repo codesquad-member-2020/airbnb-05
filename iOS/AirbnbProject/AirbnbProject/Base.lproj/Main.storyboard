@@ -152,13 +152,13 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zfg-IP-gVe">
-                                        <rect key="frame" x="20.5" y="129" width="373" height="640"/>
+                                        <rect key="frame" x="20.5" y="129" width="373" height="630"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="zfg-IP-gVe" secondAttribute="bottom" id="BMd-Ni-8Mn"/>
+                                    <constraint firstAttribute="bottom" secondItem="zfg-IP-gVe" secondAttribute="bottom" constant="10" id="BMd-Ni-8Mn"/>
                                     <constraint firstItem="nNJ-ab-As6" firstAttribute="top" secondItem="o8T-cK-yr2" secondAttribute="top" constant="20" id="cN2-f1-y6j"/>
                                     <constraint firstItem="zfg-IP-gVe" firstAttribute="top" secondItem="nNJ-ab-As6" secondAttribute="bottom" id="fIR-5P-7wR"/>
                                     <constraint firstItem="nNJ-ab-As6" firstAttribute="centerX" secondItem="o8T-cK-yr2" secondAttribute="centerX" id="sRe-s0-gOB"/>

@@ -23,6 +23,6 @@ class ThumbnailImageCollectionViewCell: UICollectionViewCell {
     }
 
     public func configure(with model: Model) {
-        self.myImage.image = #imageLiteral(resourceName: "welcom_DD")
+        self.myImage.image = UIImage(systemName: "paperplane.fill")
     }
 }

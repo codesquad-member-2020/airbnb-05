@@ -17,12 +17,25 @@ class DayCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "DayCollectionViewCell"
     
+    var viewConfiguration: DateCellViewInfo? {
+        didSet {
+            updateCellViewWithConfiguration()
+        }
+    }
     var dateInfo: CellDateInfo?
-        
-    func updateSelectedCellBackgroundView() {
-        cellBackgroundView.cornerRadius = cellBackgroundView.frame.size.width / 2
-        dayLabel.textColor = .white
-        cellBackgroundView.backgroundColor = .darkGray
+    
+    private func updateCellViewWithConfiguration() {
+        guard let viewConfiguration = viewConfiguration else { return }
+        self.cellBackgroundView.backgroundColor = viewConfiguration.cellBackgroundViewColor
+        self.leftBackgroundView.backgroundColor = viewConfiguration.leftBackgroundViewColor
+        self.rightBackgroundView.backgroundColor = viewConfiguration.rightBackgroundViewColor
+        if viewConfiguration.isCircle == true {
+            self.cellBackgroundView.cornerRadius = self.frame.size.width / 2
+        } else {
+            self.cellBackgroundView.cornerRadius = 0
+        }
+        self.dayLabel.textColor = viewConfiguration.labelTextColor
+        self.isUserInteractionEnabled = viewConfiguration.userInteractionEnabled
     }
     
     func initializeBackgroundView() {
@@ -39,37 +52,10 @@ class DayCollectionViewCell: UICollectionViewCell {
         initializeBackgroundView()
         self.isUserInteractionEnabled = true
     }
-    
-    func updatePeriodCellBackgroundView() {
-        self.cellBackgroundView.cornerRadius = 0
-        dayLabel.textColor = .black
-        self.cellBackgroundView.backgroundColor = .faintLightGray
-    }
-    
-    func updateSideEndCellBackgroundView(sideDirection: Direction) {
-        dayLabel.textColor = .white
-        switch sideDirection {
-        case .left:
-            leftBackgroundView.backgroundColor = .clear
-            rightBackgroundView.backgroundColor = .faintLightGray
-        case .right:
-            leftBackgroundView.backgroundColor = .faintLightGray
-            rightBackgroundView.backgroundColor = .clear
-        }
-    }
-    
-    func updateDisabledCell() {
-        self.dayLabel.textColor = .lightGray
-        self.isUserInteractionEnabled = false
-    }
 }
 
 extension UIColor {
     static let faintLightGray = UIColor(named: "faintLightGray")
-}
-
-enum Direction {
-    case left, right
 }
 
 struct CellDateInfo {

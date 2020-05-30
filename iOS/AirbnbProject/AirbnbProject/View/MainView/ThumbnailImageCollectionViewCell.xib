@@ -16,8 +16,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="342" height="240"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcom_DD" translatesAutoresizingMaskIntoConstraints="NO" id="Ae3-Oh-Jr7">
-                        <rect key="frame" x="0.0" y="0.0" width="342" height="240"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paperplane.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ae3-Oh-Jr7">
+                        <rect key="frame" x="0.0" y="0.5" width="342" height="239.5"/>
+                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </imageView>
                 </subviews>
             </view>
@@ -36,6 +37,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="welcom_DD" width="400" height="428.33334350585938"/>
+        <image name="paperplane.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

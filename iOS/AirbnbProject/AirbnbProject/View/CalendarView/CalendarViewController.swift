@@ -9,13 +9,14 @@
 import UIKit
 
 class CalendarViewController: UIViewController {
+    
     @IBOutlet weak var headerView: FilterHeaderView!
     @IBOutlet weak var footerView: FilterFooterView!
-    
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     
     private let numberOfSection = 12
     private let bookingManager = BookingManager()
+    private let cellManager = CalendarCollectionViewCellManager()
     private var cellSize: CGFloat?
     private var sectionHeaderHeight: CGFloat?
     
@@ -100,12 +101,11 @@ extension CalendarViewController: UICollectionViewDataSource {
         cell.dayLabel.text = "\(manager.setCellday(row: indexPath.row))"
         
         if indexPath < manager.getYesterdayDatePosition() {
-            cell.updateDisabledCell()
+            cell.viewConfiguration = cellManager.fetchMarkedCellViewConfiguration(cellType: .userInteractionUnabled)
         }
         
         if bookingManager.firstSelectedCellIndexPath != nil{
-                designateCellBackground(collectionView: collectionView)
-            
+            designateCellBackground(collectionView: collectionView)
         }
         return cell
     }
@@ -120,40 +120,31 @@ extension CalendarViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if bookingManager.firstSelectedCellIndexPath != nil && bookingManager.secondSelectedCellIndexPath == nil {
-            bookingManager.secondSelectedCellIndexPath = indexPath
-        }
-        
         guard let cell = collectionView.cellForItem(at: indexPath) as? DayCollectionViewCell else { return }
         
+        bookingManager.setSecondSelectedIndexPath(indexPath: indexPath)
+        
         if bookingManager.selectedIndexPath.count < 3 {
-            // 선택이 되어있는 셀 터치
             if bookingManager.isSelectedCell(indexPath: indexPath, cell: cell) {
-                cell.initializeBackgroundView()
+                cell.viewConfiguration = cellManager.fetchMarkedCellViewConfiguration(cellType: .deselected)
             } else {
-                // 선택이 안된 셀 터치
-                bookingManager.setFisrtSelectedIndexPath(indexPath: indexPath, cell: cell)
-                
+                bookingManager.setFirstSelectedIndexPath(indexPath: indexPath, cell: cell)
                 bookingManager.isSelectable(indexPath: indexPath)
-                
+                cell.viewConfiguration = cellManager.fetchMarkedCellViewConfiguration(cellType: .selected)
                 bookingManager.checkSelectedDatesSameMonth(numberOfItemsInSection: collectionView.numberOfItems(inSection: indexPath.section))
-                
                 setDateFilterTitle()
             }
-        } else { // 3개 이상 터치 되었을 때
-            
+        } else {
             for index in bookingManager.selectedIndexPath {
-                let cell = collectionView.cellForItem(at: index) as? DayCollectionViewCell
-                cell?.initializeBackgroundView()
+                guard let cell = collectionView.cellForItem(at: index) as? DayCollectionViewCell else {return}
+                cell.viewConfiguration = cellManager.fetchMarkedCellViewConfiguration(cellType: .deselected)
             }
             bookingManager.initializeAll()
-            bookingManager.setFisrtSelectedIndexPath(indexPath: indexPath, cell: cell)
+            bookingManager.setFirstSelectedIndexPath(indexPath: indexPath, cell: cell)
             setDateFilterTitle()
         }
-        
-        bookingManager.selectedCells[indexPath]?.updateSelectedCellBackgroundView()
-
+        let selectedCell =  bookingManager.selectedCells[indexPath]
+        selectedCell?.viewConfiguration = cellManager.fetchMarkedCellViewConfiguration(cellType: .selected)
         if bookingManager.secondSelectedCellIndexPath != nil {
             designateCellBackground(collectionView: collectionView)
         }
@@ -162,25 +153,14 @@ extension CalendarViewController: UICollectionViewDataSource {
     private func designateCellBackground(collectionView: UICollectionView) {
         bookingManager.defineCellType{ indexpath, cellType in
             guard let cell = collectionView.cellForItem(at: indexpath) as? DayCollectionViewCell else { return }
-            
-            switch cellType {
-            case .checkIn:
-                cell.updateSelectedCellBackgroundView()
-                cell.updateSideEndCellBackgroundView(sideDirection: .left)
-            case .checkOut:
-                cell.updateSelectedCellBackgroundView()
-                cell.updateSideEndCellBackgroundView(sideDirection: .right)
-            case .included:
-                cell.updatePeriodCellBackgroundView()
-            }
+            cell.viewConfiguration = cellManager.fetchMarkedCellViewConfiguration(cellType: cellType)
         }
     }
 }
 
-
 extension CalendarViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        self.cellSize = calendarCollectionView.frame.size.width / 7.05
+        self.cellSize = calendarCollectionView.frame.size.width / 7
         let sizeForItem = CGSize(width: cellSize!, height: cellSize!)
         return sizeForItem
     }
@@ -189,6 +169,14 @@ extension CalendarViewController: UICollectionViewDelegateFlowLayout {
         self.sectionHeaderHeight = calendarCollectionView.frame.size.width / 10
         let headerSize = CGSize(width:  calendarCollectionView.frame.size.width, height: sectionHeaderHeight!)
         return headerSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 
