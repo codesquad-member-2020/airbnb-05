@@ -9,13 +9,13 @@
 import Foundation
 
 class BookingManager {
+
     var firstSelectedCellIndexPath: IndexPath?
     var secondSelectedCellIndexPath: IndexPath? {
         didSet {
             NotificationCenter.default.post(name: .selectedCheckoutDate, object: self)
         }
     }
-    
     var selectedIndexPath = [IndexPath]()
     var selectedCells = [IndexPath : DayCollectionViewCell]()
     
@@ -34,14 +34,12 @@ class BookingManager {
         }
     }
     
-    // 첫번째 셀 지정
-    func setFisrtSelectedIndexPath(indexPath: IndexPath, cell: DayCollectionViewCell) {
+    func setFirstSelectedIndexPath(indexPath: IndexPath, cell: DayCollectionViewCell) {
         self.selectedCells[indexPath] = cell
         self.selectedIndexPath.append(indexPath)
         self.firstSelectedCellIndexPath = self.selectedIndexPath[0]
     }
     
-    //
     func isSelectable(indexPath: IndexPath) {
         if self.firstSelectedCellIndexPath! > indexPath {
             selectedCells[firstSelectedCellIndexPath!]?.initializeBackgroundView()
@@ -49,7 +47,6 @@ class BookingManager {
             
             selectedIndexPath.remove(at: 0)
             self.firstSelectedCellIndexPath = indexPath
-            selectedCells[indexPath]?.updateSelectedCellBackgroundView()
         }
     }
     
@@ -109,12 +106,12 @@ class BookingManager {
             return false
         }
     }
-}
-
-enum CellBackgroundType {
-    case checkIn
-    case checkOut
-    case included
+    
+    func setSecondSelectedIndexPath(indexPath: IndexPath) {
+        if self.firstSelectedCellIndexPath != nil && self.secondSelectedCellIndexPath == nil {
+            self.secondSelectedCellIndexPath = indexPath
+        }
+    }
 }
 
 extension Notification.Name {
