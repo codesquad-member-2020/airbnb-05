@@ -1,6 +1,7 @@
 package com.codesquad.airbnb5.dao;
 
 import com.codesquad.airbnb5.dto.PriceDto;
+import com.codesquad.airbnb5.dto.RoomDetailDto;
 import com.codesquad.airbnb5.dto.RoomDto;
 import com.codesquad.airbnb5.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -56,8 +57,8 @@ public class RoomDao {
             int guestId,
             RoomMapper roomMapper
     ) throws SQLException {
-        RowMapper<RoomDto> rowMapper = roomMapper.mapRow(guestId);
 
+        RowMapper<RoomDto> rowMapper = roomMapper.mapRow(guestId);
         String sql = "SELECT r.room_id, r.room_name, r.room_thumbnail, h.is_super_host, " +
                 "r.room_type, r.beds, r.scores, r.reviews " +
                 "FROM room r " +
@@ -109,6 +110,7 @@ public class RoomDao {
             }
             counts[price / interval]++;
         }
+
         try {
             return new PriceDto(getAveragePrice(cityId, guests, checkIn, checkOut), prices, counts);
         } catch (EmptyResultDataAccessException e) {
@@ -133,6 +135,30 @@ public class RoomDao {
             return jdbcTemplate.queryForObject(sql, new Object[]{cityId, guests, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, float.class);
         } catch (EmptyResultDataAccessException e) {
             throw new NotFoundException("해당 필터 조건을 만족하는 숙소가 없습니다.");
+        }
+    }
+
+    public RoomDetailDto findRoomDetail(
+            int cityId,
+            int roomId,
+            int guestId,
+            RoomMapper roomMapper
+    ) throws SQLException {
+
+        RowMapper<RoomDetailDto> rowMapper = roomMapper.mapRowDetail(roomId);
+        String sql = "SELECT r.room_id, r.room_name, r.address, r.room_thumbnail, h.is_super_host, h.host_name, " +
+                "h.host_thumbnail, r.room_type, r.beds, r.original_price, r.sale_price, r.scores, r.reviews, r.amenities, " +
+                "r.cleaning_fee, r.maximum_guests " +
+                "FROM room r " +
+                "JOIN host h " +
+                "ON r.host_id = h.host_id " +
+                "AND r.city_id = ? " +
+                "AND r.room_id = ? ";
+
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{cityId, roomId}, roomMapper.mapRowDetail(guestId));
+        } catch (EmptyResultDataAccessException e) {
+            throw new NotFoundException("존재하지 않는 숙소입니다.");
         }
     }
 }
