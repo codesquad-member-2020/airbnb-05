@@ -61,4 +61,13 @@ public class RoomController {
         ResponseDto responseDto = roomService.getPriceFilter(cityId, guests, checkIn, checkOut);
         return ResponseEntity.ok().body(responseDto);
     }
+
+    @GetMapping("/cities/{cityId}/rooms/{roomId}")
+    public ResponseEntity<ResponseDto> showRoomDetail(
+            @PathVariable("cityId") int cityId,
+            @PathVariable("roomId") int roomId,
+            @RequestParam(value = "guestId", defaultValue = "0") int guestId) throws SQLException {
+        ResponseDto responseDto = roomService.getRoomDetail(cityId, roomId, guestId, roomMapper);
+        return ResponseEntity.ok().body(responseDto);
+    }
 }

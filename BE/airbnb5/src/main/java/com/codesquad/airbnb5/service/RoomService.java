@@ -29,4 +29,9 @@ public class RoomService {
         Object priceDto = roomDao.findPriceFilterData(cityId, guests, checkIn, checkOut);
         return new ResponseDto(200, priceDto);
     }
+
+    public ResponseDto getRoomDetail(int cityId, int roomId, int guestId, RoomMapper roomMapper) throws SQLException {
+        Object roomDetailDto = roomDao.findRoomDetail(cityId, roomId, guestId, roomMapper);
+        return new ResponseDto(200, roomDetailDto);
+    }
 }
