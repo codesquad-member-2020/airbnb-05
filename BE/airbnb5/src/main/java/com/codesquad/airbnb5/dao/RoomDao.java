@@ -3,6 +3,7 @@ package com.codesquad.airbnb5.dao;
 import com.codesquad.airbnb5.dto.PriceDto;
 import com.codesquad.airbnb5.dto.RoomDto;
 import com.codesquad.airbnb5.exception.NotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,26 +11,15 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+@Slf4j
 @Repository
 public class RoomDao {
 
-    private JdbcTemplate jdbcTemplate;
-
-    private RowMapper<Object> roomRowMapper = (rs, rowNum) -> {
-        RoomDto roomDto = new RoomDto.Builder(rs.getInt("room_id"))
-                .roomName(rs.getString("room_name"))
-                .roomThumbnail(rs.getString("room_thumbnail"))
-                .isSuperHost(rs.getBoolean("is_super_host"))
-                .roomType(rs.getString("room_type"))
-                .beds(rs.getInt("beds"))
-                .scores(rs.getFloat("scores"))
-                .reviews(rs.getFloat("reviews"))
-                .build();
-        return roomDto;
-    };
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
     public RoomDao(DataSource dataSource) {
@@ -39,21 +29,21 @@ public class RoomDao {
     public Object findRooms(
             int cityId,
             int limit,
-            int offset
-    ) {
+            int offset,
+            int guestId,
+            RoomMapper roomMapper
+    ) throws SQLException {
 
         String sql = "SELECT r.room_id, r.room_name, r.room_thumbnail, h.is_super_host, " +
                 "r.room_type, r.beds, r.scores, r.reviews " +
                 "FROM room r " +
                 "JOIN host h " +
                 "ON r.host_id = h.host_id " +
-                "JOIN bookmark b " +
-                "ON r.room_id = b.room_id " +
-                "AND r.city_id = ? " +
+                "WHERE r.city_id = ? " +
                 "LIMIT ? " +
                 "OFFSET ? ";
 
-        return jdbcTemplate.query(sql, new Object[]{cityId, limit, offset}, this.roomRowMapper);
+        return jdbcTemplate.query(sql, new Object[]{cityId, limit, offset}, roomMapper.mapRow(guestId));
     }
 
     public Object findRoomSummary(
@@ -62,8 +52,12 @@ public class RoomDao {
             int minPrice,
             int maxPrice,
             LocalDate checkIn,
-            LocalDate checkOut
-    ) {
+            LocalDate checkOut,
+            int guestId,
+            RoomMapper roomMapper
+    ) throws SQLException {
+        RowMapper<RoomDto> rowMapper = roomMapper.mapRow(guestId);
+
         String sql = "SELECT r.room_id, r.room_name, r.room_thumbnail, h.is_super_host, " +
                 "r.room_type, r.beds, r.scores, r.reviews " +
                 "FROM room r " +
@@ -80,7 +74,7 @@ public class RoomDao {
                 "OR (check_in <= ? AND check_out > ?) " +
                 "OR (check_out > ? AND check_in < ?))";
 
-        return jdbcTemplate.query(sql, new Object[]{cityId, guests, minPrice, maxPrice, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, this.roomRowMapper);
+        return jdbcTemplate.query(sql, new Object[]{cityId, guests, minPrice, maxPrice, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, rowMapper);
     }
 
     public PriceDto findPriceFilterData(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
@@ -98,11 +92,11 @@ public class RoomDao {
                 "OR (check_out > ? AND check_in < ?))" +
                 "ORDER BY sale_price";
 
-        RowMapper<Integer> rowMapper = (rs, rowNum) -> {
+        RowMapper<Integer> priceRowMapper = (rs, rowNum) -> {
             int price = rs.getInt("sale_price");
             return rs.wasNull() ? 0 : price;
         };
-        List<Integer> prices = this.jdbcTemplate.query(sql, new Object[]{cityId, guests, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, rowMapper);
+        List<Integer> prices = this.jdbcTemplate.query(sql, new Object[]{cityId, guests, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, priceRowMapper);
 
         int maxPrice = 1000000;
         int interval = 20000;
