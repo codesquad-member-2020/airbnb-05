@@ -30,9 +30,9 @@ public class RoomMapper {
             public RoomDto mapRow(ResultSet rs, int rowNum) throws SQLException {
                 int roomId = rs.getInt("room_id");
                 boolean bool = findFavoriteByGuestIdAndRoomId(guestId, roomId);
-                log.info("bool : {}", bool);
 
-                return new RoomDto.Builder(roomId)
+                return RoomDto.builder()
+                        .roomId(rs.getInt("room_id"))
                         .roomName(rs.getString("room_name"))
                         .roomThumbnail(rs.getString("room_thumbnail"))
                         .isSuperHost(rs.getBoolean("is_super_host"))
@@ -51,10 +51,10 @@ public class RoomMapper {
             @Override
             public RoomDetailDto mapRow(ResultSet rs, int rowNum) throws SQLException {
                 int roomId = rs.getInt("room_id");
-                boolean bool = findFavoriteByGuestIdAndRoomId(guestId, roomId);
+                boolean favoriteStatus = findFavoriteByGuestIdAndRoomId(guestId, roomId);
 
                 return RoomDetailDto.builder()
-                        .roomId(rs.getInt("r.room_id"))
+                        .roomId(roomId)
                         .roomName(rs.getString("room_name"))
                         .address(rs.getString("address"))
                         .roomThumbnail(rs.getString("room_thumbnail"))
@@ -71,7 +71,7 @@ public class RoomMapper {
                         .amenities(rs.getString("amenities"))
                         .cleaningFee(rs.getInt("cleaning_fee"))
                         .maximumGuests(rs.getInt("maximum_guests"))
-                        .isFavorite(bool)
+                        .isFavorite(favoriteStatus)
                         .build();
             }
         };
