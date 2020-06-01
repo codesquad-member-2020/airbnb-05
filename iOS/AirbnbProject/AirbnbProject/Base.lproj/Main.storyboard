@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -706,16 +707,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-dn-HTt">
-                                <rect key="frame" x="184" y="575" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-dn-HTt">
+                                <rect key="frame" x="81.5" y="557.5" width="251" height="63"/>
+                                <color key="backgroundColor" name="AirbnbKeyColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PcM-dn-HTt" secondAttribute="height" multiplier="4:1" id="Nzj-mg-G2C"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" title="Login with Github"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="tKx-id-OoW" kind="presentation" modalPresentationStyle="fullScreen" id="gwO-L5-nxX"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="airbnbLogo" translatesAutoresizingMaskIntoConstraints="NO" id="nCX-KT-Z43">
+                                <rect key="frame" x="134.5" y="244.5" width="145" height="145"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nCX-KT-Z43" secondAttribute="height" multiplier="1:1" id="A01-dF-YHe"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="PcM-dn-HTt" firstAttribute="height" secondItem="MUd-VJ-UFY" secondAttribute="height" multiplier="0.07" id="Kpi-r4-qqn"/>
+                            <constraint firstItem="PcM-dn-HTt" firstAttribute="centerX" secondItem="RBH-Rn-Gzu" secondAttribute="centerX" id="Q6T-v9-SFm"/>
+                            <constraint firstItem="nCX-KT-Z43" firstAttribute="centerX" secondItem="RBH-Rn-Gzu" secondAttribute="centerX" id="UVE-Z4-IoZ"/>
+                            <constraint firstItem="nCX-KT-Z43" firstAttribute="centerY" secondItem="RBH-Rn-Gzu" secondAttribute="centerY" multiplier="0.7" id="UpJ-BE-rDi"/>
+                            <constraint firstItem="PcM-dn-HTt" firstAttribute="centerY" secondItem="RBH-Rn-Gzu" secondAttribute="centerY" multiplier="1.3" id="ZTy-Ri-FJS"/>
+                            <constraint firstItem="nCX-KT-Z43" firstAttribute="width" secondItem="MUd-VJ-UFY" secondAttribute="width" multiplier="0.35" id="fGi-lb-PuA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RBH-Rn-Gzu"/>
                     </view>
                 </viewController>
@@ -725,6 +751,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="airbnbLogo" width="577" height="789"/>
         <image name="heart.circle" catalog="system" width="128" height="121"/>
         <image name="heart.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
@@ -733,5 +760,8 @@
         <image name="map.fill" catalog="system" width="128" height="113"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="AirbnbKeyColor">
+            <color red="0.94901960784313721" green="0.40392156862745099" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
