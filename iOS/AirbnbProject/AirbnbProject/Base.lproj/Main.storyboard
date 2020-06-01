@@ -566,33 +566,36 @@
         <!--SAVED-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="AirbnbProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="SavedAccomodationViewController" customModule="AirbnbProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="106" y="426.5" width="202" height="43"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MmH-bV-c40">
+                                <rect key="frame" x="10" y="54" width="394" height="749"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="99.5" y="477.5" width="215" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accommodations you find interesting🥳" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kfL-hO-mrf">
+                                    <rect key="frame" x="0.0" y="0.0" width="394" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                    <color key="textColor" name="AirbnbKeyColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstItem="MmH-bV-c40" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="10" id="JR1-Kj-VfU"/>
+                            <constraint firstItem="MmH-bV-c40" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="10" id="K3f-qr-vVA"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="MmH-bV-c40" secondAttribute="bottom" constant="10" id="Nfd-oC-LyO"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="MmH-bV-c40" secondAttribute="trailing" constant="10" id="nH2-XY-x6c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="SAVED" image="heart.circle" catalog="system" selectedImage="heart.circle.fill" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="savedAccomodationTableView" destination="MmH-bV-c40" id="Ebg-52-BP8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -611,20 +614,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-mL-7sa">
-                                <rect key="frame" x="47" y="323" width="320" height="216"/>
+                                <rect key="frame" x="47" y="300" width="320" height="216"/>
                             </pickerView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pe-K3-xCc">
-                                <rect key="frame" x="91" y="181.5" width="232" height="90"/>
+                                <rect key="frame" x="91" y="204.5" width="232" height="89.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YCO-a7-lc6">
-                                        <rect key="frame" x="0.0" y="1" width="25.5" height="88"/>
+                                        <rect key="frame" x="0.0" y="1" width="25.5" height="87.5"/>
                                         <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="YCO-a7-lc6" secondAttribute="height" multiplier="2:7" id="fY6-TB-vPF"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you going?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4U-iH-BK0">
-                                        <rect key="frame" x="25.5" y="0.0" width="206.5" height="90"/>
+                                        <rect key="frame" x="25.5" y="0.0" width="206.5" height="89.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -632,7 +635,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgc-pj-Yzr" userLabel="Completion Button">
-                                <rect key="frame" x="152.5" y="610" width="109" height="48.5"/>
+                                <rect key="frame" x="152.5" y="542" width="109" height="48.5"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
                                 <state key="normal" title="Pick A City!">
@@ -653,9 +656,9 @@
                         <constraints>
                             <constraint firstItem="rud-gj-0tn" firstAttribute="bottom" secondItem="uYq-ds-war" secondAttribute="bottom" id="3oN-Pa-in3"/>
                             <constraint firstItem="Xte-mL-7sa" firstAttribute="centerX" secondItem="rud-gj-0tn" secondAttribute="centerX" id="Bib-uS-scu"/>
-                            <constraint firstItem="Xte-mL-7sa" firstAttribute="centerY" secondItem="rud-gj-0tn" secondAttribute="centerY" multiplier="0.95" id="FiD-K9-Leg"/>
+                            <constraint firstItem="Xte-mL-7sa" firstAttribute="centerY" secondItem="rud-gj-0tn" secondAttribute="centerY" multiplier="0.9" id="FiD-K9-Leg"/>
                             <constraint firstItem="uYq-ds-war" firstAttribute="leading" secondItem="rud-gj-0tn" secondAttribute="leading" id="JQK-j8-pNA"/>
-                            <constraint firstItem="Xgc-pj-Yzr" firstAttribute="centerY" secondItem="rud-gj-0tn" secondAttribute="centerY" multiplier="1.4" id="KhC-dH-2PX"/>
+                            <constraint firstItem="Xgc-pj-Yzr" firstAttribute="centerY" secondItem="rud-gj-0tn" secondAttribute="centerY" multiplier="1.25" id="KhC-dH-2PX"/>
                             <constraint firstItem="YCO-a7-lc6" firstAttribute="height" secondItem="qNy-Zd-hTG" secondAttribute="height" multiplier="0.1" id="RHR-6r-QiL"/>
                             <constraint firstItem="0pe-K3-xCc" firstAttribute="height" secondItem="qNy-Zd-hTG" secondAttribute="height" multiplier="0.1" id="S9R-uW-4yt"/>
                             <constraint firstItem="uYq-ds-war" firstAttribute="top" secondItem="qNy-Zd-hTG" secondAttribute="top" id="Tbw-TI-F0C"/>
@@ -663,7 +666,7 @@
                             <constraint firstItem="rud-gj-0tn" firstAttribute="trailing" secondItem="uYq-ds-war" secondAttribute="trailing" id="YAj-4n-7Oa"/>
                             <constraint firstItem="Xgc-pj-Yzr" firstAttribute="height" secondItem="qNy-Zd-hTG" secondAttribute="height" multiplier="0.054" id="fah-u6-ZOs"/>
                             <constraint firstItem="Xgc-pj-Yzr" firstAttribute="centerX" secondItem="rud-gj-0tn" secondAttribute="centerX" id="foX-2e-f1Y"/>
-                            <constraint firstItem="0pe-K3-xCc" firstAttribute="centerY" secondItem="rud-gj-0tn" secondAttribute="centerY" multiplier="0.5" id="kYZ-sb-RDD"/>
+                            <constraint firstItem="0pe-K3-xCc" firstAttribute="centerY" secondItem="rud-gj-0tn" secondAttribute="centerY" multiplier="0.55" id="kYZ-sb-RDD"/>
                             <constraint firstItem="0pe-K3-xCc" firstAttribute="centerX" secondItem="rud-gj-0tn" secondAttribute="centerX" id="uQQ-d4-L3j"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rud-gj-0tn"/>
@@ -707,22 +710,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-dn-HTt">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-dn-HTt">
                                 <rect key="frame" x="81.5" y="557.5" width="251" height="63"/>
                                 <color key="backgroundColor" name="AirbnbKeyColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PcM-dn-HTt" secondAttribute="height" multiplier="4:1" id="Nzj-mg-G2C"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                <state key="normal" title="Login with Github"/>
+                                <inset key="contentEdgeInsets" minX="30" minY="15" maxX="30" maxY="15"/>
+                                <state key="normal" title=" Login with Github" image="gitHubLogo"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonImageTintColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="loginButtonTapped:" destination="ZmK-x2-8hU" eventType="touchUpInside" id="vmv-oA-82C"/>
                                     <segue destination="tKx-id-OoW" kind="presentation" modalPresentationStyle="fullScreen" id="gwO-L5-nxX"/>
                                 </connections>
                             </button>
@@ -744,6 +751,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RBH-Rn-Gzu"/>
                     </view>
+                    <connections>
+                        <outlet property="loginButton" destination="PcM-dn-HTt" id="U0b-7X-CF9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y6g-gm-Wfa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -752,6 +762,7 @@
     </scenes>
     <resources>
         <image name="airbnbLogo" width="577" height="789"/>
+        <image name="gitHubLogo" width="30" height="30"/>
         <image name="heart.circle" catalog="system" width="128" height="121"/>
         <image name="heart.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
