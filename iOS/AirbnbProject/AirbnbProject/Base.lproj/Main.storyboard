@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZmK-x2-8hU">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -411,7 +411,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="DayCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-Q0-piG" customClass="DayCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="DayCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-Q0-piG" customClass="DayCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="50" width="53" height="54"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JL3-ZT-tNU">
@@ -597,6 +597,87 @@
             </objects>
             <point key="canvasLocation" x="-197" y="323"/>
         </scene>
+        <!--City Picker View Controller-->
+        <scene sceneID="7MJ-DD-BFA">
+            <objects>
+                <viewController id="tKx-id-OoW" customClass="CityPickerViewController" customModule="AirbnbProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qNy-Zd-hTG" userLabel="Root View">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYq-ds-war" userLabel="ColoredBackgroundView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-mL-7sa">
+                                <rect key="frame" x="47" y="323" width="320" height="216"/>
+                            </pickerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pe-K3-xCc">
+                                <rect key="frame" x="91" y="181.5" width="232" height="90"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YCO-a7-lc6">
+                                        <rect key="frame" x="0.0" y="1" width="25.5" height="88"/>
+                                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="YCO-a7-lc6" secondAttribute="height" multiplier="2:7" id="fY6-TB-vPF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you going?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4U-iH-BK0">
+                                        <rect key="frame" x="25.5" y="0.0" width="206.5" height="90"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xgc-pj-Yzr" userLabel="Completion Button">
+                                <rect key="frame" x="152.5" y="610" width="109" height="48.5"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                <state key="normal" title="Pick A City!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="tKx-id-OoW" eventType="touchUpInside" id="s5v-9w-Suo"/>
+                                    <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="t5V-Zs-XnF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rud-gj-0tn" firstAttribute="bottom" secondItem="uYq-ds-war" secondAttribute="bottom" id="3oN-Pa-in3"/>
+                            <constraint firstItem="Xte-mL-7sa" firstAttribute="centerX" secondItem="rud-gj-0tn" secondAttribute="centerX" id="Bib-uS-scu"/>
+                            <constraint firstItem="Xte-mL-7sa" firstAttribute="centerY" secondItem="rud-gj-0tn" secondAttribute="centerY" multiplier="0.95" id="FiD-K9-Leg"/>
+                            <constraint firstItem="uYq-ds-war" firstAttribute="leading" secondItem="rud-gj-0tn" secondAttribute="leading" id="JQK-j8-pNA"/>
+                            <constraint firstItem="Xgc-pj-Yzr" firstAttribute="centerY" secondItem="rud-gj-0tn" secondAttribute="centerY" multiplier="1.4" id="KhC-dH-2PX"/>
+                            <constraint firstItem="YCO-a7-lc6" firstAttribute="height" secondItem="qNy-Zd-hTG" secondAttribute="height" multiplier="0.1" id="RHR-6r-QiL"/>
+                            <constraint firstItem="0pe-K3-xCc" firstAttribute="height" secondItem="qNy-Zd-hTG" secondAttribute="height" multiplier="0.1" id="S9R-uW-4yt"/>
+                            <constraint firstItem="uYq-ds-war" firstAttribute="top" secondItem="qNy-Zd-hTG" secondAttribute="top" id="Tbw-TI-F0C"/>
+                            <constraint firstItem="o4U-iH-BK0" firstAttribute="height" secondItem="qNy-Zd-hTG" secondAttribute="height" multiplier="0.1" id="UhB-vY-iXI"/>
+                            <constraint firstItem="rud-gj-0tn" firstAttribute="trailing" secondItem="uYq-ds-war" secondAttribute="trailing" id="YAj-4n-7Oa"/>
+                            <constraint firstItem="Xgc-pj-Yzr" firstAttribute="height" secondItem="qNy-Zd-hTG" secondAttribute="height" multiplier="0.054" id="fah-u6-ZOs"/>
+                            <constraint firstItem="Xgc-pj-Yzr" firstAttribute="centerX" secondItem="rud-gj-0tn" secondAttribute="centerX" id="foX-2e-f1Y"/>
+                            <constraint firstItem="0pe-K3-xCc" firstAttribute="centerY" secondItem="rud-gj-0tn" secondAttribute="centerY" multiplier="0.5" id="kYZ-sb-RDD"/>
+                            <constraint firstItem="0pe-K3-xCc" firstAttribute="centerX" secondItem="rud-gj-0tn" secondAttribute="centerX" id="uQQ-d4-L3j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rud-gj-0tn"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6TJ-Lt-2B4"/>
+                    <connections>
+                        <outlet property="coloredBackgroundView" destination="uYq-ds-war" id="Qfh-id-8iK"/>
+                        <outlet property="completionButton" destination="Xgc-pj-Yzr" id="YXr-jX-VDt"/>
+                        <outlet property="pickerView" destination="Xte-mL-7sa" id="jnv-lb-aP1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i0u-5u-75N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1823.1884057971015" y="-1.3392857142857142"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
@@ -617,10 +698,36 @@
             </objects>
             <point key="canvasLocation" x="-1049" y="4"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="e44-2z-ywm">
+            <objects>
+                <viewController id="ZmK-x2-8hU" customClass="LoginViewController" customModule="AirbnbProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MUd-VJ-UFY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcM-dn-HTt">
+                                <rect key="frame" x="184" y="575" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="tKx-id-OoW" kind="presentation" modalPresentationStyle="fullScreen" id="gwO-L5-nxX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="RBH-Rn-Gzu"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y6g-gm-Wfa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2619" y="3"/>
+        </scene>
     </scenes>
     <resources>
         <image name="heart.circle" catalog="system" width="128" height="121"/>
         <image name="heart.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
         <image name="map.fill" catalog="system" width="128" height="113"/>
