@@ -14,7 +14,7 @@
 		6A334BDF2472B5C900464B32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A334BDE2472B5C900464B32 /* AppDelegate.swift */; };
 		6A334BE12472B5C900464B32 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A334BE02472B5C900464B32 /* SceneDelegate.swift */; };
 		6A334BE32472B5C900464B32 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A334BE22472B5C900464B32 /* MainViewController.swift */; };
-		6A334BE52472B5C900464B32 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A334BE42472B5C900464B32 /* SecondViewController.swift */; };
+		6A334BE52472B5C900464B32 /* SavedAccomodationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A334BE42472B5C900464B32 /* SavedAccomodationViewController.swift */; };
 		6A334BE82472B5C900464B32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A334BE62472B5C900464B32 /* Main.storyboard */; };
 		6A334BEA2472B5CA00464B32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A334BE92472B5CA00464B32 /* Assets.xcassets */; };
 		6A334BED2472B5CA00464B32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A334BEB2472B5CA00464B32 /* LaunchScreen.storyboard */; };
@@ -30,6 +30,7 @@
 		6A789A66247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */; };
 		6AEA9BBC2485484600F08724 /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA9BBB2485484600F08724 /* CityPickerViewController.swift */; };
 		6AEA9BBE248549AA00F08724 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA9BBD248549AA00F08724 /* LoginViewController.swift */; };
+		6AEA9BC1248551CF00F08724 /* PriceBarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA9BC0248551CF00F08724 /* PriceBarGraphView.swift */; };
 		AB8ED7E9247694CF00B07D9F /* FilterHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8ED7E8247694CF00B07D9F /* FilterHeaderView.xib */; };
 		AB8ED7EB247694DB00B07D9F /* FilterFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB8ED7EA247694DB00B07D9F /* FilterFooterView.xib */; };
 		AB93DBD1247FC7DF006E9C99 /* BookingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93DBD0247FC7DF006E9C99 /* BookingManager.swift */; };
@@ -63,7 +64,7 @@
 		6A334BDE2472B5C900464B32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A334BE02472B5C900464B32 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6A334BE22472B5C900464B32 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		6A334BE42472B5C900464B32 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		6A334BE42472B5C900464B32 /* SavedAccomodationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedAccomodationViewController.swift; sourceTree = "<group>"; };
 		6A334BE72472B5C900464B32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6A334BE92472B5CA00464B32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A334BEC2472B5CA00464B32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThumbnailImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		6AEA9BBB2485484600F08724 /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
 		6AEA9BBD248549AA00F08724 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6AEA9BC0248551CF00F08724 /* PriceBarGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceBarGraphView.swift; sourceTree = "<group>"; };
 		AB8ED7E8247694CF00B07D9F /* FilterHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterHeaderView.xib; sourceTree = "<group>"; };
 		AB8ED7EA247694DB00B07D9F /* FilterFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterFooterView.xib; sourceTree = "<group>"; };
 		AB93DBD0247FC7DF006E9C99 /* BookingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingManager.swift; sourceTree = "<group>"; };
@@ -214,9 +216,18 @@
 			path = AirbnbProjectTests;
 			sourceTree = "<group>";
 		};
+		6AEA9BBF2485519100F08724 /* PriceFilterView */ = {
+			isa = PBXGroup;
+			children = (
+				6AEA9BC0248551CF00F08724 /* PriceBarGraphView.swift */,
+			);
+			path = PriceFilterView;
+			sourceTree = "<group>";
+		};
 		AB8ED7C62473ACFC00B07D9F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6AEA9BBF2485519100F08724 /* PriceFilterView */,
 				6A301D222479094800D23B84 /* CalendarView */,
 				6A301D212479092000D23B84 /* FilterReusableView */,
 				6A301D20247908F300D23B84 /* GuestFilterView */,
@@ -238,7 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				6A334BE22472B5C900464B32 /* MainViewController.swift */,
-				6A334BE42472B5C900464B32 /* SecondViewController.swift */,
+				6A334BE42472B5C900464B32 /* SavedAccomodationViewController.swift */,
 				6AEA9BBB2485484600F08724 /* CityPickerViewController.swift */,
 				6AEA9BBD248549AA00F08724 /* LoginViewController.swift */,
 			);
@@ -366,7 +377,7 @@
 				AB9CAE2624769B80000CFBFC /* FilterFooterView.swift in Sources */,
 				6A635A24247BB70A000C70AA /* FavoriteButtonManager.swift in Sources */,
 				6AEA9BBC2485484600F08724 /* CityPickerViewController.swift in Sources */,
-				6A334BE52472B5C900464B32 /* SecondViewController.swift in Sources */,
+				6A334BE52472B5C900464B32 /* SavedAccomodationViewController.swift in Sources */,
 				6A334BE32472B5C900464B32 /* MainViewController.swift in Sources */,
 				6A3EF5B72482169C00E672A0 /* CalendarCollectionViewCellManager.swift in Sources */,
 				AB9CAE32247A9E7F000CFBFC /* DateExtension.swift in Sources */,
@@ -384,6 +395,7 @@
 				6A789A65247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift in Sources */,
 				6A6EE0482476C90600D18488 /* FavoriteButton.swift in Sources */,
 				ABF4CB1E247BD22F00444F72 /* CalendarCollectionViewManager.swift in Sources */,
+				6AEA9BC1248551CF00F08724 /* PriceBarGraphView.swift in Sources */,
 				6A6EE04A2476CB0200D18488 /* ButtonExtension.swift in Sources */,
 				6AEA9BBE248549AA00F08724 /* LoginViewController.swift in Sources */,
 				AB9CAE2824769C0C000CFBFC /* GuestFilterViewController.swift in Sources */,
