@@ -14,7 +14,7 @@ class CityPickerViewController: UIViewController {
     @IBOutlet weak var coloredBackgroundView: UIView!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var completionButton: UIButton!
-    private let defaultMessage = "City"
+    private let defaultMessage = "--- City ---"
     private var cities = ["Asheville", "North Carolina",  "Texas", "Boston", "Massachusetts", "Cambridge", "Massachusetts","Chicago", "Illinois", "New Orleans", "Louisiana", "New York", "Oakland", "California", "Portland", "Oregon", "San Francisco", "Seattle", "Washington"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class CityPickerViewController: UIViewController {
        completionButton.isUserInteractionEnabled = false
         let gradient = CAGradientLayer()
         gradient.frame = view.bounds
-        gradient.colors = [ UIColor.airbnbKeyColor!.cgColor, UIColor.coralPink!.cgColor, UIColor.lightPeachPink!.cgColor]
+        gradient.colors = [ UIColor.airbnbKeyColor!.cgColor, UIColor.airbnbKeyColor!.cgColor, UIColor.coralPink!.cgColor, UIColor.lightPeachPink!.cgColor]
         coloredBackgroundView.layer.addSublayer(gradient)
     }
     
