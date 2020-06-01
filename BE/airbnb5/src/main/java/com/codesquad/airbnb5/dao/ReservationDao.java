@@ -36,4 +36,10 @@ public class ReservationDao {
                 roomRepository.findCleaningFeeByRoomId(roomId),
                 roomRepository.findTaxByRoomId(roomId));
     }
+    
+    public void deleteReservation(int reservationId) {
+        String sql = "DELETE FROM reservation " +
+                "WHERE reservation_id = ? ";
+        jdbcTemplate.update(sql, reservationId);
+    }
 }
