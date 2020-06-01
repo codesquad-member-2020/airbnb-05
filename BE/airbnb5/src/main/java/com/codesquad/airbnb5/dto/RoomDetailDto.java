@@ -35,7 +35,7 @@ public class RoomDetailDto {
     @JsonProperty("scores")
     private final float scores;
     @JsonProperty("reviews")
-    private final float reviews;
+    private final int reviews;
     @JsonProperty("amenities")
     private final String amenities;
     @JsonProperty("cleaning_fee")
