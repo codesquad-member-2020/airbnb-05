@@ -39,7 +39,7 @@ public class RoomMapper {
                         .roomType(rs.getString("room_type"))
                         .beds(rs.getInt("beds"))
                         .scores(rs.getFloat("scores"))
-                        .reviews(rs.getFloat("reviews"))
+                        .reviews(rs.getInt("reviews"))
                         .isFavorite(bool)
                         .build();
             }
@@ -67,7 +67,7 @@ public class RoomMapper {
                         .originalPrice(rs.getInt("original_price"))
                         .salePrice(rs.getInt("sale_price"))
                         .scores(rs.getFloat("scores"))
-                        .reviews(rs.getFloat("reviews"))
+                        .reviews(rs.getInt("reviews"))
                         .amenities(rs.getString("amenities"))
                         .cleaningFee(rs.getInt("cleaning_fee"))
                         .maximumGuests(rs.getInt("maximum_guests"))

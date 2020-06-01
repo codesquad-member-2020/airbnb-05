@@ -75,12 +75,20 @@ CREATE TABLE bookmark
 
 CREATE TABLE reservation
 (
-    reservation_id     int auto_increment primary key,
-    room_id            int REFERENCES room (room_id) ON UPDATE CASCADE,
-    room_name          varchar(255) REFERENCES room (room_name) ON UPDATE CASCADE,
-    guest_id           int REFERENCES guest (guest_id) ON UPDATE CASCADE,
-    check_in           date,
-    check_out          date,
-    nights             int,
-    reservation_status boolean
+    reservation_id int auto_increment primary key,
+    guest_id       int REFERENCES guest (guest_id) ON UPDATE CASCADE,
+    room_id        int REFERENCES room (room_id) ON UPDATE CASCADE,
+    room_name      varchar(255),
+    room_type      varchar(255),
+    original_price int,
+    sale_price     int,
+    scores         float,
+    reviews        int,
+    check_in       date,
+    check_out      date,
+    nights         int,
+    guests         int,
+    cleaning_fee   int,
+    tax            int,
+    total_fee      int
 );
