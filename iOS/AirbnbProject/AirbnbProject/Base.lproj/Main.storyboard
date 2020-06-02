@@ -252,24 +252,24 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="335" height="67"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="성인"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="만13세 이상"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Adults"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="Ages 13 or above"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nts-Op-YYV" customClass="GuestFilterReusableView" customModule="AirbnbProject" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="67" width="335" height="67"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="청소년"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="만3세 ~ 만12세"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Children"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="Ages 2 -12"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WU9-Gs-4Fg" customClass="GuestFilterReusableView" customModule="AirbnbProject" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="134" width="335" height="67"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="영유아"/>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="만2세 이하"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="titleText" value="Infants"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="subtitleText" value="Under 2"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
@@ -830,7 +830,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="contentEdgeInsets" minX="30" minY="15" maxX="30" maxY="15"/>
-                                <state key="normal" title=" Login with Github" image="gitHubLogo"/>
+                                <state key="normal" title="Login with Github"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
@@ -873,7 +873,6 @@
     </scenes>
     <resources>
         <image name="airbnbLogo" width="577" height="789"/>
-        <image name="gitHubLogo" width="30" height="30"/>
         <image name="heart.circle" catalog="system" width="128" height="121"/>
         <image name="heart.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
