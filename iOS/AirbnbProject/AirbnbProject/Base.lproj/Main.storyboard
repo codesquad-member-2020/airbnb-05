@@ -137,6 +137,9 @@
                                                                 <color key="value" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <segue destination="r2j-SJ-x30" kind="show" id="Rpy-7e-9Ne"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -412,7 +415,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="DayCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-Q0-piG" customClass="DayCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="DayCollectionViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-Q0-piG" customClass="DayCollectionViewCell" customModule="AirbnbProject" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="50" width="53" height="54"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="JL3-ZT-tNU">
@@ -544,7 +547,115 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1b-7Z-O5r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="679.71014492753625" y="-427.23214285714283"/>
+            <point key="canvasLocation" x="680" y="-404"/>
+        </scene>
+        <!--Price Filter View Controller-->
+        <scene sceneID="hJT-hd-Nxf">
+            <objects>
+                <viewController modalPresentationStyle="overFullScreen" id="r2j-SJ-x30" customClass="PriceFilterViewController" customModule="AirbnbProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xxs-Jl-Tgb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zIe-cE-kRi" userLabel="Dim View">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQT-1s-aro" userLabel="Background View">
+                                <rect key="frame" x="20.5" y="257.5" width="373" height="391"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xeX-WW-Gih">
+                                        <rect key="frame" x="19" y="19.5" width="335" height="352"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lc2-0h-eKi" customClass="FilterHeaderView" customModule="AirbnbProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="lc2-0h-eKi" secondAttribute="height" multiplier="1:0.15" id="VBJ-SS-4FJ"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJa-yd-zfh">
+                                                <rect key="frame" x="0.0" y="50" width="335" height="235"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Orl-Cu-5nj">
+                                                        <rect key="frame" x="20" y="19.5" width="93.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fLr-g4-2Cw">
+                                                        <rect key="frame" x="20" y="60" width="194" height="42.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₩10,000 - ₩1,400,000+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agH-5S-CA8">
+                                                                <rect key="frame" x="0.0" y="0.0" width="194" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The average nightly price is ₩" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCN-Vs-xdw">
+                                                                <rect key="frame" x="0.0" y="25.5" width="194" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="fLr-g4-2Cw" firstAttribute="top" secondItem="Orl-Cu-5nj" secondAttribute="bottom" constant="20" id="7HE-DR-9il"/>
+                                                    <constraint firstItem="fLr-g4-2Cw" firstAttribute="leading" secondItem="Orl-Cu-5nj" secondAttribute="leading" id="A2I-xd-jNS"/>
+                                                    <constraint firstAttribute="width" secondItem="zJa-yd-zfh" secondAttribute="height" multiplier="1:0.7" id="AI2-sS-Lje"/>
+                                                    <constraint firstItem="Orl-Cu-5nj" firstAttribute="centerY" secondItem="zJa-yd-zfh" secondAttribute="centerY" multiplier="0.25" id="Fhq-Ly-sIs"/>
+                                                    <constraint firstItem="Orl-Cu-5nj" firstAttribute="centerX" secondItem="zJa-yd-zfh" secondAttribute="centerX" multiplier="0.4" id="Hiu-6w-1g2"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOR-TZ-mp2" customClass="FilterFooterView" customModule="AirbnbProject" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="285" width="335" height="67"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="sOR-TZ-mp2" secondAttribute="height" multiplier="1:0.2" id="kJz-VM-3dO"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="xeX-WW-Gih" firstAttribute="width" secondItem="AQT-1s-aro" secondAttribute="width" multiplier="0.9" id="8lV-mF-6oC"/>
+                                    <constraint firstItem="xeX-WW-Gih" firstAttribute="centerX" secondItem="AQT-1s-aro" secondAttribute="centerX" id="Gkn-dH-yvM"/>
+                                    <constraint firstItem="xeX-WW-Gih" firstAttribute="centerY" secondItem="AQT-1s-aro" secondAttribute="centerY" id="I8z-vS-jtS"/>
+                                    <constraint firstItem="xeX-WW-Gih" firstAttribute="height" secondItem="AQT-1s-aro" secondAttribute="height" multiplier="0.9" id="c6i-fm-eKN"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="AQT-1s-aro" firstAttribute="centerX" secondItem="CZE-Bd-MgJ" secondAttribute="centerX" id="3Ik-QA-Hek"/>
+                            <constraint firstItem="CZE-Bd-MgJ" firstAttribute="trailing" secondItem="zIe-cE-kRi" secondAttribute="trailing" id="K4K-fA-4Xg"/>
+                            <constraint firstItem="AQT-1s-aro" firstAttribute="width" secondItem="Xxs-Jl-Tgb" secondAttribute="width" multiplier="0.9" id="LEx-OX-fNU"/>
+                            <constraint firstItem="zIe-cE-kRi" firstAttribute="top" secondItem="CZE-Bd-MgJ" secondAttribute="top" id="PtQ-uJ-z7a"/>
+                            <constraint firstItem="CZE-Bd-MgJ" firstAttribute="bottom" secondItem="zIe-cE-kRi" secondAttribute="bottom" id="ZW5-1A-3EN"/>
+                            <constraint firstItem="AQT-1s-aro" firstAttribute="centerY" secondItem="CZE-Bd-MgJ" secondAttribute="centerY" id="lRg-rf-zji"/>
+                            <constraint firstItem="zIe-cE-kRi" firstAttribute="leading" secondItem="CZE-Bd-MgJ" secondAttribute="leading" id="tc1-rh-BP6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CZE-Bd-MgJ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xea-SI-fqw"/>
+                    <connections>
+                        <outlet property="averagePriceLabel" destination="TCN-Vs-xdw" id="kma-dP-ddb"/>
+                        <outlet property="priceRangeLabel" destination="agH-5S-CA8" id="iR5-Rz-TRj"/>
+                        <outlet property="priceRangeView" destination="zJa-yd-zfh" id="eXX-LK-0Q4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s67-fW-WsH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1338" y="-1"/>
         </scene>
         <!--RESERVATION-->
         <scene sceneID="wPe-Xe-lQo">
@@ -614,7 +725,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-mL-7sa">
-                                <rect key="frame" x="47" y="300" width="320" height="216"/>
+                                <rect key="frame" x="47" y="299.5" width="320" height="216"/>
                             </pickerView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pe-K3-xCc">
                                 <rect key="frame" x="91" y="204.5" width="232" height="89.5"/>
