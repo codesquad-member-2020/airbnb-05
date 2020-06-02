@@ -1,7 +1,9 @@
 package com.codesquad.airbnb5.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.springframework.data.annotation.Id;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class Bookmark {
 
     @Id

@@ -17,9 +17,9 @@ import java.util.List;
 @Repository
 public class RoomMapper {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public RoomMapper(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }

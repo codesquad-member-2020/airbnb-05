@@ -20,7 +20,7 @@ import java.util.List;
 @Repository
 public class RoomDao {
 
-    private final JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     public RoomDao(DataSource dataSource) {
