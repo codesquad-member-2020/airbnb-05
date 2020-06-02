@@ -57,9 +57,15 @@ extension CityPickerViewController: UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        completionButton.setTitle("show 250+ stays in \(cities[row]) 🎉", for: .normal)
-        completionButton.backgroundColor = .systemPink
-        completionButton.isUserInteractionEnabled = true
+        if cities[row] == defaultMessage {
+            completionButton.setTitle("Pick A City", for: .normal)
+            completionButton.backgroundColor = .darkGray
+            completionButton.isUserInteractionEnabled = false
+        } else {
+            completionButton.setTitle("show 250+ stays in \(cities[row]) 🎉", for: .normal)
+            completionButton.backgroundColor = .systemPink
+            completionButton.isUserInteractionEnabled = true
+        }
     }
 }
 
