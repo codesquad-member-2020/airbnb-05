@@ -37,7 +37,7 @@ public class BookmarkController {
 
     @GetMapping("")
     public ResponseEntity<ResponseDto> getBookmarks(
-            @RequestParam("guestId") int guestId, RoomMapper roomMapper) throws SQLException {
+            @RequestParam("guestId") int guestId) throws SQLException {
         ResponseDto responseDto = bookmarkService.getBookmarkList(guestId, roomMapper);
         return ResponseEntity.ok().body(responseDto);
     }
