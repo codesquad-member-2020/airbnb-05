@@ -28,7 +28,7 @@ public class RoomController {
             @PathVariable("cityId") int cityId,
             @RequestParam(value = "limit", defaultValue = "10") int limit,
             @RequestParam(value = "offset", defaultValue = "0") int offset,
-            @RequestParam(value = "guestId", defaultValue = "0") int guestId) throws SQLException {
+            @RequestParam(value = "guestId", defaultValue = "1") int guestId) throws SQLException {
         ResponseDto responseDto = roomService.getRoomScroll(cityId, limit, offset, guestId, roomMapper);
         return ResponseEntity.ok().body(responseDto);
     }
@@ -36,14 +36,14 @@ public class RoomController {
     @GetMapping("/cities/{cityId}/rooms")
     public ResponseEntity<ResponseDto> showRoom(
             @PathVariable("cityId") int cityId,
-            @RequestParam(value = "guests", required = false, defaultValue = "0") int guests,
+            @RequestParam(value = "guests", required = false, defaultValue = "1") int guests,
             @RequestParam(value = "minPrice", required = false, defaultValue = "0") int minPrice,
-            @RequestParam(value = "maxPrice", required = false, defaultValue = "1400000") int maxPrice,
-            @RequestParam(value = "checkIn", required = false, defaultValue = "1900-05-20")
+            @RequestParam(value = "maxPrice", required = false, defaultValue = "9227830") int maxPrice,
+            @RequestParam(value = "checkIn", required = false, defaultValue = "1900-01-01")
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
-            @RequestParam(value = "checkOut", required = false, defaultValue = "2022-05-20")
+            @RequestParam(value = "checkOut", required = false, defaultValue = "2022-12-31")
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut,
-            @RequestParam(value = "guestId", defaultValue = "0") int guestId) throws SQLException {
+            @RequestParam(value = "guestId", defaultValue = "1") int guestId) throws SQLException {
 
 
         ResponseDto responseDto = roomService.getRoomSummary(cityId, guests, minPrice, maxPrice, checkIn, checkOut, guestId, roomMapper);
@@ -53,10 +53,10 @@ public class RoomController {
     @GetMapping("/cities/{cityId}/prices")
     public ResponseEntity<ResponseDto> showPriceFilter(
             @PathVariable("cityId") int cityId,
-            @RequestParam(value = "guests", required = false, defaultValue = "0") int guests,
-            @RequestParam(value = "checkIn", required = false, defaultValue = "1900-05-20")
+            @RequestParam(value = "guests", required = false, defaultValue = "1") int guests,
+            @RequestParam(value = "checkIn", required = false, defaultValue = "1900-01-01")
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
-            @RequestParam(value = "checkOut", required = false, defaultValue = "2022-05-20")
+            @RequestParam(value = "checkOut", required = false, defaultValue = "2022-12-31")
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut) {
         ResponseDto responseDto = roomService.getPriceFilter(cityId, guests, checkIn, checkOut);
         return ResponseEntity.ok().body(responseDto);
@@ -66,7 +66,7 @@ public class RoomController {
     public ResponseEntity<ResponseDto> showRoomDetail(
             @PathVariable("cityId") int cityId,
             @PathVariable("roomId") int roomId,
-            @RequestParam(value = "guestId", defaultValue = "0") int guestId) throws SQLException {
+            @RequestParam(value = "guestId", defaultValue = "1") int guestId) throws SQLException {
         ResponseDto responseDto = roomService.getRoomDetail(cityId, roomId, guestId, roomMapper);
         return ResponseEntity.ok().body(responseDto);
     }
