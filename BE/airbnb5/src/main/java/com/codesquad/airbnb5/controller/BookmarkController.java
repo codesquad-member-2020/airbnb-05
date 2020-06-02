@@ -19,18 +19,18 @@ public class BookmarkController {
     @Autowired
     private BookmarkService bookmarkService;
 
-    @PostMapping("/cities/{cityId}/rooms/{roomId}")
+    @PostMapping("/{roomId}")
     public ResponseEntity<ResponseDto> addBookmark(
-            @PathVariable("cityId") int cityId,
-            @PathVariable("roomId") int roomId, @RequestParam("guestId") int guestId) {
+            @PathVariable("roomId") int roomId,
+            @RequestParam("guestId") int guestId) {
         ResponseDto responseDto = bookmarkService.addFavoriteStatus(roomId, guestId);
         return ResponseEntity.ok().body(responseDto);
     }
 
-    @DeleteMapping("/cities/{cityId}/rooms/{roomId}")
+    @DeleteMapping("/{roomId}")
     public ResponseEntity<ResponseDto> deleteBookmark(
-            @PathVariable("cityId") int cityId,
-            @PathVariable("roomId") int roomId, @RequestParam("guestId") int guestId) {
+            @PathVariable("roomId") int roomId,
+            @RequestParam("guestId") int guestId) {
         ResponseDto responseDto = bookmarkService.deleteFavoriteStatus(roomId, guestId);
         return ResponseEntity.ok().body(responseDto);
     }
