@@ -13,14 +13,14 @@ import java.time.LocalDate;
 @Repository
 public class ReservationDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
     public ReservationDao(DataSource dataSource) {
-        jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public void addReservation(int roomId, int guestId, LocalDate checkIn, LocalDate checkOut, int guests) {

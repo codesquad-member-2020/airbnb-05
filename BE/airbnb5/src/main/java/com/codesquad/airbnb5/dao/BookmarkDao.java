@@ -10,9 +10,9 @@ import java.sql.SQLException;
 @Repository
 public class BookmarkDao {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
     public BookmarkDao(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -44,5 +44,4 @@ public class BookmarkDao {
 
         return jdbcTemplate.queryForObject(sql, new Object[]{guestId, roomId}, roomMapper.mapRow(guestId));
     }
-
 }
