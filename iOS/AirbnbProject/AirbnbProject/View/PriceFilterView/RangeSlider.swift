@@ -37,6 +37,8 @@ class RangeSlider: UIControl {
     var lowerValue: Double = 0
     var upperValue: Double = 1_400_000
     
+    var thumbWidthDeltaValue: Double!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         trackLayer.rangeSlider = self
@@ -121,7 +123,7 @@ class RangeSlider: UIControl {
         // (( 값 범위 ) * 이동한 길이) / 실제 길이 (전체 길이 - 버튼 사이즈)
         // 값을 변환해줘야함 길이 비율에 맞춰서
         let deltaValue = (maximumValue - minimumValue) * deltaLocation / Double(bounds.width - thumbWidth)
-        let thumbWidthDeltaValue = (maximumValue - minimumValue) * Double(thumbWidth) / Double(bounds.width - thumbWidth)
+        self.thumbWidthDeltaValue = (maximumValue - minimumValue) * Double(thumbWidth) / Double(bounds.width - thumbWidth)
         
         // 현재 로케이션 업데이트
         previousLocation = location
@@ -131,10 +133,10 @@ class RangeSlider: UIControl {
         // boundValue에서 한번 더 처리
         if lowerThumbLayer.highlighted {
             lowerValue += deltaValue
-            lowerValue = boundValue(value: lowerValue, toLowerValue: minimumValue, upperValue: upperValue - thumbWidthDeltaValue)
+            lowerValue = boundValue(value: lowerValue, toLowerValue: minimumValue, upperValue: upperValue)
         } else if upperThumbLayer.highlighted {
             upperValue += deltaValue
-            upperValue = boundValue(value: upperValue, toLowerValue: lowerValue + thumbWidthDeltaValue, upperValue: maximumValue)
+            upperValue = boundValue(value: upperValue, toLowerValue: lowerValue, upperValue: maximumValue)
         }
         
         // setDisableActions 애니메이션이 아니라 즉시 적용하도록 변경해줌.
