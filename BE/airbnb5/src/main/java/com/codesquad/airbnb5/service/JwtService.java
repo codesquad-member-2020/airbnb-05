@@ -1,6 +1,8 @@
 package com.codesquad.airbnb5.service;
 
 import com.codesquad.airbnb5.domain.User;
+import com.codesquad.airbnb5.exception.AuthorizationException;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -23,6 +25,22 @@ public class JwtService {
                 .setClaims(createPayloads(user))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
+    }
+
+    public User parseJwt(String jwt) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(jwt)
+                .getBody();
+        int id = (int) claims.get("id");
+        String login = (String) claims.get("login");
+        String email = (String) claims.get("email");
+        return User.builder()
+                .id(id)
+                .login(login)
+                .email(email)
+                .build();
     }
 
     private Map<String, Object> createHeaders() {
