@@ -12,7 +12,7 @@
         <!--EXPLORE-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="MainViewController" customModule="AirbnbProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="showMainView" id="9pv-A4-QxB" customClass="MainViewController" customModule="AirbnbProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -727,8 +727,8 @@
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xte-mL-7sa">
                                 <rect key="frame" x="47" y="299.5" width="320" height="216"/>
                             </pickerView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0pe-K3-xCc">
-                                <rect key="frame" x="91" y="204.5" width="232" height="89.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="0pe-K3-xCc">
+                                <rect key="frame" x="88.5" y="204.5" width="237" height="89.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YCO-a7-lc6">
                                         <rect key="frame" x="0.0" y="1" width="25.5" height="87.5"/>
@@ -738,7 +738,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you going?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4U-iH-BK0">
-                                        <rect key="frame" x="25.5" y="0.0" width="206.5" height="89.5"/>
+                                        <rect key="frame" x="30.5" y="0.0" width="206.5" height="89.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -759,7 +759,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="buttonTapped:" destination="tKx-id-OoW" eventType="touchUpInside" id="s5v-9w-Suo"/>
-                                    <segue destination="49e-Tb-3d3" kind="presentation" modalPresentationStyle="fullScreen" id="t5V-Zs-XnF"/>
+                                    <segue destination="49e-Tb-3d3" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="t5V-Zs-XnF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -834,9 +834,6 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonImageTintColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
