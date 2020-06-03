@@ -1,7 +1,6 @@
 package com.codesquad.airbnb5.service;
 
 import com.codesquad.airbnb5.domain.User;
-import com.codesquad.airbnb5.exception.AuthorizationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -42,12 +41,6 @@ public class JwtService {
                 .name(name)
                 .email(email)
                 .build();
-    }
-
-    public void checkJwt(String jwt) {
-        if (jwt == null) {
-            throw AuthorizationException.emptyToken();
-        }
     }
 
     private Map<String, Object> createHeaders() {
