@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,9 @@
 		6A789A6224740659005CF258 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A789A6124740659005CF258 /* Model.swift */; };
 		6A789A65247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A789A63247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift */; };
 		6A789A66247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */; };
+		6ACC3AF9248772CC00E811F7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACC3AF8248772CC00E811F7 /* NetworkManager.swift */; };
+		6ACC3AFC248774D700E811F7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6ACC3AFB248774D700E811F7 /* Alamofire */; };
+		6ACC3AFE24877E0200E811F7 /* DataUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACC3AFD24877E0200E811F7 /* DataUseCase.swift */; };
 		6AEA9BBC2485484600F08724 /* CityPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA9BBB2485484600F08724 /* CityPickerViewController.swift */; };
 		6AEA9BBE248549AA00F08724 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA9BBD248549AA00F08724 /* LoginViewController.swift */; };
 		6AEA9BC1248551CF00F08724 /* PriceBarGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA9BC0248551CF00F08724 /* PriceBarGraphView.swift */; };
@@ -85,6 +88,8 @@
 		6A789A6124740659005CF258 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Model.swift; path = AirbnbProject/View/Model.swift; sourceTree = SOURCE_ROOT; };
 		6A789A63247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		6A789A64247409B1005CF258 /* ThumbnailImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThumbnailImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		6ACC3AF8248772CC00E811F7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		6ACC3AFD24877E0200E811F7 /* DataUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUseCase.swift; sourceTree = "<group>"; };
 		6AEA9BBB2485484600F08724 /* CityPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityPickerViewController.swift; sourceTree = "<group>"; };
 		6AEA9BBD248549AA00F08724 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6AEA9BC0248551CF00F08724 /* PriceBarGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceBarGraphView.swift; sourceTree = "<group>"; };
@@ -111,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ACC3AFC248774D700E811F7 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,7 +156,6 @@
 		6A301D20247908F300D23B84 /* GuestFilterView */ = {
 			isa = PBXGroup;
 			children = (
-				AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */,
 				AB9CAE2B2476B35B000CFBFC /* GuestFilterReusableView.xib */,
 				AB9CAE2D2476B7F1000CFBFC /* GuestFilterReusableView.swift */,
 			);
@@ -229,6 +234,7 @@
 			children = (
 				AB93DBD224862A1A006E9C99 /* PriceFilterViewController.swift */,
 				6AEA9BC0248551CF00F08724 /* PriceBarGraphView.swift */,
+				AB9CAE2724769C0C000CFBFC /* GuestFilterViewController.swift */,
 				AB93DBD6248633F7006E9C99 /* RangeSlider.swift */,
 				AB93DBD824863429006E9C99 /* RangeSliderThumbLayer.swift */,
 				AB93DBDA2486344E006E9C99 /* RangeSliderTrackLayer.swift */,
@@ -274,6 +280,8 @@
 				AB9CAE2F2477DA4C000CFBFC /* CountButtonManager.swift */,
 				6A635A23247BB70A000C70AA /* FavoriteButtonManager.swift */,
 				AB93DBD0247FC7DF006E9C99 /* BookingManager.swift */,
+				6ACC3AF8248772CC00E811F7 /* NetworkManager.swift */,
+				6ACC3AFD24877E0200E811F7 /* DataUseCase.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -294,6 +302,9 @@
 			dependencies = (
 			);
 			name = AirbnbProject;
+			packageProductDependencies = (
+				6ACC3AFB248774D700E811F7 /* Alamofire */,
+			);
 			productName = AirbnbProject;
 			productReference = 6A334BDB2472B5C900464B32 /* AirbnbProject.app */;
 			productType = "com.apple.product-type.application";
@@ -344,6 +355,9 @@
 				Base,
 			);
 			mainGroup = 6A334BD22472B5C900464B32;
+			packageReferences = (
+				6ACC3AFA248774D700E811F7 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 6A334BDC2472B5C900464B32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -390,6 +404,7 @@
 				6A635A24247BB70A000C70AA /* FavoriteButtonManager.swift in Sources */,
 				6AEA9BBC2485484600F08724 /* CityPickerViewController.swift in Sources */,
 				6A334BE52472B5C900464B32 /* SavedAccomodationViewController.swift in Sources */,
+				6ACC3AFE24877E0200E811F7 /* DataUseCase.swift in Sources */,
 				AB93DBD924863429006E9C99 /* RangeSliderThumbLayer.swift in Sources */,
 				6A334BE32472B5C900464B32 /* MainViewController.swift in Sources */,
 				6A3EF5B72482169C00E672A0 /* CalendarCollectionViewCellManager.swift in Sources */,
@@ -404,6 +419,7 @@
 				AB93DBD7248633F7006E9C99 /* RangeSlider.swift in Sources */,
 				AB93DBD1247FC7DF006E9C99 /* BookingManager.swift in Sources */,
 				6A334BE12472B5C900464B32 /* SceneDelegate.swift in Sources */,
+				6ACC3AF9248772CC00E811F7 /* NetworkManager.swift in Sources */,
 				6A1CF5092476972F00A1A974 /* ViewExtension.swift in Sources */,
 				6A301D26247920BC00D23B84 /* DayCollectionViewCell.swift in Sources */,
 				6A789A65247409B1005CF258 /* ThumbnailImageCollectionViewCell.swift in Sources */,
@@ -681,6 +697,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6ACC3AFA248774D700E811F7 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6ACC3AFB248774D700E811F7 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6ACC3AFA248774D700E811F7 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6A334BD32472B5C900464B32 /* Project object */;
 }

@@ -11,16 +11,27 @@ import UIKit
 class MainViewController: UIViewController {
     
     @IBOutlet weak var infoTableView: UITableView!
-
+    
+    private var selectedCityId: Int?
     var models = [Model]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNotification()
         setupTableView()
         models.append(Model(imageName: "bye", isFavorite: true))
         models.append(Model(imageName: "bye", isFavorite: false))
         models.append(Model(imageName: "bye", isFavorite: true))
         models.append(Model(imageName: "bye", isFavorite: false))
+    }
+    
+    private func setUpNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setSelectedCityId), name: .cityIdFromCityViewController, object: nil)
+    }
+    
+    @objc private func setSelectedCityId(_ notification : Notification) {
+        guard let cityId = notification.userInfo?[UserInfoKey.cityId] as? Int else { return }
+        self.selectedCityId = cityId
     }
     
     private func setupTableView() {
@@ -67,7 +78,7 @@ extension MainViewController: UITableViewDataSource {
     }
     
     private func startCellDisplayAnimation(_ cell: UITableViewCell) {
-            cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        cell.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
         UIView.animate(withDuration: 0.4) {
             cell.transform = CGAffineTransform.identity
         }
