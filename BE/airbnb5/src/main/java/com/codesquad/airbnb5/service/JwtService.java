@@ -43,6 +43,12 @@ public class JwtService {
                 .build();
     }
 
+    public void checkJwt(String jwt) {
+        if (jwt == null) {
+            throw AuthorizationException.emptyToken();
+        }
+    }
+
     private Map<String, Object> createHeaders() {
         Map<String, Object> headers = new HashMap<>();
         headers.put("typ", "JWT");
