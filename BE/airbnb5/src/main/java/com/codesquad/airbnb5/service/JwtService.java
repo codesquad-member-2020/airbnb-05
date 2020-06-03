@@ -28,17 +28,18 @@ public class JwtService {
     }
 
     public User parseJwt(String jwt) {
+        jwt = jwt.replace("Bearer ", "");
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(jwt)
                 .getBody();
         int id = (int) claims.get("id");
-        String login = (String) claims.get("login");
+        String name = (String) claims.get("name");
         String email = (String) claims.get("email");
         return User.builder()
                 .id(id)
-                .login(login)
+                .name(name)
                 .email(email)
                 .build();
     }
@@ -59,7 +60,7 @@ public class JwtService {
     private Map<String, Object> createPayloads(User user) {
         Map<String, Object> payloads = new HashMap<>();
         payloads.put("id", user.getId());
-        payloads.put("login", user.getLogin());
+        payloads.put("name", user.getName());
         payloads.put("email", user.getEmail());
         return payloads;
     }
