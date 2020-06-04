@@ -61,9 +61,10 @@ CREATE TABLE guest
 
 CREATE TABLE user
 (
-    user_id    int auto_increment primary key,
-    user_name  varchar(64),
-    user_email varchar(64)
+    user_index int auto_increment primary key,
+    github_id varchar(64) UNIQUE,
+    github_name varchar(64),
+    github_email varchar(64)
 );
 
 CREATE TABLE bookmark

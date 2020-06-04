@@ -6,10 +6,7 @@ import com.codesquad.airbnb5.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -28,7 +25,7 @@ public class RoomController {
             @PathVariable("cityId") int cityId,
             @RequestParam(value = "limit", defaultValue = "10") int limit,
             @RequestParam(value = "offset", defaultValue = "0") int offset,
-            @RequestParam(value = "guestId", defaultValue = "1") int guestId) throws SQLException {
+            @RequestAttribute(value = "guestId") int guestId) throws SQLException {
         ResponseDto responseDto = roomService.getRoomScroll(cityId, limit, offset, guestId, roomMapper);
         return ResponseEntity.ok().body(responseDto);
     }
@@ -43,7 +40,7 @@ public class RoomController {
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
             @RequestParam(value = "checkOut", required = false, defaultValue = "2022-12-31")
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut,
-            @RequestParam(value = "guestId", defaultValue = "1") int guestId) throws SQLException {
+            @RequestAttribute(value = "guestId") int guestId) throws SQLException {
 
 
         ResponseDto responseDto = roomService.getRoomSummary(cityId, guests, minPrice, maxPrice, checkIn, checkOut, guestId, roomMapper);
