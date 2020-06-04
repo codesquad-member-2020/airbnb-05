@@ -35,6 +35,7 @@ public class RoomMapper {
                         .roomId(rs.getInt("room_id"))
                         .roomName(rs.getString("room_name"))
                         .roomThumbnail(rs.getString("room_thumbnail"))
+                        .detailImages(findDetailImage(roomId))
                         .isSuperHost(rs.getBoolean("is_super_host"))
                         .roomType(rs.getString("room_type"))
                         .beds(rs.getInt("beds"))

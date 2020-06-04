@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 
+import java.util.List;
+
 @Builder
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class RoomDto {
@@ -26,5 +28,8 @@ public class RoomDto {
     private final int reviews;
     @JsonProperty("favorite")
     private final boolean isFavorite;
+    @JsonProperty("image_lists")
+    private List<String> detailImages;
+
 
 }
