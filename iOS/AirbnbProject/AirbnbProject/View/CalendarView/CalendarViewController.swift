@@ -14,11 +14,14 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var footerView: FilterFooterView!
     @IBOutlet weak var calendarCollectionView: UICollectionView!
     
+    static let segueName = "dateFilterSegue"
+    
     private let numberOfSection = 12
     private let bookingManager = BookingManager()
     private let cellManager = CalendarCollectionViewCellManager()
     private var cellSize: CGFloat?
     private var sectionHeaderHeight: CGFloat?
+    var dateDelegate: SendDataDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +45,10 @@ class CalendarViewController: UIViewController {
     
     private func setDateFilterTitle() {
         let checkInMonth = getMonthStringThroughManager(indexPath: bookingManager.firstSelectedCellIndexPath)
-        let checkoutMonth = getMonthStringThroughManager(indexPath: bookingManager.secondSelectedCellIndexPath)
-        let checkoutDay = bookingManager.getCheckOutDay()
-        headerView.headerViewTitle.text = "\(bookingManager.getCheckInDay()) \(checkInMonth) - \(checkoutDay) \(checkoutMonth)"
+        let checkOutMonth = getMonthStringThroughManager(indexPath: bookingManager.secondSelectedCellIndexPath)
+        let checkInDay = bookingManager.getCheckInDay()
+        let checkOutDay = bookingManager.getCheckOutDay()
+        headerView.headerViewTitle.text = "\(checkInDay) \(checkInMonth) - \(checkOutDay) \(checkOutMonth)"
     }
     
     private func getMonthStringThroughManager(indexPath: IndexPath?) -> String {
@@ -52,6 +56,34 @@ class CalendarViewController: UIViewController {
         
         let manager = CalenderCollectionViewManager(section: unwrapIndexPath.section)
         return manager.getMonthAsString()
+    }
+    
+    private func getMonthThroughManager(indexPath: IndexPath?) -> String {
+        guard let unwrapIndexPath = indexPath else { return "" }
+        
+        let manager = CalenderCollectionViewManager(section: unwrapIndexPath.section)
+        return manager.getMonth()
+    }
+    
+    private func getYearStringThroughManager(indexPath: IndexPath?) -> String {
+        guard let unwrapIndexPath = indexPath else { return "" }
+        
+        let manager = CalenderCollectionViewManager(section: unwrapIndexPath.section)
+        return manager.getYearAsString()
+    }
+    
+    private func bookingDate() -> (String,String) {
+        let checkInYear = getYearStringThroughManager(indexPath: bookingManager.firstSelectedCellIndexPath)
+        let checkOutYear = getYearStringThroughManager(indexPath: bookingManager.secondSelectedCellIndexPath)
+        let checkInMonth = getMonthThroughManager(indexPath: bookingManager.firstSelectedCellIndexPath)
+        let checkOutMonth = getMonthThroughManager(indexPath: bookingManager.secondSelectedCellIndexPath)
+        let checkInDay = bookingManager.getCheckInDay()
+        let checkOutDay = bookingManager.getCheckOutDay()
+        
+        let checkInDate = "\(checkInYear)-\(checkInMonth)-\(checkInDay)"
+        let checkOutDate = "\(checkOutYear)-\(checkOutMonth)-\(checkOutDay)"
+        
+        return (checkInDate, checkOutDate)
     }
     
     @objc private func closeWindow() {
@@ -68,6 +100,7 @@ class CalendarViewController: UIViewController {
     }
     
     @objc private func fixUpDate() {
+        dateDelegate?.sendDate?(first: bookingDate().0, second: bookingDate().1)
         self.dismiss(animated: true, completion: nil)
     }
     

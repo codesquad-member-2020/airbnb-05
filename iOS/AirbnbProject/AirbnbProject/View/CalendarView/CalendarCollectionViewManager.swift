@@ -57,6 +57,15 @@ class CalenderCollectionViewManager {
         return "\(month) \(year)"
     }
     
+    func getMonth() -> String {
+        let month = formatter.getMonth(from: currMonth)
+        return String(format: "%02d", month)
+    }
+    
+    func getYearAsString() -> String {
+        return String(formatter.getYear(from: currMonth))
+    }
+    
     func getMonthAsString() -> String {
         return formatter.getMonthAsString(from: currMonth)
     }
