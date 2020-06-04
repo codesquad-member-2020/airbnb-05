@@ -78,7 +78,7 @@ class NetworkManager: NetworkManagable {
         urlComponents?.queryItems = paramData
         
         guard let url = urlComponents?.url else { completion(nil, nil, .InvalidURL); return }
-        let token = "Bearer \(UserDefaults.standard.object(forKey: "JWTToken"))"
+        let token = "Bearer \(UserDefaults.standard.object(forKey: "JWTToken")!)"
         let header: HTTPHeaders = ["Authorization" : token, "Accept": "application/json"]
         
         AF.request(url, method: method, parameters: body, headers: header)
