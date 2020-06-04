@@ -33,7 +33,7 @@ public class BookmarkDao {
     public Object findBookmarkRoom(int guestId, int roomId, RoomMapper roomMapper) throws SQLException {
 
         String sql = "SELECT r.room_id, r.room_name, r.room_thumbnail, h.is_super_host, " +
-                "r.room_type, r.beds, r.scores, r.reviews " +
+                "r.room_type, r.beds, r.scores, r.reviews, r.latitude, r.longitude " +
                 "FROM room r " +
                 "JOIN host h " +
                 "ON r.host_id = h.host_id " +
