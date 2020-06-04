@@ -15,13 +15,8 @@ public class RoomService {
     @Autowired
     private RoomDao roomDao;
 
-    public ResponseDto getRoomScroll(int cityId, int limit, int offset, int guestId, RoomMapper roomMapper) throws SQLException {
-        Object roomDto = roomDao.findRooms(cityId, limit, offset, guestId, roomMapper);
-        return new ResponseDto(200, roomDto);
-    }
-
-    public ResponseDto getRoomSummary(int cityId, int guests, int minPrice, int maxPrice, LocalDate checkIn, LocalDate checkOut, int guestId, RoomMapper roomMapper) throws SQLException {
-        Object roomDto = roomDao.findRoomSummary(cityId, guests, minPrice, maxPrice, checkIn, checkOut, guestId, roomMapper);
+    public ResponseDto getRoomSummary(int cityId, int limit, int offset, int guests, int minPrice, int maxPrice, LocalDate checkIn, LocalDate checkOut, int guestId, RoomMapper roomMapper) throws SQLException {
+        Object roomDto = roomDao.findRoomSummary(cityId, limit, offset, guests, minPrice, maxPrice, checkIn, checkOut, guestId, roomMapper);
         return new ResponseDto(200, roomDto);
     }
 

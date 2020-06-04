@@ -20,19 +20,11 @@ public class RoomController {
     @Autowired
     private RoomMapper roomMapper;
 
-    @GetMapping("/cities/{cityId}")
-    public ResponseEntity<ResponseDto> showRooms(
-            @PathVariable("cityId") int cityId,
-            @RequestParam(value = "limit", defaultValue = "10") int limit,
-            @RequestParam(value = "offset", defaultValue = "0") int offset,
-            @RequestAttribute(value = "guestId") int guestId) throws SQLException {
-        ResponseDto responseDto = roomService.getRoomScroll(cityId, limit, offset, guestId, roomMapper);
-        return ResponseEntity.ok().body(responseDto);
-    }
-
     @GetMapping("/cities/{cityId}/rooms")
     public ResponseEntity<ResponseDto> showRoom(
             @PathVariable("cityId") int cityId,
+            @RequestParam(value = "limit", defaultValue = "10") int limit,
+            @RequestParam(value = "offset", defaultValue = "0") int offset,
             @RequestParam(value = "guests", required = false, defaultValue = "1") int guests,
             @RequestParam(value = "minPrice", required = false, defaultValue = "0") int minPrice,
             @RequestParam(value = "maxPrice", required = false, defaultValue = "9227830") int maxPrice,
@@ -43,7 +35,7 @@ public class RoomController {
             @RequestAttribute(value = "guestId") int guestId) throws SQLException {
 
 
-        ResponseDto responseDto = roomService.getRoomSummary(cityId, guests, minPrice, maxPrice, checkIn, checkOut, guestId, roomMapper);
+        ResponseDto responseDto = roomService.getRoomSummary(cityId, limit, offset, guests, minPrice, maxPrice, checkIn, checkOut, guestId, roomMapper);
         return ResponseEntity.ok().body(responseDto);
     }
 

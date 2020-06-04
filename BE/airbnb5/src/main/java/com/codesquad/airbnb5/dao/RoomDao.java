@@ -27,28 +27,10 @@ public class RoomDao {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public Object findRooms(
+    public Object findRoomSummary(
             int cityId,
             int limit,
             int offset,
-            int guestId,
-            RoomMapper roomMapper
-    ) throws SQLException {
-
-        String sql = "SELECT r.room_id, r.room_name, r.room_thumbnail, h.is_super_host, " +
-                "r.room_type, r.beds, r.scores, r.reviews " +
-                "FROM room r " +
-                "JOIN host h " +
-                "ON r.host_id = h.host_id " +
-                "WHERE r.city_id = ? " +
-                "LIMIT ? " +
-                "OFFSET ? ";
-
-        return jdbcTemplate.query(sql, new Object[]{cityId, limit, offset}, roomMapper.mapRow(guestId));
-    }
-
-    public Object findRoomSummary(
-            int cityId,
             int guests,
             int minPrice,
             int maxPrice,
@@ -73,9 +55,11 @@ public class RoomDao {
                 "WHERE (check_in >= ? AND check_out <= ?) " +
                 "OR (check_in <= ? AND check_out >= ?) " +
                 "OR (check_in <= ? AND check_out > ?) " +
-                "OR (check_out > ? AND check_in < ?))";
+                "OR (check_out > ? AND check_in < ?))" +
+                "LIMIT ? " +
+                "OFFSET ? ";
 
-        return jdbcTemplate.query(sql, new Object[]{cityId, guests, minPrice, maxPrice, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut}, rowMapper);
+        return jdbcTemplate.query(sql, new Object[]{cityId, guests, minPrice, maxPrice, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut, limit, offset}, rowMapper);
     }
 
     public PriceDto findPriceFilterData(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
