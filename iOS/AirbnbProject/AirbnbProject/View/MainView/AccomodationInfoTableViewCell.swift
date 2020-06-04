@@ -16,7 +16,7 @@ class AccomodationInfoTableViewCell: UITableViewCell {
 
     static let identifier = "AccomodationInfoTableViewCell"
 
-    var models = [Model]()
+    var models = [RoomInfo]()
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,7 +38,7 @@ class AccomodationInfoTableViewCell: UITableViewCell {
         pageControl.hidesForSinglePage = true
     }
     
-    func configure(with models: [Model]) {
+    func configure(with models: [RoomInfo]) {
         self.models = models
         DispatchQueue.main.async {
             self.thumbnailImageCollectionView.reloadData()

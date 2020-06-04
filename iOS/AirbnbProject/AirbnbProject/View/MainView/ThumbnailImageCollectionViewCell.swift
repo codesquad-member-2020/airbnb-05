@@ -22,7 +22,7 @@ class ThumbnailImageCollectionViewCell: UICollectionViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
 
-    public func configure(with model: Model) {
+    public func configure(with model: RoomInfo) {
         self.myImage.image = UIImage(systemName: "paperplane.fill")
     }
 }

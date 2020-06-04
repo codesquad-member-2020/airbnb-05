@@ -12,28 +12,32 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var infoTableView: UITableView!
     
-    private var selectedCityId: Int?
-    var models = [Model]()
+    private var offset = 0
+    private var guestCount: Int?
+    private var bookingDate: (String, String)?
+    private var priceRange: (String, String)?
+
+    var selectedCityId: Int?
+    var models: [RoomInfo]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpNotification()
         setupTableView()
-        models.append(Model(imageName: "bye", isFavorite: true))
-        models.append(Model(imageName: "bye", isFavorite: false))
-        models.append(Model(imageName: "bye", isFavorite: true))
-        models.append(Model(imageName: "bye", isFavorite: false))
     }
     
-    private func setUpNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(setSelectedCityId), name: .cityIdFromCityViewController, object: nil)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == GuestFilterViewController.segueName {
+            let viewController = segue.destination as! GuestFilterViewController
+            viewController.guestDelegate = self
+        } else if segue.identifier == CalendarViewController.segueName {
+            let viewController = segue.destination as! CalendarViewController
+            viewController.dateDelegate = self
+        } else if segue.identifier == PriceFilterViewController.segueName {
+           let viewController = segue.destination as! PriceFilterViewController
+            viewController.priceDelegate = self
+        }
     }
-    
-    @objc private func setSelectedCityId(_ notification : Notification) {
-        guard let cityId = notification.userInfo?[UserInfoKey.cityId] as? Int else { return }
-        self.selectedCityId = cityId
-    }
-    
+        
     private func setupTableView() {
         infoTableView.register(AccomodationInfoTableViewCell.nib(), forCellReuseIdentifier: AccomodationInfoTableViewCell.identifier)
         infoTableView.dataSource = self
@@ -53,7 +57,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return models.count
+        return models?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,13 +66,11 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = infoTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
+        guard let models = models else { return UITableViewCell() }
         cell.configure(with: models)
-        
-        
-        cell.favoriteButton.isFavorite = models[indexPath.row].isFavorite
+        cell.favoriteButton.isFavorite = models[indexPath.row].favorite
         let favoriteButtonManager = FavoriteButtonManager(isFavorite: cell.favoriteButton.isFavorite!)
         cell.setFavoriteButtonUI(view: cell.favoriteButton, manager: favoriteButtonManager)
-        
         
         return cell
     }
@@ -96,6 +98,31 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return tableView.frame.width / 10
+    }
+}
+
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        if distanceFromBottom < height {
+            print("end of table view")
+        }
+    }
+}
+
+extension MainViewController: SendDataDelegate {
+    func sendData(data: String) {
+        guestCount = Int(data)!
+    }
+    
+    func sendDate(first: String, second: String) {
+        bookingDate = (first, second)
+    }
+    
+    func sendPrice(first: String, second: String) {
+        priceRange = (first, second)
     }
 }
 

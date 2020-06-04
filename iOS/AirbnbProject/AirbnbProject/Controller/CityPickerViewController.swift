@@ -25,6 +25,13 @@ class CityPickerViewController: UIViewController {
         setupPickerView()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let mainTabView = segue.destination as? UITabBarController else { return }
+        guard let mainListView = mainTabView.viewControllers?.first as? MainViewController else { return }
+        
+        mainListView.selectedCityId = selectedCityId
+    }
+    
     private func configureCityList() {
         DataUseCase.getCityList(manager: NetworkManager()) { (cityList) in
             self.cities = cityList
@@ -46,10 +53,6 @@ class CityPickerViewController: UIViewController {
         gradient.frame = view.bounds
         gradient.colors = [ UIColor.airbnbKeyColor!.cgColor, UIColor.airbnbKeyColor!.cgColor, UIColor.coralPink!.cgColor, UIColor.lightPeachPink!.cgColor]
         coloredBackgroundView.layer.addSublayer(gradient)
-    }
-    
-    @IBAction func buttonTapped(_ sender: UIButton) {
-        NotificationCenter.default.post(name: .cityIdFromCityViewController, object: nil, userInfo: [UserInfoKey.cityId : self.selectedCityId!])
     }
 }
 extension CityPickerViewController: UIPickerViewDataSource {

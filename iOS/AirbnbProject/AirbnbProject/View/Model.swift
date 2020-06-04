@@ -19,7 +19,7 @@ struct Model {
 // MARK: 도시 리스트
 struct CityListInfo: Codable {
     let status_code: Int
-    let data : [CityInfo]
+    let data: [CityInfo]
 }
 
 struct CityInfo: Codable {

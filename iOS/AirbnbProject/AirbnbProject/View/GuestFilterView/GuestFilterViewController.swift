@@ -13,6 +13,8 @@ class GuestFilterViewController: UIViewController {
     @IBOutlet weak var filterHeaderView: FilterHeaderView!
     @IBOutlet weak var filterFooterView: FilterFooterView!
     @IBOutlet weak var filterStackView: UIStackView!
+     
+    static let segueName = "guestFilterSegue"
     
     private var totalCount = 0 {
         didSet {
@@ -20,6 +22,8 @@ class GuestFilterViewController: UIViewController {
         }
     }
     private var filterViewManager: CountButtonManager!
+    
+    var guestDelegate: SendDataDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +65,7 @@ class GuestFilterViewController: UIViewController {
     }
     
     @objc private func fixUpGuestCount() {
+        guestDelegate?.sendData?(data: String(totalCount))
         self.dismiss(animated: true, completion: nil)
     }
     

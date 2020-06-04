@@ -9,7 +9,7 @@
 import Foundation
 
 class BookingManager {
-
+    
     var firstSelectedCellIndexPath: IndexPath?
     var secondSelectedCellIndexPath: IndexPath? {
         didSet {
@@ -91,12 +91,21 @@ class BookingManager {
     
     func getCheckInDay() -> String {
         guard let checkInDay = firstSelectedCellIndexPath else { return "Check In" }
-        return selectedCells[checkInDay]!.dayLabel.text!
+        var day = selectedCells[checkInDay]!.dayLabel.text!
+        if Int(day)! < 10 {
+            day = "0"+day
+        }
+        
+        return day
     }
     
     func getCheckOutDay() -> String {
         guard let checkOutDay = secondSelectedCellIndexPath else { return "Check Out" }
-        return selectedCells[checkOutDay]!.dayLabel.text!
+        var day = selectedCells[checkOutDay]!.dayLabel.text!
+        if Int(day)! < 10 {
+            day = "0"+day
+        }
+        return day
     }
     
     func isSelectedAllDate() -> Bool {

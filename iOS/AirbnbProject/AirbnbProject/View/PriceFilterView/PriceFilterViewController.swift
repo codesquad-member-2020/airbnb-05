@@ -13,6 +13,8 @@ class PriceFilterViewController: UIViewController {
     @IBOutlet weak var priceRangeView: UIView!
     @IBOutlet weak var priceRangeLabel: UILabel!
     @IBOutlet weak var averagePriceLabel: UILabel!
+    @IBOutlet weak var filterHeaderView: FilterHeaderView!
+    @IBOutlet weak var filterFooterView: FilterFooterView!
     
     private var priceBarGraph =  PriceBarGraphView()
     private var rangeMarkingUpperView = UIView()
@@ -20,22 +22,29 @@ class PriceFilterViewController: UIViewController {
     private var lowerValue: Int = 10_000
     private var upperValue: Int = 1_400_000
     
+    var priceDelegate: SendDataDelegate?
+    
+    static let segueName = "priceFilterSegue"
     let rangeSlider = RangeSlider()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         rangeMarkingLowerView.backgroundColor = .white
-        rangeMarkingLowerView.alpha = 0.5
         rangeMarkingUpperView.backgroundColor = .white
-        rangeMarkingUpperView.alpha = 0.5
         
         priceRangeView.addSubview(priceBarGraph)
         priceRangeView.addSubview(rangeSlider)
         priceRangeView.addSubview(rangeMarkingUpperView)
         priceRangeView.addSubview(rangeMarkingLowerView)
         
+        filterFooterView.completeButton.backgroundColor = .systemPink
+        filterFooterView.completeButton.isEnabled = true
+        
         rangeSlider.addTarget(self, action: #selector(rangeSliderValueChanged), for: .valueChanged)
+        filterHeaderView.closeButton.addTarget(self, action: #selector(closeWindow), for: .touchUpInside)
+        filterFooterView.completeButton.addTarget(self, action: #selector(fixUpPrice), for: .touchUpInside)
+        filterFooterView.initializationButton.addTarget(self, action: #selector(initializer), for: .touchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,6 +62,9 @@ class PriceFilterViewController: UIViewController {
     }
     
     @objc func rangeSliderValueChanged() {
+        rangeMarkingLowerView.alpha = 0.5
+        rangeMarkingUpperView.alpha = 0.5
+        
         let maximumValuePosition = CGFloat(rangeSlider.positionForValue(value: rangeSlider.maximumValue))
         let lowerValuePosition = CGFloat(rangeSlider.positionForValue(value: rangeSlider.lowerValue))
         let upperValuePosition = CGFloat(rangeSlider.positionForValue(value: rangeSlider.upperValue))
@@ -73,5 +85,25 @@ class PriceFilterViewController: UIViewController {
         self.rangeMarkingLowerView.frame = CGRect(x: self.priceBarGraph.frame.origin.x, y: self.priceBarGraph.frame.origin.y, width: lowerValuePosition - self.rangeSlider.thumbWidth/4, height: self.priceBarGraph.frame.height)
         
         self.rangeMarkingUpperView.frame = CGRect(x: upperValuePosition + self.rangeSlider.thumbWidth*1.75, y: self.priceBarGraph.frame.origin.y, width: maximumValuePosition - upperValuePosition, height: self.priceBarGraph.frame.height)
+    }
+    
+    @objc private func closeWindow() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func initializer() {
+        self.lowerValue = 10000
+        self.upperValue = Int(self.rangeSlider.maximumValue)
+        self.rangeSlider.lowerValue = self.rangeSlider.minimumValue
+        self.rangeSlider.upperValue = self.rangeSlider.maximumValue
+        self.rangeSlider.updateLayerFrames()
+        rangeMarkingLowerView.alpha = 0
+        rangeMarkingUpperView.alpha = 0
+        self.priceRangeLabel.text = "₩\(self.lowerValue) - ₩\(self.upperValue)+"
+    }
+    
+    @objc private func fixUpPrice() {
+        priceDelegate?.sendPrice?(first: String(lowerValue), second: String(upperValue))
+        self.dismiss(animated: true, completion: nil)
     }
 }

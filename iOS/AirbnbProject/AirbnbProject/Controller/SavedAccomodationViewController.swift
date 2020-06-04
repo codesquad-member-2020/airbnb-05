@@ -12,15 +12,11 @@ class SavedAccomodationViewController: UIViewController {
     
     @IBOutlet weak var savedAccomodationTableView: UITableView!
 
-    var savedAccomodations = [Model]()
+    var savedAccomodations: [RoomInfo]?
         
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        savedAccomodations.append(Model(imageName: "bye", isFavorite: true))
-        savedAccomodations.append(Model(imageName: "bye", isFavorite: false))
-        savedAccomodations.append(Model(imageName: "bye", isFavorite: true))
-        savedAccomodations.append(Model(imageName: "bye", isFavorite: false))
     }
 
     private func setupTableView() {
@@ -42,7 +38,7 @@ class SavedAccomodationViewController: UIViewController {
 extension SavedAccomodationViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return savedAccomodations.count
+        return savedAccomodations?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,9 +47,10 @@ extension SavedAccomodationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = savedAccomodationTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
+        guard let savedAccomodations = savedAccomodations else { return UITableViewCell() }
         cell.configure(with: savedAccomodations)
         
-        cell.favoriteButton.isFavorite = savedAccomodations[indexPath.row].isFavorite
+        cell.favoriteButton.isFavorite = savedAccomodations[indexPath.row].favorite
         let favoriteButtonManager = FavoriteButtonManager(isFavorite: cell.favoriteButton.isFavorite!)
         cell.setFavoriteButtonUI(view: cell.favoriteButton, manager: favoriteButtonManager)
         

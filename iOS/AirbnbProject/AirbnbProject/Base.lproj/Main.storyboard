@@ -74,7 +74,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <segue destination="K25-IC-RaL" kind="show" id="IVb-cI-d4Y"/>
+                                                            <segue destination="K25-IC-RaL" kind="show" identifier="dateFilterSegue" id="IVb-cI-d4Y"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYB-pl-Jgv">
@@ -106,7 +106,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <segue destination="TFC-Dp-IlC" kind="show" id="7gN-85-xEN"/>
+                                                            <segue destination="TFC-Dp-IlC" kind="show" identifier="guestFilterSegue" id="7gN-85-xEN"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q83-gD-WLE">
@@ -138,7 +138,7 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <segue destination="r2j-SJ-x30" kind="show" id="Rpy-7e-9Ne"/>
+                                                            <segue destination="r2j-SJ-x30" kind="show" identifier="priceFilterSegue" id="Rpy-7e-9Ne"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -649,6 +649,8 @@
                     <navigationItem key="navigationItem" id="xea-SI-fqw"/>
                     <connections>
                         <outlet property="averagePriceLabel" destination="TCN-Vs-xdw" id="kma-dP-ddb"/>
+                        <outlet property="filterFooterView" destination="sOR-TZ-mp2" id="tpW-Sc-Lvd"/>
+                        <outlet property="filterHeaderView" destination="lc2-0h-eKi" id="o4t-Lu-Nhd"/>
                         <outlet property="priceRangeLabel" destination="agH-5S-CA8" id="iR5-Rz-TRj"/>
                         <outlet property="priceRangeView" destination="zJa-yd-zfh" id="eXX-LK-0Q4"/>
                     </connections>
@@ -758,7 +760,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="buttonTapped:" destination="tKx-id-OoW" eventType="touchUpInside" id="s5v-9w-Suo"/>
                                     <segue destination="49e-Tb-3d3" kind="presentation" identifier="" modalPresentationStyle="fullScreen" id="t5V-Zs-XnF"/>
                                 </connections>
                             </button>
