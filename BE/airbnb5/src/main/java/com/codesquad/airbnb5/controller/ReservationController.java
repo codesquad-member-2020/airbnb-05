@@ -19,7 +19,7 @@ public class ReservationController {
     @PostMapping("/{roomId}")
     public ResponseEntity<ResponseDto> reserveRoom(
             @PathVariable("roomId") int roomId,
-            @RequestParam("guestId") int guestId,
+            @RequestAttribute("guestId") int guestId,
             @RequestParam(value = "checkIn") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
             @RequestParam(value = "checkOut") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut,
             @RequestParam("guests") int guests) {
@@ -29,7 +29,7 @@ public class ReservationController {
 
     @DeleteMapping("")
     public ResponseEntity<ResponseDto> cancelReservation(
-            @RequestParam("guestId") int guestId,
+            @RequestAttribute("guestId") int guestId,
             @RequestParam("reservationId") int reservationId) {
         ResponseDto responseDto = reservationService.deleteReservation(reservationId);
         return ResponseEntity.ok().body(responseDto);
@@ -37,7 +37,7 @@ public class ReservationController {
 
     @GetMapping("")
     public ResponseEntity<ResponseDto> getReservationList(
-            @RequestParam("guestId") int guestId) {
+            @RequestAttribute("guestId") int guestId) {
         ResponseDto responseDto = reservationService.getReservationList(guestId);
         return ResponseEntity.ok().body(responseDto);
     }

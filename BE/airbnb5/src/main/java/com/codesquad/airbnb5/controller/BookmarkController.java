@@ -22,7 +22,7 @@ public class BookmarkController {
     @PostMapping("/{roomId}")
     public ResponseEntity<ResponseDto> addBookmark(
             @PathVariable("roomId") int roomId,
-            @RequestParam("guestId") int guestId) {
+            @RequestAttribute("guestId") int guestId) {
         ResponseDto responseDto = bookmarkService.addFavoriteStatus(roomId, guestId);
         return ResponseEntity.ok().body(responseDto);
     }
@@ -30,14 +30,14 @@ public class BookmarkController {
     @DeleteMapping("/{roomId}")
     public ResponseEntity<ResponseDto> deleteBookmark(
             @PathVariable("roomId") int roomId,
-            @RequestParam("guestId") int guestId) {
+            @RequestAttribute("guestId") int guestId) {
         ResponseDto responseDto = bookmarkService.deleteFavoriteStatus(roomId, guestId);
         return ResponseEntity.ok().body(responseDto);
     }
 
     @GetMapping("")
     public ResponseEntity<ResponseDto> getBookmarks(
-            @RequestParam("guestId") int guestId) throws SQLException {
+            @RequestAttribute("guestId") int guestId) throws SQLException {
         ResponseDto responseDto = bookmarkService.getBookmarkList(guestId, roomMapper);
         return ResponseEntity.ok().body(responseDto);
     }
