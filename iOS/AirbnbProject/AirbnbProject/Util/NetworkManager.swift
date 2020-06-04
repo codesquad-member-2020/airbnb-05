@@ -22,6 +22,10 @@ enum NetworkErrorCase : Error {
 enum EndPoints {
     static let basicEndPoint = "http://52.6.242.151:8080"
     static let requestCityList = basicEndPoint + "/cities"
+    
+    static func requestPriceURL(cityId: String) -> String {
+        return requestCityList + "/\(cityId)/prices"
+    }
     static func requestAccomodationURL(cityId: Int) -> String {
         return requestCityList + "/\(cityId)/rooms"
     }
@@ -45,6 +49,24 @@ enum EndPoints {
         }
         
         return try! JSONEncoder().encode(param)
+    }
+    
+    static func requestPriceList(checkIn: String?, checkOut: String?, guests: Int?) -> Data? {
+        var param = [String:String]()
+        
+        if checkOut != nil {
+            param["checkIn"] = checkIn
+            param["checkOut"] = checkOut
+        }
+        if guests != nil {
+            param["guests"] = String(guests!)
+        }
+        
+        if param.isEmpty {
+            return nil
+        }
+        
+        return try? JSONEncoder().encode(param)
     }
 }
 

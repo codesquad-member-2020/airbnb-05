@@ -26,4 +26,13 @@ struct DataUseCase {
             completion(accomodationListInfo?.data)
         }
     }
+    
+    static func getPriceList(manager: NetworkManager, cityId: String, paramData: Data?, completion: @escaping (PriceInfo?) -> ()) {
+        manager.requestData(url: EndPoints.requestPriceURL(cityId: cityId), method: .get, body: paramData) { (data, _, error) in
+            guard let data = data else { completion(nil); return }
+            
+            guard let priceListInfo = try? JSONDecoder().decode(PriceListInfo.self, from: data) else {completion(nil); return }
+            completion(priceListInfo.data)
+        }
+    }
 }

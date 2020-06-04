@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
 
     var selectedCityId: Int?
     var models: [RoomInfo]?
+    var priceSetUpDelegate: SendDataDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +35,9 @@ class MainViewController: UIViewController {
             viewController.dateDelegate = self
         } else if segue.identifier == PriceFilterViewController.segueName {
            let viewController = segue.destination as! PriceFilterViewController
-            viewController.priceDelegate = self
+            viewController.cityId = self.selectedCityId
+            viewController.guestCount = self.guestCount
+            viewController.bookingDate = self.bookingDate
         }
     }
         
