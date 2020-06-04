@@ -21,9 +21,16 @@ class MainViewController: UIViewController {
     var models: [RoomInfo]?
     var priceSetUpDelegate: SendDataDelegate?
     
+    /*
+    override func viewWillAppear(_ animated: Bool) {
+        configureAccomodationList()
+    }
+ */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        configureAccomodationList()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,6 +61,16 @@ class MainViewController: UIViewController {
         let tapLocation = sender.location(in: self.infoTableView)
         guard let tappedCellIndexPath = self.infoTableView.indexPathForRow(at: tapLocation) else {return}
         let tappedCell = self.infoTableView.cellForRow(at: tappedCellIndexPath) as! AccomodationInfoTableViewCell
+    }
+    
+    private func configureAccomodationList() {
+        let param = EndPoints.requestAccomodationList(offset: 0, checkIn: bookingDate?.0, checkOut: bookingDate?.1, guests: guestCount, minPrice: priceRange?.0, maxPrice: priceRange?.1)
+        DataUseCase.getAccomodationList(manager: NetworkManager(), cityId: self.selectedCityId!, paramData: param) { roomInfoList in
+            self.models = roomInfoList
+            DispatchQueue.main.async {
+                self.infoTableView.reloadData()
+            }
+        }
     }
 }
 

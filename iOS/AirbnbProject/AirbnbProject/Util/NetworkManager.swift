@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 protocol NetworkManagable {
-    func requestData(url: String, method: HTTPMethod, body: Data?, completion: @escaping (Data?, HTTPURLResponse?, NetworkErrorCase?) -> ())
+    func requestData(url: String, method: HTTPMethod, body: Data?, paramData: [URLQueryItem]?, completion: @escaping (Data?, HTTPURLResponse?, NetworkErrorCase?) -> ())
 }
 
 enum NetworkErrorCase : Error {
@@ -27,54 +27,57 @@ enum EndPoints {
         return requestCityList + "/\(cityId)/prices"
     }
     static func requestAccomodationURL(cityId: Int) -> String {
-        return requestCityList + "/\(cityId)/rooms"
+        return requestCityList + "/\(cityId)"
     }
     
-    static func requestAccomodationList(offset: Int, checkIn: String?, checkOut: String?, guests: String?, minPrice: String?, maxPrice: String?) -> Data {
-        var param = [String:String]()
+    static func requestAccomodationList(offset: Int, checkIn: String?, checkOut: String?, guests: Int?, minPrice: String?, maxPrice: String?) -> [URLQueryItem] {
+        var queryItems = [URLQueryItem]()
         
-        param["limit"] = "10"
-        param["offset"] = String(offset)
+        queryItems.append(URLQueryItem(name: "limit", value: "10"))
+        queryItems.append(URLQueryItem(name: "offset", value: "\(offset)"))
         
         if checkOut != nil {
-            param["checkIn"] = checkIn
-            param["checkOut"] = checkOut
+            queryItems.append(URLQueryItem(name: "checkIn", value: checkIn))
+            queryItems.append(URLQueryItem(name: "checkOut", value: checkOut))
         }
         if guests != nil {
-            param["guests"] = guests!
+            queryItems.append(URLQueryItem(name: "guests", value: "\(guests!)"))
         }
         if maxPrice != nil {
-            param["minPrice"] = minPrice!
-            param["maxPrice"] = maxPrice!
+            queryItems.append(URLQueryItem(name: "minPrice", value: minPrice))
+            queryItems.append(URLQueryItem(name: "maxPrice", value: maxPrice))
         }
         
-        return try! JSONEncoder().encode(param)
+        return queryItems
     }
     
-    static func requestPriceList(checkIn: String?, checkOut: String?, guests: Int?) -> Data? {
-        var param = [String:String]()
+    static func requestPriceList(checkIn: String?, checkOut: String?, guests: Int?) -> [URLQueryItem]? {
+        var queryItems = [URLQueryItem]()
         
         if checkOut != nil {
-            param["checkIn"] = checkIn
-            param["checkOut"] = checkOut
+            queryItems.append(URLQueryItem(name: "checkIn", value: checkIn))
+            queryItems.append(URLQueryItem(name: "checkOut", value: checkOut))
         }
         if guests != nil {
-            param["guests"] = String(guests!)
+            queryItems.append(URLQueryItem(name: "guests", value: "\(guests!)"))
         }
         
-        if param.isEmpty {
+        if queryItems.isEmpty {
             return nil
         }
         
-        return try? JSONEncoder().encode(param)
+        return queryItems
     }
 }
 
 class NetworkManager: NetworkManagable {
     
-    func requestData(url: String, method: HTTPMethod, body: Data?, completion: @escaping (Data?, HTTPURLResponse?, NetworkErrorCase?) -> ()) {
+    func requestData(url: String, method: HTTPMethod, body: Data?, paramData: [URLQueryItem]?, completion: @escaping (Data?, HTTPURLResponse?, NetworkErrorCase?) -> ()) {
         
-        guard let url = URL(string: url) else { completion(nil, nil, .InvalidURL); return }
+        var urlComponents = URLComponents(string: url)
+        urlComponents?.queryItems = paramData
+        
+        guard let url = urlComponents?.url else { completion(nil, nil, .InvalidURL); return }
         
         AF.request(url, method: method, parameters: body)
             .validate()
