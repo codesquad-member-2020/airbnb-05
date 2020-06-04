@@ -13,10 +13,6 @@ VALUES (1, 'Asheville'),
        (11, 'Santa Cruz'),
        (12, 'Seattle');
 
-INSERT INTO user
-    (user_id, user_name, user_email)
-VALUES (1, 'poogle', 'poogle@gmail.com');
-
 insert into bookmark (guest_id, room_id)
 VALUES (1, 1),
        (1, 2),
