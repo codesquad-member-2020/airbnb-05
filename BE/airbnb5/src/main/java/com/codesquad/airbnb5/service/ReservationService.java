@@ -1,12 +1,11 @@
 package com.codesquad.airbnb5.service;
 
+import com.codesquad.airbnb5.auth.vo.BookingInfo;
 import com.codesquad.airbnb5.dao.ReservationDao;
 import com.codesquad.airbnb5.domain.RoomRepository;
 import com.codesquad.airbnb5.dto.ResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Service
 public class ReservationService {
@@ -16,8 +15,8 @@ public class ReservationService {
     @Autowired
     private RoomRepository roomRepository;
 
-    public ResponseDto addReservation(int roomId, int guestId, LocalDate checkIn, LocalDate checkOut, int guests) {
-        reservationDao.addReservation(roomId, guestId, checkIn, checkOut, guests);
+    public ResponseDto addReservation(int guestId, BookingInfo bookingInfo) {
+        reservationDao.addReservation(bookingInfo.getRoomId(), guestId, bookingInfo.getCheckIn(), bookingInfo.getCheckOut(), bookingInfo.getGuests());
         return new ResponseDto(200);
     }
 

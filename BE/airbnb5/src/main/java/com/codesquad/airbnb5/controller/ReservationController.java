@@ -1,13 +1,12 @@
 package com.codesquad.airbnb5.controller;
 
+import com.codesquad.airbnb5.auth.vo.BookingInfo;
+import com.codesquad.airbnb5.auth.vo.ReservationVo;
 import com.codesquad.airbnb5.dto.ResponseDto;
 import com.codesquad.airbnb5.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 
 @RequestMapping("/reservation")
 @RestController
@@ -18,19 +17,23 @@ public class ReservationController {
 
     @PostMapping("/{roomId}")
     public ResponseEntity<ResponseDto> reserveRoom(
-            @PathVariable("roomId") int roomId,
             @RequestAttribute("guestId") int guestId,
-            @RequestParam(value = "checkIn") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
-            @RequestParam(value = "checkOut") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut,
-            @RequestParam("guests") int guests) {
-        ResponseDto responseDto = reservationService.addReservation(roomId, guestId, checkIn, checkOut, guests);
+            @PathVariable("roomId") int roomId,
+            @RequestBody ReservationVo reservationVo) {
+        BookingInfo bookingInfo = BookingInfo.builder()
+                .roomId(roomId)
+                .checkIn(reservationVo.getCheckIn())
+                .checkOut(reservationVo.getCheckOut())
+                .guests(reservationVo.getGuests())
+                .build();
+        ResponseDto responseDto = reservationService.addReservation(guestId, bookingInfo);
         return ResponseEntity.ok().body(responseDto);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/{reservationId}")
     public ResponseEntity<ResponseDto> cancelReservation(
             @RequestAttribute("guestId") int guestId,
-            @RequestParam("reservationId") int reservationId) {
+            @PathVariable("reservationId") int reservationId) {
         ResponseDto responseDto = reservationService.deleteReservation(reservationId);
         return ResponseEntity.ok().body(responseDto);
     }
