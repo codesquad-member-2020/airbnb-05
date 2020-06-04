@@ -13,10 +13,14 @@ class AccomodationInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var thumbnailImageCollectionView: UICollectionView!
     @IBOutlet weak var favoriteButton: FavoriteButton!
-
+    @IBOutlet weak var starRateAndReviewLabel: UILabel!
+    @IBOutlet weak var accomodationTypeAndBedCountLabel: UILabel!
+    @IBOutlet weak var superhostLabel: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     static let identifier = "AccomodationInfoTableViewCell"
 
-    var models = [RoomInfo]()
+    var models: RoomInfo? // 배열이 아니라 하나
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +35,15 @@ class AccomodationInfoTableViewCell: UITableViewCell {
         return UINib(nibName: identifier, bundle: nil)
     }
     
+    private func setupAccomodationView() {
+        starRateAndReviewLabel.text = "⭐️\(models!.scores) (\(models!.reviews))"
+        if !models!.is_super_host {
+            superhostLabel.isHidden = true
+        }
+        accomodationTypeAndBedCountLabel.text = "\(models!.room_type) / \(models!.beds) bed"
+        titleLabel.text = models?.room_name
+    }
+    
     private func setupCollectionView() {
         thumbnailImageCollectionView.register(ThumbnailImageCollectionViewCell.nib() , forCellWithReuseIdentifier: ThumbnailImageCollectionViewCell.identifier)
         thumbnailImageCollectionView.dataSource = self
@@ -38,8 +51,9 @@ class AccomodationInfoTableViewCell: UITableViewCell {
         pageControl.hidesForSinglePage = true
     }
     
-    func configure(with models: [RoomInfo]) {
+    func configure(with models: RoomInfo) {
         self.models = models
+        setupAccomodationView()
         DispatchQueue.main.async {
             self.thumbnailImageCollectionView.reloadData()
         }
@@ -60,12 +74,12 @@ class AccomodationInfoTableViewCell: UITableViewCell {
 
 extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return models.count
+        return (models?.image_lists.count ?? 0) + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailImageCollectionViewCell.identifier, for: indexPath) as! ThumbnailImageCollectionViewCell
-        cell.configure(with: models[indexPath.row])
+        // 여기서 이미지 URL 패치해서 이미지를 넣어줘야 함.
         return cell
     }
     
@@ -76,7 +90,7 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        self.pageControl.numberOfPages = self.models.count
+        self.pageControl.numberOfPages = self.models?.image_lists.count ?? 0 + 1
         self.pageControl.pageIndicatorTintColor = .darkGray
         self.pageControl.currentPage = indexPath.row
     }

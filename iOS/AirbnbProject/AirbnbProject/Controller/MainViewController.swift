@@ -87,7 +87,7 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = infoTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
         guard let models = models else { return UITableViewCell() }
-        cell.configure(with: models)
+        cell.configure(with: models[indexPath.section])
         cell.favoriteButton.isFavorite = models[indexPath.row].favorite
         let favoriteButtonManager = FavoriteButtonManager(isFavorite: cell.favoriteButton.isFavorite!)
         cell.setFavoriteButtonUI(view: cell.favoriteButton, manager: favoriteButtonManager)
