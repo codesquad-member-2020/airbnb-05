@@ -28,9 +28,15 @@ struct CityInfo: Codable {
 }
 
 // MARK: 가격 필터링
-struct PriceInfo: Codable {
+struct PriceListInfo: Codable {
     let status_code: Int
-    let data : String //average_price
+    let data : PriceInfo
+}
+
+struct PriceInfo: Codable {
+    let average: Double
+    let sale_prices: [Int]
+    let count_list: [Int]
 }
 
 // MARK: 메인 화면, 즐겨찾기 탭
@@ -52,6 +58,9 @@ struct RoomInfo: Codable {
     let scores: Double
     let reviews: Int
     let favorite: Bool
+    let image_lists: [String]
+    let latitude: Double
+    let longitude: Double
 }
 
 struct Response: Codable {

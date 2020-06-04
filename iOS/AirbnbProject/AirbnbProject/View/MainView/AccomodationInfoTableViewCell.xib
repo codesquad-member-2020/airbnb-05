@@ -130,9 +130,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="accomodationTypeAndBedCountLabel" destination="8zP-SY-qbM" id="uUz-T5-fsa"/>
                 <outlet property="favoriteButton" destination="l7k-h8-5EW" id="RVv-eo-bKF"/>
                 <outlet property="pageControl" destination="k6n-Zw-OUN" id="MUc-6Q-KkU"/>
+                <outlet property="starRateAndReviewLabel" destination="Sbo-4K-KWA" id="ztu-6U-yUQ"/>
+                <outlet property="superhostLabel" destination="fSa-39-7i9" id="JkI-8I-iXG"/>
                 <outlet property="thumbnailImageCollectionView" destination="U6g-kv-vJ7" id="pLW-sa-rWL"/>
+                <outlet property="titleLabel" destination="HEe-5L-Oew" id="58x-lG-kTa"/>
             </connections>
             <point key="canvasLocation" x="148.55072463768118" y="237.05357142857142"/>
         </tableViewCell>

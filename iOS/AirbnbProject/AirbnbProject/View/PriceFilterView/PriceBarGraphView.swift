@@ -10,7 +10,12 @@ import UIKit
 
 class PriceBarGraphView: UIView {
     
-    var numberOfAccommodationByPriceRange: [CGFloat] = [0, 10,20,30,20,40, 10,20, 10, 10,20,50,20,20,40, 10,20, 10,20,30,0, 10,20,20,40, 10,20, 10,20,50,20,40, 30,70,0]
+    var numberOfAccommodationByPriceRange: [CGFloat] = [] {
+        didSet {
+            drawPriceBarGraph()
+        }
+    }
+    var graphWidth = CGFloat()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,13 +26,13 @@ class PriceBarGraphView: UIView {
         super.init(coder: coder)
         self.backgroundColor = .white
     }
-    
+
     override func draw(_ rect: CGRect) {
-        let graphWidth: CGFloat = self.frame.width / CGFloat((numberOfAccommodationByPriceRange.count * 2 - 1))
-        drawPriceBarGraph(width: graphWidth)
+        drawPriceBarGraph()
     }
     
-    func drawPriceBarGraph(width: CGFloat) {
+    func drawPriceBarGraph() {
+        let width = self.frame.width / CGFloat((numberOfAccommodationByPriceRange.count * 2 - 1))
         for (index, numberOfAccomodation) in numberOfAccommodationByPriceRange.enumerated(){
             let path = UIBezierPath()
             path.lineWidth = 3
@@ -40,5 +45,6 @@ class PriceBarGraphView: UIView {
             path.stroke()
             path.fill()
         }
+        self.setNeedsDisplay()
     }
 }

@@ -48,7 +48,7 @@ extension SavedAccomodationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = savedAccomodationTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
         guard let savedAccomodations = savedAccomodations else { return UITableViewCell() }
-        cell.configure(with: savedAccomodations)
+//        cell.configure(with: savedAccomodations)
         
         cell.favoriteButton.isFavorite = savedAccomodations[indexPath.row].favorite
         let favoriteButtonManager = FavoriteButtonManager(isFavorite: cell.favoriteButton.isFavorite!)

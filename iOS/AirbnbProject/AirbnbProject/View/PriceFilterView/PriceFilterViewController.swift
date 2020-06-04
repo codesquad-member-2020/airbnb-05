@@ -21,7 +21,10 @@ class PriceFilterViewController: UIViewController {
     private var rangeMarkingLowerView = UIView()
     private var lowerValue: Int = 10_000
     private var upperValue: Int = 1_400_000
-    
+
+    var cityId: Int?
+    var guestCount: Int?
+    var bookingDate: (String, String)?
     var priceDelegate: SendDataDelegate?
     
     static let segueName = "priceFilterSegue"
@@ -45,6 +48,8 @@ class PriceFilterViewController: UIViewController {
         filterHeaderView.closeButton.addTarget(self, action: #selector(closeWindow), for: .touchUpInside)
         filterFooterView.completeButton.addTarget(self, action: #selector(fixUpPrice), for: .touchUpInside)
         filterFooterView.initializationButton.addTarget(self, action: #selector(initializer), for: .touchUpInside)
+        
+        setUpPriceFilterView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -105,5 +110,15 @@ class PriceFilterViewController: UIViewController {
     @objc private func fixUpPrice() {
         priceDelegate?.sendPrice?(first: String(lowerValue), second: String(upperValue))
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func setUpPriceFilterView() {
+        let paramData = EndPoints.requestPriceList(checkIn: bookingDate?.0, checkOut: bookingDate?.1, guests: guestCount)
+        DataUseCase.getPriceList(manager: NetworkManager(), cityId: String(cityId!), paramData: paramData) { (priceInfo) in
+            guard let priceInfo = priceInfo else { return }
+            self.averagePriceLabel.text = "The average nightly price is ₩\(priceInfo.average)"
+            let salePrices = priceInfo.count_list.map{CGFloat($0)}
+            self.priceBarGraph.numberOfAccommodationByPriceRange = salePrices
+        }
     }
 }

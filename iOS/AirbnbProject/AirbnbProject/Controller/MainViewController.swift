@@ -19,10 +19,18 @@ class MainViewController: UIViewController {
 
     var selectedCityId: Int?
     var models: [RoomInfo]?
+    var priceSetUpDelegate: SendDataDelegate?
+    
+    /*
+    override func viewWillAppear(_ animated: Bool) {
+        configureAccomodationList()
+    }
+ */
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        configureAccomodationList()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,7 +42,9 @@ class MainViewController: UIViewController {
             viewController.dateDelegate = self
         } else if segue.identifier == PriceFilterViewController.segueName {
            let viewController = segue.destination as! PriceFilterViewController
-            viewController.priceDelegate = self
+            viewController.cityId = self.selectedCityId
+            viewController.guestCount = self.guestCount
+            viewController.bookingDate = self.bookingDate
         }
     }
         
@@ -52,6 +62,16 @@ class MainViewController: UIViewController {
         guard let tappedCellIndexPath = self.infoTableView.indexPathForRow(at: tapLocation) else {return}
         let tappedCell = self.infoTableView.cellForRow(at: tappedCellIndexPath) as! AccomodationInfoTableViewCell
     }
+    
+    private func configureAccomodationList() {
+        let param = EndPoints.requestAccomodationList(offset: 0, checkIn: bookingDate?.0, checkOut: bookingDate?.1, guests: guestCount, minPrice: priceRange?.0, maxPrice: priceRange?.1)
+        DataUseCase.getAccomodationList(manager: NetworkManager(), cityId: self.selectedCityId!, paramData: param) { roomInfoList in
+            self.models = roomInfoList
+            DispatchQueue.main.async {
+                self.infoTableView.reloadData()
+            }
+        }
+    }
 }
 
 extension MainViewController: UITableViewDataSource {
@@ -67,7 +87,7 @@ extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = infoTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
         guard let models = models else { return UITableViewCell() }
-        cell.configure(with: models)
+        cell.configure(with: models[indexPath.section])
         cell.favoriteButton.isFavorite = models[indexPath.row].favorite
         let favoriteButtonManager = FavoriteButtonManager(isFavorite: cell.favoriteButton.isFavorite!)
         cell.setFavoriteButtonUI(view: cell.favoriteButton, manager: favoriteButtonManager)
