@@ -30,6 +30,9 @@ public class RoomDto {
     private final boolean isFavorite;
     @JsonProperty("image_lists")
     private List<String> detailImages;
-
+    @JsonProperty("latitude")
+    private final float latitude;
+    @JsonProperty("longitude")
+    private final float longitude;
 
 }

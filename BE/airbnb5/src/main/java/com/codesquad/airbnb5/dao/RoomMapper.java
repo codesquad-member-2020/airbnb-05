@@ -42,6 +42,8 @@ public class RoomMapper {
                         .scores(rs.getFloat("scores"))
                         .reviews(rs.getInt("reviews"))
                         .isFavorite(bool)
+                        .latitude(rs.getFloat("latitude"))
+                        .longitude(rs.getFloat("longitude"))
                         .build();
             }
         };
