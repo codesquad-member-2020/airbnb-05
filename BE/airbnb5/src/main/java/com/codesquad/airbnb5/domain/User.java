@@ -7,7 +7,8 @@ import lombok.Data;
 @Builder
 public class User {
 
-    private int id;
-    private String name;
-    private String email;
+    private int userIndex;
+    private int githubId;
+    private String githubName;
+    private String githubEmail;
 }
