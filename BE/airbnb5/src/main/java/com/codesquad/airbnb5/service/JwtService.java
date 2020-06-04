@@ -37,9 +37,9 @@ public class JwtService {
         String name = (String) claims.get("name");
         String email = (String) claims.get("email");
         return User.builder()
-                .id(id)
-                .name(name)
-                .email(email)
+                .githubId(id)
+                .githubName(name)
+                .githubEmail(email)
                 .build();
     }
 
@@ -52,9 +52,7 @@ public class JwtService {
 
     private Map<String, Object> createPayloads(User user) {
         Map<String, Object> payloads = new HashMap<>();
-        payloads.put("id", user.getId());
-        payloads.put("name", user.getName());
-        payloads.put("email", user.getEmail());
+        payloads.put("id", user.getUserIndex());
         return payloads;
     }
 }
