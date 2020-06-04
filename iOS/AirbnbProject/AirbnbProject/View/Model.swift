@@ -58,6 +58,9 @@ struct RoomInfo: Codable {
     let scores: Double
     let reviews: Int
     let favorite: Bool
+    let image_lists: [String]
+    let latitude: Double
+    let longitude: Double
 }
 
 struct Response: Codable {
