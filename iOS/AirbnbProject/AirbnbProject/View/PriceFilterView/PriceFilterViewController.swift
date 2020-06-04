@@ -117,7 +117,7 @@ class PriceFilterViewController: UIViewController {
         DataUseCase.getPriceList(manager: NetworkManager(), cityId: String(cityId!), paramData: paramData) { (priceInfo) in
             guard let priceInfo = priceInfo else { return }
             self.averagePriceLabel.text = "The average nightly price is ₩\(priceInfo.average)"
-            let salePrices = priceInfo.count_list.map {CGFloat($0)}
+            let salePrices = priceInfo.count_list.map{CGFloat($0)}
             self.priceBarGraph.numberOfAccommodationByPriceRange = salePrices
         }
     }
