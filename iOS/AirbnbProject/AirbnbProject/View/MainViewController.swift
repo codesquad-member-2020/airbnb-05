@@ -127,7 +127,7 @@ extension MainViewController: UIScrollViewDelegate {
         let contentYoffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom < height {
-            print("end of table view")
+            offset += 10
         }
     }
 }

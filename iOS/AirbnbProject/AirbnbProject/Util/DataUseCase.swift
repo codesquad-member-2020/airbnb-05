@@ -7,8 +7,12 @@
 //
 
 import Foundation
+import UIKit
+import AlamofireImage
 
 struct DataUseCase {
+    static let imgCache = AutoPurgingImageCache()
+    
     static func getCityList(manager: NetworkManager, completion: @escaping ([CityInfo]?) -> ()) {
         manager.requestData(url: EndPoints.requestCityList, method: .get, body: nil, paramData: nil) { (data, _, error) in
             guard let data = data else { completion(nil); return }
@@ -33,6 +37,23 @@ struct DataUseCase {
             
             guard let priceListInfo = try? JSONDecoder().decode(PriceListInfo.self, from: data) else {completion(nil); return }
             completion(priceListInfo.data)
+        }
+    }
+    
+    static func loadImg(manager: NetworkManager, imgUrl: String, completion: @escaping (UIImage?) -> ()) {
+        guard let url = URL(string: imgUrl) else { return }
+        let urlRequest = URLRequest(url: url)
+        let cacheKey = self.imgCache.imageCacheKey(for: urlRequest, withIdentifier: nil)
+        let image = self.imgCache.image(withIdentifier: cacheKey)
+        
+        if image != nil {
+            completion(image)
+        } else {
+            manager.fetchImage(imgURL: urlRequest) { (image) in
+                guard let image = image else { completion(nil); return }
+                self.imgCache.add(image, withIdentifier: cacheKey)
+                completion(image)
+            }
         }
     }
 }
