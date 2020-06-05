@@ -1,7 +1,7 @@
 package com.codesquad.airbnb5.dao;
 
 import com.codesquad.airbnb5.domain.RoomRepository;
-import com.codesquad.airbnb5.dto.ReservationDto;
+import com.codesquad.airbnb5.dto.ReservationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import java.time.LocalDate;
 
 @Repository
-public class ReservationDao {
+public class ReservationDAO {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -19,7 +19,7 @@ public class ReservationDao {
     private RoomRepository roomRepository;
 
     @Autowired
-    public ReservationDao(DataSource dataSource) {
+    public ReservationDAO(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -52,7 +52,7 @@ public class ReservationDao {
                 "WHERE guest_id = ? ";
 
         RowMapper<Object> reservationRowMapper = (rs, rowNum) -> {
-            return ReservationDto.builder()
+            return ReservationDTO.builder()
                     .reservationId(rs.getInt("reservation_id"))
                     .roomId(rs.getInt("room_id"))
                     .roomName(rs.getString("room_name"))

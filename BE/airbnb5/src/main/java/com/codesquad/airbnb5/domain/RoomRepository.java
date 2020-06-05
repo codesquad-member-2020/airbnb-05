@@ -1,10 +1,10 @@
 package com.codesquad.airbnb5.domain;
 
-import com.codesquad.airbnb5.dto.RoomDto;
+import com.codesquad.airbnb5.dto.RoomDTO;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 
-public interface RoomRepository extends CrudRepository<RoomDto, Integer> {
+public interface RoomRepository extends CrudRepository<RoomDTO, Integer> {
 
     @Query("SELECT room_name FROM room WHERE room_id = :roomId")
     String findRoomNameByRoomId(int roomId);

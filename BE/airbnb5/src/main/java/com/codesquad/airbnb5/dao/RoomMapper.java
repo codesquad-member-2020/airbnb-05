@@ -1,7 +1,7 @@
 package com.codesquad.airbnb5.dao;
 
-import com.codesquad.airbnb5.dto.RoomDetailDto;
-import com.codesquad.airbnb5.dto.RoomDto;
+import com.codesquad.airbnb5.dto.RoomDetailDTO;
+import com.codesquad.airbnb5.dto.RoomDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,14 +24,14 @@ public class RoomMapper {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public RowMapper<RoomDto> mapRow(int guestId) throws SQLException {
-        return new RowMapper<RoomDto>() {
+    public RowMapper<RoomDTO> mapRow(int guestId) throws SQLException {
+        return new RowMapper<RoomDTO>() {
             @Override
-            public RoomDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+            public RoomDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
                 int roomId = rs.getInt("room_id");
                 boolean bool = findFavoriteByGuestIdAndRoomId(guestId, roomId);
 
-                return RoomDto.builder()
+                return RoomDTO.builder()
                         .roomId(rs.getInt("room_id"))
                         .roomName(rs.getString("room_name"))
                         .roomThumbnail(rs.getString("room_thumbnail"))
@@ -49,14 +49,14 @@ public class RoomMapper {
         };
     }
 
-    public RowMapper<RoomDetailDto> mapRowDetail(int guestId) throws SQLException {
-        return new RowMapper<RoomDetailDto>() {
+    public RowMapper<RoomDetailDTO> mapRowDetail(int guestId) throws SQLException {
+        return new RowMapper<RoomDetailDTO>() {
             @Override
-            public RoomDetailDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+            public RoomDetailDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
                 int roomId = rs.getInt("room_id");
                 boolean favoriteStatus = findFavoriteByGuestIdAndRoomId(guestId, roomId);
 
-                return RoomDetailDto.builder()
+                return RoomDetailDTO.builder()
                         .roomId(roomId)
                         .roomName(rs.getString("room_name"))
                         .address(rs.getString("address"))

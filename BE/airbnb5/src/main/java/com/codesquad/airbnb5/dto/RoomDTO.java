@@ -8,7 +8,7 @@ import java.util.List;
 
 @Builder
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class RoomDto {
+public class RoomDTO {
 
     @JsonProperty("room_id")
     private final int roomId;

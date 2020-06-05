@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-public class ResponseDto {
+public class ResponseDTO {
 
     @JsonProperty("status_code")
     private int statusCode;
@@ -14,11 +14,11 @@ public class ResponseDto {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object data;
 
-    public ResponseDto(int statusCode) {
+    public ResponseDTO(int statusCode) {
         this.statusCode = statusCode;
     }
 
-    public ResponseDto(int statusCode, Object data) {
+    public ResponseDTO(int statusCode, Object data) {
         this.statusCode = statusCode;
         this.data = data;
     }

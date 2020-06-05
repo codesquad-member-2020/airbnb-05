@@ -1,9 +1,9 @@
 package com.codesquad.airbnb5.service;
 
-import com.codesquad.airbnb5.dao.BookmarkDao;
+import com.codesquad.airbnb5.dao.BookmarkDAO;
 import com.codesquad.airbnb5.dao.RoomMapper;
 import com.codesquad.airbnb5.domain.BookmarkRepository;
-import com.codesquad.airbnb5.dto.ResponseDto;
+import com.codesquad.airbnb5.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,27 +15,27 @@ import java.util.List;
 public class BookmarkService {
 
     @Autowired
-    private BookmarkDao bookmarkDao;
+    private BookmarkDAO bookmarkDao;
     @Autowired
     private BookmarkRepository bookmarkRepository;
 
-    public ResponseDto addFavoriteStatus(int roomId, int guestId) {
+    public ResponseDTO addFavoriteStatus(int roomId, int guestId) {
         bookmarkDao.addBookmark(roomId, guestId);
-        return new ResponseDto(200);
+        return new ResponseDTO(200);
     }
 
-    public ResponseDto deleteFavoriteStatus(int roomId, int guestId) {
+    public ResponseDTO deleteFavoriteStatus(int roomId, int guestId) {
         bookmarkDao.deleteBookmark(roomId, guestId);
-        return new ResponseDto(200);
+        return new ResponseDTO(200);
     }
 
-    public ResponseDto getBookmarkList(int guestId, RoomMapper roomMapper) throws SQLException {
+    public ResponseDTO getBookmarkList(int guestId, RoomMapper roomMapper) throws SQLException {
         List<Object> bookmarks = new ArrayList<>();
         List<Integer> roomList = bookmarkRepository.findBookmarkRoomByGuestId(guestId);
         for (int roomId : roomList) {
             Object roomDto = bookmarkDao.findBookmarkRoom(guestId, roomId, roomMapper);
             bookmarks.add(roomDto);
         }
-        return new ResponseDto(200, bookmarks);
+        return new ResponseDTO(200, bookmarks);
     }
 }
