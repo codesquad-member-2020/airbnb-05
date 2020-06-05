@@ -20,8 +20,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8T-cK-yr2">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="nNJ-ab-As6" userLabel="Upper Stack View">
-                                        <rect key="frame" x="20.5" y="20" width="373" height="109"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="nNJ-ab-As6" userLabel="Upper Stack View">
+                                        <rect key="frame" x="20.5" y="20" width="373" height="126"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-pu-hcZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
@@ -43,7 +43,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="viB-Ka-EAS" userLabel="Filter Button Stack View">
-                                                <rect key="frame" x="0.0" y="44" width="373" height="38"/>
+                                                <rect key="frame" x="0.0" y="41" width="373" height="38"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="488-9x-Pc1">
                                                         <rect key="frame" x="0.0" y="0.0" width="117.5" height="38"/>
@@ -143,8 +143,31 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hCu-ha-AHx">
+                                                <rect key="frame" x="0.0" y="86" width="373" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모든 날짜" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sO8-yK-3bE" userLabel="DateInfo">
+                                                        <rect key="frame" x="0.0" y="0.0" width="117.5" height="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모든 인원" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXq-Y4-Ik0" userLabel="GuestInfo">
+                                                        <rect key="frame" x="127.5" y="0.0" width="118" height="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체 가격범위" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EA6-dn-AtT" userLabel="PriceInfo">
+                                                        <rect key="frame" x="255.5" y="0.0" width="117.5" height="16"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜와 인원을 선택하시면 가격별 숙소를 추천해드립니다." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cA-g8-Bil">
-                                                <rect key="frame" x="0.0" y="92" width="373" height="17"/>
+                                                <rect key="frame" x="0.0" y="109" width="373" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -156,7 +179,7 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zfg-IP-gVe">
-                                        <rect key="frame" x="20.5" y="129" width="373" height="630"/>
+                                        <rect key="frame" x="20.5" y="146" width="373" height="613"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </tableView>
                                 </subviews>
@@ -213,6 +236,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="EXPLORE" image="magnifyingglass.circle" catalog="system" selectedImage="magnifyingglass.circle.fill" id="acW-dT-cKf"/>
                     <connections>
+                        <outlet property="bookingDateButton" destination="488-9x-Pc1" id="FxB-ZX-1wd"/>
+                        <outlet property="bookingDateInfo" destination="sO8-yK-3bE" id="FVm-K8-M6h"/>
+                        <outlet property="bookingGuestButton" destination="cYB-pl-Jgv" id="eJY-Eb-gZE"/>
+                        <outlet property="bookingGuestInfo" destination="mXq-Y4-Ik0" id="iEG-P6-72h"/>
+                        <outlet property="bookingPriceButton" destination="q83-gD-WLE" id="adz-Qx-avh"/>
+                        <outlet property="bookingPriceInfo" destination="EA6-dn-AtT" id="QPv-ic-cwI"/>
                         <outlet property="infoTableView" destination="zfg-IP-gVe" id="gTY-wF-pGw"/>
                     </connections>
                 </viewController>

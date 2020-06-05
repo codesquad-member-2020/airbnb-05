@@ -12,20 +12,22 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var infoTableView: UITableView!
     
+    @IBOutlet weak var bookingDateButton: UIButton!
+    @IBOutlet weak var bookingGuestButton: UIButton!
+    @IBOutlet weak var bookingPriceButton: UIButton!
+    
+    @IBOutlet weak var bookingDateInfo: UILabel!
+    @IBOutlet weak var bookingGuestInfo: UILabel!
+    @IBOutlet weak var bookingPriceInfo: UILabel!
+    
     private var offset = 0
     private var guestCount: Int?
     private var bookingDate: (String, String)?
     private var priceRange: (String, String)?
 
     var selectedCityId: Int?
-    var models: [RoomInfo]?
+    var models = [RoomInfo]()
     var priceSetUpDelegate: SendDataDelegate?
-    
-    /*
-    override func viewWillAppear(_ animated: Bool) {
-        configureAccomodationList()
-    }
- */
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,7 @@ class MainViewController: UIViewController {
             viewController.dateDelegate = self
         } else if segue.identifier == PriceFilterViewController.segueName {
            let viewController = segue.destination as! PriceFilterViewController
+            viewController.priceDelegate = self
             viewController.cityId = self.selectedCityId
             viewController.guestCount = self.guestCount
             viewController.bookingDate = self.bookingDate
@@ -66,7 +69,11 @@ class MainViewController: UIViewController {
     private func configureAccomodationList() {
         let param = EndPoints.requestAccomodationList(offset: 0, checkIn: bookingDate?.0, checkOut: bookingDate?.1, guests: guestCount, minPrice: priceRange?.0, maxPrice: priceRange?.1)
         DataUseCase.getAccomodationList(manager: NetworkManager(), cityId: self.selectedCityId!, paramData: param) { roomInfoList in
-            self.models = roomInfoList
+            
+            roomInfoList?.forEach({ (info) in
+                self.models.append(info)
+            })
+            
             DispatchQueue.main.async {
                 self.infoTableView.reloadData()
             }
@@ -77,7 +84,7 @@ class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return models?.count ?? 0
+        return models.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,7 +93,7 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = infoTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
-        guard let models = models else { return UITableViewCell() }
+        if models.isEmpty { return UITableViewCell() }
         cell.configure(with: models[indexPath.section])
         cell.favoriteButton.isFavorite = models[indexPath.row].favorite
         let favoriteButtonManager = FavoriteButtonManager(isFavorite: cell.favoriteButton.isFavorite!)
@@ -128,6 +135,7 @@ extension MainViewController: UIScrollViewDelegate {
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom < height {
             offset += 10
+            configureAccomodationList()
         }
     }
 }
@@ -135,14 +143,26 @@ extension MainViewController: UIScrollViewDelegate {
 extension MainViewController: SendDataDelegate {
     func sendData(data: String) {
         guestCount = Int(data)!
+        bookingGuestButton.borderColor = .systemPink
+        bookingGuestButton.titleLabel!.textColor = .systemPink
+        bookingGuestInfo.text = "\(data)명"
+        configureAccomodationList()
     }
     
     func sendDate(first: String, second: String) {
         bookingDate = (first, second)
+        bookingDateButton.borderColor = .systemPink
+        bookingDateButton.titleLabel!.textColor = .systemPink
+        bookingDateInfo.text = "\(first) ~ \(second)"
+        configureAccomodationList()
     }
     
     func sendPrice(first: String, second: String) {
         priceRange = (first, second)
+        bookingPriceButton.borderColor = .systemPink
+        bookingPriceButton.titleLabel!.textColor = .systemPink
+        bookingPriceInfo.text = "₩\(first) ~ ₩\(second)"
+        configureAccomodationList()
     }
 }
 
