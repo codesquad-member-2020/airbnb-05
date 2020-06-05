@@ -19,8 +19,7 @@ class AccomodationInfoTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     static let identifier = "AccomodationInfoTableViewCell"
-
-    var models: RoomInfo? // 배열이 아니라 하나
+    var models: RoomInfo?
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,12 +30,17 @@ class AccomodationInfoTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.pageControl.currentPage = 0
+    }
+    
     static func nib() -> UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
     
     private func setupAccomodationView() {
-        starRateAndReviewLabel.text = "⭐️\(models!.scores) (\(models!.reviews))"
+        starRateAndReviewLabel.text = "⭐️ \(models!.scores) (\(models!.reviews))"
         if !models!.is_super_host {
             superhostLabel.isHidden = true
         }
@@ -79,7 +83,18 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ThumbnailImageCollectionViewCell.identifier, for: indexPath) as! ThumbnailImageCollectionViewCell
-        // 여기서 이미지 URL 패치해서 이미지를 넣어줘야 함.
+        let imgUrl: String?
+        
+        if indexPath.row > (models?.image_lists.count)! - 1 {
+            imgUrl = models?.room_thumbnail
+        } else {
+            imgUrl = models?.image_lists[indexPath.row]
+        }
+        
+        DataUseCase.loadImg(manager: NetworkManager(), imgUrl: imgUrl!) { (image) in
+            cell.myImage.image = image ?? UIImage(systemName: "paperplane.fill")
+        }
+        
         return cell
     }
     
@@ -90,7 +105,7 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        self.pageControl.numberOfPages = self.models?.image_lists.count ?? 0 + 1
+        self.pageControl.numberOfPages = (self.models?.image_lists.count ?? 0) + 1
         self.pageControl.pageIndicatorTintColor = .darkGray
         self.pageControl.currentPage = indexPath.row
     }

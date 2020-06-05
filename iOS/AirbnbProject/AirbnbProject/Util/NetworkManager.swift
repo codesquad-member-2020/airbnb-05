@@ -8,6 +8,8 @@
 
 import Foundation
 import Alamofire
+import AlamofireImage
+import UIKit
 
 protocol NetworkManagable {
     func requestData(url: String, method: HTTPMethod, body: Data?, paramData: [URLQueryItem]?, completion: @escaping (Data?, HTTPURLResponse?, NetworkErrorCase?) -> ())
@@ -72,14 +74,16 @@ enum EndPoints {
 
 class NetworkManager: NetworkManagable {
     
+    private let token = "Bearer \(UserDefaults.standard.object(forKey: "JWTToken")!)"
+    private let imageCache = AutoPurgingImageCache()
+    
     func requestData(url: String, method: HTTPMethod, body: Data?, paramData: [URLQueryItem]?, completion: @escaping (Data?, HTTPURLResponse?, NetworkErrorCase?) -> ()) {
         
         var urlComponents = URLComponents(string: url)
         urlComponents?.queryItems = paramData
         
         guard let url = urlComponents?.url else { completion(nil, nil, .InvalidURL); return }
-        let token = "Bearer \(UserDefaults.standard.object(forKey: "JWTToken")!)"
-        let header: HTTPHeaders = ["Authorization" : token, "Accept": "application/json"]
+        let header: HTTPHeaders = ["Authorization" : self.token, "Accept": "application/json"]
         
         AF.request(url, method: method, parameters: body, headers: header)
             .validate()
@@ -93,6 +97,20 @@ class NetworkManager: NetworkManagable {
                     completion(nil, response.response, .RequestFail)
                 }
         }
+    }
+    
+    func fetchImage(imgURL: URLRequest, completion: @escaping (UIImage?) -> ()) {
+        AF.request(imgURL)
+            .validate()
+            .responseImage { (response) in
+                switch response.result {
+                case .success(let image):
+                    completion(image)
+                case .failure(_):
+                    completion(nil)
+                }
+        }
+        
     }
 }
 
