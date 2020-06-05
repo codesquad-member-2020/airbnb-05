@@ -64,7 +64,7 @@ struct RoomInfo: Codable {
 }
 
 struct Response: Codable {
-    let status_code: String
+    let status_code: Int
 }
 
 // MARK: 숙소 상세 화면

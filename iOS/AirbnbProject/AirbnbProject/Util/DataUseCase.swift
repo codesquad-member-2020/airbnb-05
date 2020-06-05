@@ -56,4 +56,40 @@ struct DataUseCase {
             }
         }
     }
+    
+    static func bookmarkAdd(manager: NetworkManager, roomid: Int, completion: @escaping (Bool) -> ()) {
+        manager.requestData(url: EndPoints.requestBookmarkOnOff(roomId: roomid), method: .post, body: nil, paramData: nil) { (data, _, error) in
+            guard let data = data else { completion(false); return }
+            
+            guard let bookMarkResponse = try? JSONDecoder().decode(Response.self, from: data) else { completion(false); return }
+            if bookMarkResponse.status_code == 200 {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
+    static func bookmarkDelete(manager: NetworkManager, roomid: Int, completion: @escaping (Bool) -> ()) {
+        manager.requestData(url: EndPoints.requestBookmarkOnOff(roomId: roomid), method: .delete, body: nil, paramData: nil) { (data, _, error) in
+            guard let data = data else { completion(false); return }
+            
+            guard let bookMarkResponse = try? JSONDecoder().decode(Response.self, from: data) else { completion(false); return }
+            
+            if bookMarkResponse.status_code == 200 {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+    
+    static func requestBookmarkList(manager: NetworkManager, completion: @escaping ([RoomInfo]?) -> ()) {
+        manager.requestData(url: EndPoints.requestBookMard, method: .get, body: nil, paramData: nil) { (data, _, error) in
+            guard let data = data else { completion(nil); return }
+            
+            guard let bookmarkList = try? JSONDecoder().decode(AccomodationListInfo.self, from: data) else { completion(nil); return }
+            completion(bookmarkList.data)
+        }
+    }
 }

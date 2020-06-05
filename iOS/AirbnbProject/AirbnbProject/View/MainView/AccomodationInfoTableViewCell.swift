@@ -20,7 +20,7 @@ class AccomodationInfoTableViewCell: UITableViewCell {
     
     static let identifier = "AccomodationInfoTableViewCell"
     var models: RoomInfo?
-        
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollectionView()
@@ -65,8 +65,20 @@ class AccomodationInfoTableViewCell: UITableViewCell {
     
     @IBAction func favoriteButtonTapped(_ sender: FavoriteButton) {
         guard let isFavorite = sender.isFavorite else { return }
-        let favoriteButtonManager = FavoriteButtonManager(isFavorite: !isFavorite)
-        setFavoriteButtonUI(view: sender, manager: favoriteButtonManager)
+        var favoriteStatus = isFavorite
+        if favoriteStatus {
+            DataUseCase.bookmarkDelete(manager: NetworkManager(), roomid: models!.room_id) { (result) in
+                favoriteStatus = !result
+                let favoriteButtonManager = FavoriteButtonManager(isFavorite: favoriteStatus)
+                self.setFavoriteButtonUI(view: sender, manager: favoriteButtonManager)
+            }
+        } else {
+            DataUseCase.bookmarkAdd(manager: NetworkManager(), roomid: models!.room_id) { (result) in
+                favoriteStatus = result
+                let favoriteButtonManager = FavoriteButtonManager(isFavorite: favoriteStatus)
+                self.setFavoriteButtonUI(view: sender, manager: favoriteButtonManager)
+            }
+        }
     }
     
     func setFavoriteButtonUI(view: FavoriteButton, manager: FavoriteButtonManager) {

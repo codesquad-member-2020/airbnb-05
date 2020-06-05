@@ -11,11 +11,7 @@ import UIKit
 
 class FavoriteButtonManager {
     
-    var isFavorite: Bool {
-        didSet {
-            updateisFavorite()
-        }
-    }
+    var isFavorite: Bool
     var favoriteButtonTintColor: UIColor = .lightGray
     var favoriteButtonImage: UIImage = UIImage(systemName: SystemImageName.heartEmpty)!
     
@@ -37,10 +33,6 @@ class FavoriteButtonManager {
         case true: self.favoriteButtonImage = UIImage(systemName: SystemImageName.heartFill)!
         case false: self.favoriteButtonImage = UIImage(systemName: SystemImageName.heartEmpty)!
         }
-    }
-    
-    func updateisFavorite() {
-        isFavorite = !isFavorite
     }
 }
 

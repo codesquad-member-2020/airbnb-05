@@ -24,12 +24,16 @@ enum NetworkErrorCase : Error {
 enum EndPoints {
     static let basicEndPoint = "http://52.6.242.151:8080"
     static let requestCityList = basicEndPoint + "/cities"
+    static let requestBookMard = basicEndPoint + "/bookmarks"
     static let oauthLogin = "https://github.com/login/oauth/authorize?client_id=1b7982028f6ef8e3a91a&scope=user%20public_repo"
     static func requestPriceURL(cityId: String) -> String {
         return requestCityList + "/\(cityId)/prices"
     }
     static func requestAccomodationURL(cityId: Int) -> String {
         return requestCityList + "/\(cityId)/rooms?"
+    }
+    static func requestBookmarkOnOff(roomId: Int) -> String {
+        return requestBookMard + "/\(roomId)"
     }
     
     static func requestAccomodationList(offset: Int, checkIn: String?, checkOut: String?, guests: Int?, minPrice: String?, maxPrice: String?) -> [URLQueryItem] {
