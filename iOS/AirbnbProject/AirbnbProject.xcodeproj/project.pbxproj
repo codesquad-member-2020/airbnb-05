@@ -249,7 +249,6 @@
 		AB8ED7C62473ACFC00B07D9F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6A334BE22472B5C900464B32 /* MainViewController.swift */,
 				6AEA9BBF2485519100F08724 /* PriceFilterView */,
 				6A301D222479094800D23B84 /* CalendarView */,
 				6A301D212479092000D23B84 /* FilterReusableView */,
@@ -271,6 +270,7 @@
 		AB8ED7C82473AD0C00B07D9F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6A334BE22472B5C900464B32 /* MainViewController.swift */,
 				6A334BE42472B5C900464B32 /* SavedAccomodationViewController.swift */,
 				6AEA9BBB2485484600F08724 /* CityPickerViewController.swift */,
 				6AEA9BBD248549AA00F08724 /* LoginViewController.swift */,

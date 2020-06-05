@@ -84,7 +84,7 @@ class NetworkManager: NetworkManagable {
         
         guard let url = urlComponents?.url else { completion(nil, nil, .InvalidURL); return }
         let header: HTTPHeaders = ["Authorization" : self.token, "Accept": "application/json"]
-        
+    
         AF.request(url, method: method, parameters: body, headers: header)
             .validate()
             .responseJSON { response in

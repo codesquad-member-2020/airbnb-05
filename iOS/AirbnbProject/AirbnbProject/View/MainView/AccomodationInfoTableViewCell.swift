@@ -107,7 +107,6 @@ extension AccomodationInfoTableViewCell: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         self.pageControl.numberOfPages = (self.models?.image_lists.count ?? 0) + 1
         self.pageControl.pageIndicatorTintColor = .darkGray
-        self.pageControl.currentPage = indexPath.row
     }
 }
 
