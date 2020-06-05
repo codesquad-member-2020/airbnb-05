@@ -11,14 +11,19 @@ import UIKit
 class SavedAccomodationViewController: UIViewController {
     
     @IBOutlet weak var savedAccomodationTableView: UITableView!
-
+    
     var savedAccomodations: [RoomInfo]?
-        
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureModel()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
     }
-
+    
     private func setupTableView() {
         savedAccomodationTableView.register(AccomodationInfoTableViewCell.nib(), forCellReuseIdentifier: AccomodationInfoTableViewCell.identifier)
         savedAccomodationTableView.dataSource = self
@@ -26,6 +31,16 @@ class SavedAccomodationViewController: UIViewController {
         savedAccomodationTableView.delaysContentTouches = false
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(savedAccomodationCellTapped))
         self.savedAccomodationTableView.addGestureRecognizer(gestureRecognizer)
+        configureModel()
+    }
+    
+    private func configureModel() {
+        DataUseCase.requestBookmarkList(manager: NetworkManager()) { (bookMarkList) in
+            self.savedAccomodations = bookMarkList
+            DispatchQueue.main.async {
+                self.savedAccomodationTableView.reloadData()
+            }
+        }
     }
     
     @objc func savedAccomodationCellTapped(_ sender: UITapGestureRecognizer) {
@@ -33,10 +48,10 @@ class SavedAccomodationViewController: UIViewController {
         guard let tappedCellIndexPath = self.savedAccomodationTableView.indexPathForRow(at: tapLocation) else {return}
         let tappedCell = self.savedAccomodationTableView.cellForRow(at: tappedCellIndexPath) as! AccomodationInfoTableViewCell
     }
-
+    
 }
 extension SavedAccomodationViewController: UITableViewDataSource {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return savedAccomodations?.count ?? 0
     }
@@ -44,18 +59,18 @@ extension SavedAccomodationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = savedAccomodationTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
         guard let savedAccomodations = savedAccomodations else { return UITableViewCell() }
-//        cell.configure(with: savedAccomodations)
+        cell.configure(with: savedAccomodations[indexPath.section])
         
-        cell.favoriteButton.isFavorite = savedAccomodations[indexPath.row].favorite
+        cell.favoriteButton.isFavorite = savedAccomodations[indexPath.section].favorite
         let favoriteButtonManager = FavoriteButtonManager(isFavorite: cell.favoriteButton.isFavorite!)
         cell.setFavoriteButtonUI(view: cell.favoriteButton, manager: favoriteButtonManager)
         
         return cell
-
+        
     }
 }
 

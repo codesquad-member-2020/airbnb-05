@@ -15,7 +15,7 @@ extension UIButton {
     }
     
     @objc private func animateDown(sender: UIButton) {
-        animate(sender, transform: CGAffineTransform.identity.scaledBy(x: 0.8, y: 0.8))
+        animate(sender, transform: CGAffineTransform.identity.scaledBy(x: 0.9, y: 0.9))
     }
     
     @objc private func animateUp(sender: UIButton) {

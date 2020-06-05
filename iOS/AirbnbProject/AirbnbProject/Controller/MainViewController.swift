@@ -95,7 +95,7 @@ extension MainViewController: UITableViewDataSource {
         let cell = infoTableView.dequeueReusableCell(withIdentifier: AccomodationInfoTableViewCell.identifier, for: indexPath) as! AccomodationInfoTableViewCell
         if models.isEmpty { return UITableViewCell() }
         cell.configure(with: models[indexPath.section])
-        cell.favoriteButton.isFavorite = models[indexPath.row].favorite
+        cell.favoriteButton.isFavorite = models[indexPath.section].favorite
         let favoriteButtonManager = FavoriteButtonManager(isFavorite: cell.favoriteButton.isFavorite!)
         cell.setFavoriteButtonUI(view: cell.favoriteButton, manager: favoriteButtonManager)
         
