@@ -8,12 +8,12 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Repository
-public class BookmarkDao {
+public class BookmarkDAO {
 
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public BookmarkDao(DataSource dataSource) {
+    public BookmarkDAO(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 

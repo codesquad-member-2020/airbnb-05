@@ -1,6 +1,6 @@
 package com.codesquad.airbnb5.service;
 
-import com.codesquad.airbnb5.dao.UserDao;
+import com.codesquad.airbnb5.dao.UserDAO;
 import com.codesquad.airbnb5.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     @Autowired
-    private UserDao userDao;
+    private UserDAO userDao;
 
-    public UserService(UserDao userDao) {
+    public UserService(UserDAO userDao) {
         this.userDao = userDao;
     }
 

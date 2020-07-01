@@ -1,8 +1,8 @@
 package com.codesquad.airbnb5.dao;
 
-import com.codesquad.airbnb5.dto.PriceDto;
-import com.codesquad.airbnb5.dto.RoomDetailDto;
-import com.codesquad.airbnb5.dto.RoomDto;
+import com.codesquad.airbnb5.dto.PriceDTO;
+import com.codesquad.airbnb5.dto.RoomDetailDTO;
+import com.codesquad.airbnb5.dto.RoomDTO;
 import com.codesquad.airbnb5.exception.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ import java.util.List;
 
 @Slf4j
 @Repository
-public class RoomDao {
+public class RoomDAO {
 
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public RoomDao(DataSource dataSource) {
+    public RoomDAO(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -40,7 +40,7 @@ public class RoomDao {
             RoomMapper roomMapper
     ) throws SQLException {
 
-        RowMapper<RoomDto> rowMapper = roomMapper.mapRow(guestId);
+        RowMapper<RoomDTO> rowMapper = roomMapper.mapRow(guestId);
         String sql = "SELECT r.room_id, r.room_name, r.room_thumbnail, h.is_super_host, " +
                 "r.room_type, r.beds, r.scores, r.reviews, r.latitude, r.longitude " +
                 "FROM room r " +
@@ -62,7 +62,7 @@ public class RoomDao {
         return jdbcTemplate.query(sql, new Object[]{cityId, guests, minPrice, maxPrice, checkIn, checkOut, checkIn, checkOut, checkIn, checkIn, checkOut, checkOut, limit, offset}, rowMapper);
     }
 
-    public PriceDto findPriceFilterData(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
+    public PriceDTO findPriceFilterData(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
 
         String sql = "SELECT r.sale_price " +
                 "FROM room r " +
@@ -96,7 +96,7 @@ public class RoomDao {
         }
 
         try {
-            return new PriceDto(getAveragePrice(cityId, guests, checkIn, checkOut), prices, counts);
+            return new PriceDTO(getAveragePrice(cityId, guests, checkIn, checkOut), prices, counts);
         } catch (EmptyResultDataAccessException e) {
             throw new NotFoundException("해당 필터 조건을 만족하는 숙소가 없습니다.");
         }
@@ -122,14 +122,14 @@ public class RoomDao {
         }
     }
 
-    public RoomDetailDto findRoomDetail(
+    public RoomDetailDTO findRoomDetail(
             int cityId,
             int roomId,
             int guestId,
             RoomMapper roomMapper
     ) throws SQLException {
 
-        RowMapper<RoomDetailDto> rowMapper = roomMapper.mapRowDetail(roomId);
+        RowMapper<RoomDetailDTO> rowMapper = roomMapper.mapRowDetail(roomId);
         String sql = "SELECT r.room_id, r.room_name, r.address, r.room_thumbnail, h.is_super_host, h.host_name, " +
                 "h.host_thumbnail, r.room_type, r.beds, r.original_price, r.sale_price, r.scores, r.reviews, r.amenities, " +
                 "r.cleaning_fee, r.maximum_guests " +

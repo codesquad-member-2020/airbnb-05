@@ -1,8 +1,8 @@
 package com.codesquad.airbnb5.service;
 
-import com.codesquad.airbnb5.dao.RoomDao;
+import com.codesquad.airbnb5.dao.RoomDAO;
 import com.codesquad.airbnb5.dao.RoomMapper;
-import com.codesquad.airbnb5.dto.ResponseDto;
+import com.codesquad.airbnb5.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,20 +13,20 @@ import java.time.LocalDate;
 public class RoomService {
 
     @Autowired
-    private RoomDao roomDao;
+    private RoomDAO roomDao;
 
-    public ResponseDto getRoomSummary(int cityId, int limit, int offset, int guests, int minPrice, int maxPrice, LocalDate checkIn, LocalDate checkOut, int guestId, RoomMapper roomMapper) throws SQLException {
+    public ResponseDTO getRoomSummary(int cityId, int limit, int offset, int guests, int minPrice, int maxPrice, LocalDate checkIn, LocalDate checkOut, int guestId, RoomMapper roomMapper) throws SQLException {
         Object roomDto = roomDao.findRoomSummary(cityId, limit, offset, guests, minPrice, maxPrice, checkIn, checkOut, guestId, roomMapper);
-        return new ResponseDto(200, roomDto);
+        return new ResponseDTO(200, roomDto);
     }
 
-    public ResponseDto getPriceFilter(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
+    public ResponseDTO getPriceFilter(int cityId, int guests, LocalDate checkIn, LocalDate checkOut) {
         Object priceDto = roomDao.findPriceFilterData(cityId, guests, checkIn, checkOut);
-        return new ResponseDto(200, priceDto);
+        return new ResponseDTO(200, priceDto);
     }
 
-    public ResponseDto getRoomDetail(int cityId, int roomId, int guestId, RoomMapper roomMapper) throws SQLException {
+    public ResponseDTO getRoomDetail(int cityId, int roomId, int guestId, RoomMapper roomMapper) throws SQLException {
         Object roomDetailDto = roomDao.findRoomDetail(cityId, roomId, guestId, roomMapper);
-        return new ResponseDto(200, roomDetailDto);
+        return new ResponseDTO(200, roomDetailDto);
     }
 }

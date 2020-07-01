@@ -1,9 +1,9 @@
 package com.codesquad.airbnb5.service;
 
-import com.codesquad.airbnb5.auth.vo.BookingInfo;
-import com.codesquad.airbnb5.dao.ReservationDao;
+import com.codesquad.airbnb5.vo.BookingInfo;
+import com.codesquad.airbnb5.dao.ReservationDAO;
 import com.codesquad.airbnb5.domain.RoomRepository;
-import com.codesquad.airbnb5.dto.ResponseDto;
+import com.codesquad.airbnb5.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +11,22 @@ import org.springframework.stereotype.Service;
 public class ReservationService {
 
     @Autowired
-    private ReservationDao reservationDao;
+    private ReservationDAO reservationDao;
     @Autowired
     private RoomRepository roomRepository;
 
-    public ResponseDto addReservation(int guestId, BookingInfo bookingInfo) {
+    public ResponseDTO addReservation(int guestId, BookingInfo bookingInfo) {
         reservationDao.addReservation(bookingInfo.getRoomId(), guestId, bookingInfo.getCheckIn(), bookingInfo.getCheckOut(), bookingInfo.getGuests());
-        return new ResponseDto(200);
+        return new ResponseDTO(200);
     }
 
-    public ResponseDto deleteReservation(int reservationId) {
+    public ResponseDTO deleteReservation(int reservationId) {
         reservationDao.deleteReservation(reservationId);
-        return new ResponseDto(200);
+        return new ResponseDTO(200);
     }
 
-    public ResponseDto getReservationList(int guestId) {
+    public ResponseDTO getReservationList(int guestId) {
         Object reservationDto = reservationDao.findReservationList(guestId);
-        return new ResponseDto(200, reservationDto);
+        return new ResponseDTO(200, reservationDto);
     }
 }

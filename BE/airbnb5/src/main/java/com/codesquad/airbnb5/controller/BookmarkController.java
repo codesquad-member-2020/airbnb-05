@@ -1,7 +1,7 @@
 package com.codesquad.airbnb5.controller;
 
 import com.codesquad.airbnb5.dao.RoomMapper;
-import com.codesquad.airbnb5.dto.ResponseDto;
+import com.codesquad.airbnb5.dto.ResponseDTO;
 import com.codesquad.airbnb5.service.BookmarkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,25 +20,25 @@ public class BookmarkController {
     private BookmarkService bookmarkService;
 
     @PostMapping("/{roomId}")
-    public ResponseEntity<ResponseDto> addBookmark(
+    public ResponseEntity<ResponseDTO> addBookmark(
             @PathVariable("roomId") int roomId,
             @RequestAttribute("guestId") int guestId) {
-        ResponseDto responseDto = bookmarkService.addFavoriteStatus(roomId, guestId);
+        ResponseDTO responseDto = bookmarkService.addFavoriteStatus(roomId, guestId);
         return ResponseEntity.ok().body(responseDto);
     }
 
     @DeleteMapping("/{roomId}")
-    public ResponseEntity<ResponseDto> deleteBookmark(
+    public ResponseEntity<ResponseDTO> deleteBookmark(
             @PathVariable("roomId") int roomId,
             @RequestAttribute("guestId") int guestId) {
-        ResponseDto responseDto = bookmarkService.deleteFavoriteStatus(roomId, guestId);
+        ResponseDTO responseDto = bookmarkService.deleteFavoriteStatus(roomId, guestId);
         return ResponseEntity.ok().body(responseDto);
     }
 
     @GetMapping("")
-    public ResponseEntity<ResponseDto> getBookmarks(
+    public ResponseEntity<ResponseDTO> getBookmarks(
             @RequestAttribute("guestId") int guestId) throws SQLException {
-        ResponseDto responseDto = bookmarkService.getBookmarkList(guestId, roomMapper);
+        ResponseDTO responseDto = bookmarkService.getBookmarkList(guestId, roomMapper);
         return ResponseEntity.ok().body(responseDto);
     }
 }

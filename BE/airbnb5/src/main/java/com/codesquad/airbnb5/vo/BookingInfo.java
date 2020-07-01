@@ -1,4 +1,4 @@
-package com.codesquad.airbnb5.auth.vo;
+package com.codesquad.airbnb5.vo;
 
 import lombok.Builder;
 import lombok.Value;
