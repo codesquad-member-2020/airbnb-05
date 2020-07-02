@@ -16,7 +16,7 @@ import java.util.Map;
 @Service
 public class JwtService {
 
-    SecretKey key = Keys.hmacShaKeyFor("airbnb5SecretKeyForTheProjectAlgorithm".getBytes());
+    SecretKey key = Keys.hmacShaKeyFor("".getBytes());
 
     public String buildJwt(User user) {
         return Jwts.builder()
