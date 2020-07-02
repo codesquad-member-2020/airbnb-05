@@ -3,7 +3,6 @@ package com.codesquad.airbnb5.controller;
 import com.codesquad.airbnb5.dao.RoomMapper;
 import com.codesquad.airbnb5.dto.ResponseDTO;
 import com.codesquad.airbnb5.service.BookmarkService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +12,13 @@ import java.sql.SQLException;
 @RestController
 public class BookmarkController {
 
-    @Autowired
-    private RoomMapper roomMapper;
+    private final RoomMapper roomMapper;
+    private final BookmarkService bookmarkService;
 
-    @Autowired
-    private BookmarkService bookmarkService;
+    public BookmarkController(RoomMapper roomMapper, BookmarkService bookmarkService) {
+        this.roomMapper = roomMapper;
+        this.bookmarkService = bookmarkService;
+    }
 
     @PostMapping("/{roomId}")
     public ResponseEntity<ResponseDTO> addBookmark(

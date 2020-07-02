@@ -1,10 +1,9 @@
 package com.codesquad.airbnb5.controller;
 
-import com.codesquad.airbnb5.vo.BookingInfo;
-import com.codesquad.airbnb5.vo.ReservationVO;
 import com.codesquad.airbnb5.dto.ResponseDTO;
 import com.codesquad.airbnb5.service.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.codesquad.airbnb5.vo.BookingInfo;
+import com.codesquad.airbnb5.vo.ReservationVO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ReservationController {
 
-    @Autowired
-    private ReservationService reservationService;
+    private final ReservationService reservationService;
+
+    public ReservationController(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
     @PostMapping("/{roomId}")
     public ResponseEntity<ResponseDTO> reserveRoom(

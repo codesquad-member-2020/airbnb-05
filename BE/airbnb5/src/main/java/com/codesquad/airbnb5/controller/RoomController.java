@@ -14,11 +14,13 @@ import java.time.LocalDate;
 @RestController
 public class RoomController {
 
-    @Autowired
-    private RoomService roomService;
+    private final RoomService roomService;
+    private final RoomMapper roomMapper;
 
-    @Autowired
-    private RoomMapper roomMapper;
+    public RoomController(RoomService roomService, RoomMapper roomMapper) {
+        this.roomService = roomService;
+        this.roomMapper = roomMapper;
+    }
 
     @GetMapping("/cities/{cityId}/rooms")
     public ResponseEntity<ResponseDTO> showRoom(

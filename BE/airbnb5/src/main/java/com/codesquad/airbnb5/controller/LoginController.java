@@ -32,6 +32,7 @@ public class LoginController {
         User user = oAuthService.getUser(code);
         userService.insertOrUpdateUser(user);
         String jwt = jwtService.buildJwt(user);
+        log.debug("[*] jwt: {}", jwt);
         response.sendRedirect("airbnbfive://oauth?token=" + jwt);
         return ResponseEntity.ok("login 성공");
     }
