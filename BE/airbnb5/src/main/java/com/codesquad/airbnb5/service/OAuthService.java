@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -24,11 +25,13 @@ public class OAuthService {
     private final ObjectMapper objectMapper;
     private final String ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token";
     private final String USER_DATA_API = "https://api.github.com/user";
-    private final String CLIENT_ID = "";
-    private final String CLIENT_SECRET = "";
+    private final String CLIENT_ID;
+    private final String CLIENT_SECRET;
 
-    public OAuthService(ObjectMapper objectMapper) {
+    public OAuthService(ObjectMapper objectMapper, Environment env) {
         this.objectMapper = objectMapper;
+        CLIENT_ID = env.getProperty("CLIENT_ID");
+        CLIENT_SECRET = env.getProperty("CLIENT_SECRET");
     }
 
     public GithubToken getAccessToken(String code) {

@@ -6,6 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -16,7 +17,13 @@ import java.util.Map;
 @Service
 public class JwtService {
 
-    SecretKey key = Keys.hmacShaKeyFor("".getBytes());
+    private final String JWT_KEY;
+    private SecretKey key;
+
+    public JwtService(Environment env) {
+        JWT_KEY = env.getProperty("JWT_KEY");
+        key = Keys.hmacShaKeyFor(JWT_KEY.getBytes());
+    }
 
     public String buildJwt(User user) {
         return Jwts.builder()
